@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_nav"
+    app:startDestination="@id/fragment_login_checker">
+
+    <!-- ********** Login Checker/Home Fragments ********** -->
+    <fragment
+        android:id="@+id/fragment_login_checker"
+        android:name="com.sagoss.validationhorizon.fragments.loginviews.LoginCheckerFragment"
+        android:label="Home"
+        tools:layout="@layout/fragment_login_checker">
+
+        <action
+            android:id="@+id/action_login_checker_to_fragment_registration"
+            app:destination="@id/fragment_registration"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_in_right"
+            app:popEnterAnim="@anim/slide_out_left" />
+
+        <action
+            android:id="@+id/action_login_checker_to_fragment_no_config"
+            app:destination="@id/fragment_no_config"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_in_right"
+            app:popEnterAnim="@anim/slide_out_left"
+            />
+        <action
+            android:id="@+id/action_fragment_login_checker_to_fragment_greetings_c2c"
+            app:destination="@id/fragment_greetings_c2c" />
+        <action
+            android:id="@+id/action_fragment_login_checker_to_fragment_greetings_horizon"
+            app:destination="@id/fragment_greetings_horizon" />
+        <action
+            android:id="@+id/action_fragment_login_checker_to_fragment_greetings_ga"
+            app:destination="@id/fragment_greetings_ga" />
+
+    </fragment>
+
+    <!-- ********** Login Fragments ********** -->
+    <fragment
+        android:id="@+id/fragment_registration"
+        android:name="com.sagoss.validationhorizon.fragments.loginviews.LoginRegistrationFragment"
+        android:label="Registration"
+        tools:layout="@layout/fragment_login_registration">
+        <argument
+            android:name="extra"
+            app:argType="string" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_no_config"
+        android:name="com.sagoss.validationhorizon.fragments.loginviews.LoginRegistrationFragment"
+        android:label="No Config"
+        tools:layout="@layout/fragment_no_config">
+        <argument
+            android:name="extra"
+            app:argType="string" />
+    </fragment>
+
+    <!-- ********** C2C Fragments ********** -->
+    <fragment
+        android:id="@+id/fragment_greetings_c2c"
+        android:name="com.sagoss.validationhorizon.fragments.companyviews.c2c.GreetingsC2cFragment"
+        android:label="Greetings"
+        tools:layout="@layout/fragment_greetings_c2c">
+        <argument
+            android:name="extra"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_fragment_greetings_c2c_to_fragment_plate_registration_c2c"
+            app:destination="@id/fragment_plate_registration_c2c"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_in_right"
+            app:popEnterAnim="@anim/slide_out_left"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_plate_registration_c2c"
+        android:name="com.sagoss.validationhorizon.fragments.companyviews.c2c.PlateRegistrationC2cFragment"
+        android:label="Enter Reg Plate"
+        tools:layout="@layout/fragment_plate_registration_c2c">
+        <argument
+            android:name="extra"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_fragment_plate_registration_c2c_to_fragment_validation_complete"
+            app:destination="@id/fragment_validation_complete"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_in_right"
+            app:popEnterAnim="@anim/slide_out_left"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_validation_complete"
+        android:name="com.sagoss.validationhorizon.fragments.companyviews.c2c.ValidationCompleteC2cFragment"
+        android:label="Complate"
+        tools:layout="@layout/fragment_validation_complete_c2c">
+        <argument
+            android:name="extra"
+            app:argType="string" />
+    </fragment>
+
+
+    <!-- ********** Horizon Fragments ********** -->
+    <fragment
+        android:id="@+id/fragment_greetings_horizon"
+        android:name="com.sagoss.validationhorizon.fragments.companyviews.horizon.GreetingsHorizonFragment"
+        android:label="Greetings"
+        tools:layout="@layout/fragment_greetings_horizon">
+        <argument
+            android:name="extra"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_fragment_greetings_horizon_to_fragment_plate_registration_horizon"
+            app:destination="@id/fragment_plate_registration_horizon"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_in_right"
+            app:popEnterAnim="@anim/slide_out_left"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_plate_registration_horizon"
+        android:name="com.sagoss.validationhorizon.fragments.companyviews.horizon.PlateRegistrationHorizonFragment"
+        android:label="Enter Reg Plate"
+        tools:layout="@layout/fragment_plate_registration_horizon">
+        <argument
+            android:name="extra"
+            app:argType="string" />
+    </fragment>
+
+    <!-- ********** GA Fragments ********** -->
+    <fragment
+        android:id="@+id/fragment_greetings_ga"
+        android:name="com.sagoss.validationhorizon.fragments.companyviews.greateranglia.GreetingsGaFragment"
+        android:label="Greetings"
+        tools:layout="@layout/fragment_greetings_ga">
+        <argument
+            android:name="extra"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_fragment_greetings_ga_to_fragment_plate_registration_ga"
+            app:destination="@id/fragment_plate_registration_ga"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_in_right"
+            app:popEnterAnim="@anim/slide_out_left"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_plate_registration_ga"
+        android:name="com.sagoss.validationhorizon.fragments.companyviews.greateranglia.PlateRegistrationGaFragment"
+        android:label="Enter Reg Number"
+        tools:layout="@layout/fragment_plate_registration_ga">
+        <argument
+            android:name="extra"
+            app:argType="string" />
+    </fragment>
+
+
+</navigation>

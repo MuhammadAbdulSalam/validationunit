@@ -7,4 +7,25 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+
+    <color name="sagoss_green">#FF69bd45</color>
+    <color name="sagoss_red">#FFed1f24</color>
+    <color name="sagoss_lilac_pink">#FFd0549f</color>
+    <color name="sagoss_orange">#FFf8991d</color>
+    <color name="sagoss_blue">#FF4069b2</color>
+    <color name="sagoss_purple">#FF6f3996</color>
+    <color name="light_grey">#56959595</color>
+
+    <color name="c2c_primary">#bc0087</color>
+    <color name="c2c_dark">#231f20</color>
+    <color name="c2c_accent">#bc0087</color>
+
+    <color name="horizon_primary">#527d30</color>
+    <color name="horizon_dark">#231f20</color>
+    <color name="horizon_accent">#7dc14a</color>
+
+    <color name="ga_primary">#EB3323</color>
+    <color name="ga_dark">#231f20</color>
+    <color name="ga_accent">#EB3323</color>
 </resources>
