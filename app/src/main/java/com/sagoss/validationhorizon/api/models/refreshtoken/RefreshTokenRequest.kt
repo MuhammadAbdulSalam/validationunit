@@ -9,5 +9,4 @@ data class RefreshTokenRequest(
 
     @SerializedName("company_id")
     private val company_id: String,
-
-    )
+)

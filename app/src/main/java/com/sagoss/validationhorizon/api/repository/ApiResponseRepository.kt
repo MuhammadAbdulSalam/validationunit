@@ -9,7 +9,7 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class ResponseRepository @Inject constructor(private val apiInterface: ApiHelper) {
+class ApiResponseRepository @Inject constructor(private val apiInterface: ApiHelper) {
 
     suspend fun getRegistrationResponse(
         registrationRequest: RegistrationRequest
