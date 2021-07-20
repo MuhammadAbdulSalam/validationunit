@@ -1,21 +1,14 @@
 package com.sagoss.validationhorizon.api.models.registration
 
 import com.google.gson.annotations.SerializedName
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
+import retrofit2.http.Field
 
-data class RegistrationRequest(
-
-    @SerializedName("username")
-    private val username: String,
-
-    @SerializedName("password")
-    private val password: String,
-
-    @SerializedName("app_id")
-    private val app_id: String,
-
-    @SerializedName("mobile_id")
-    private val mobile_id: String,
-
-    @SerializedName("version")
-    private val version : String
-    )
+class RegistrationRequest(
+    val username: String,
+    val password: String,
+    val app_id: String,
+    val mobile_id: String,
+    val version: String,
+)

@@ -23,6 +23,7 @@ class MainViewModel @Inject constructor(
      * Gets response from API One registration call
      */
     fun getRegistration(registrationRequest: RegistrationRequest) = liveData(Dispatchers.IO) {
+        val data =
         emit(Resource.loading(data = null))
         try {
             emit(

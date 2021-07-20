@@ -13,6 +13,8 @@ class GreetingsGaFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
+
         return inflater.inflate(R.layout.fragment_greetings_ga, container, false)
     }
 }
