@@ -1,9 +1,8 @@
 package com.sagoss.validationhorizon.api
 
-import android.app.usage.ConfigurationStats
+import com.sagoss.validationhorizon.api.models.config.Config
 import com.sagoss.validationhorizon.api.models.refreshtoken.RefreshTokenRequest
 import com.sagoss.validationhorizon.api.models.refreshtoken.RefreshTokenResponse
-import com.sagoss.validationhorizon.api.models.registration.RegistrationRequest
 import com.sagoss.validationhorizon.api.models.registration.RegistrationResponse
 import com.sagoss.validationhorizon.utils.Constants
 import okhttp3.OkHttpClient
@@ -53,6 +52,12 @@ interface ApiOneRetrofitBuilder {
         @Header(Constants.AUTHORISATION) authToken: String,
         @Body refreshTokenRequest: RefreshTokenRequest
     ): RefreshTokenResponse
+
+    @Headers(Constants.APPLICATION_JSON)
+    @GET(Constants.ENDPOINT_CONFIG)
+    suspend fun getConfig(
+        @Header(Constants.AUTHORISATION) authToken: String,
+    ): Config
 
     /**
      * Retrofit builder component

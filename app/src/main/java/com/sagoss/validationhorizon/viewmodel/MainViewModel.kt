@@ -1,5 +1,6 @@
 package com.sagoss.validationhorizon.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
 import com.sagoss.validationhorizon.api.models.refreshtoken.RefreshTokenRequest
@@ -23,7 +24,6 @@ class MainViewModel @Inject constructor(
      * Gets response from API One registration call
      */
     fun getRegistration(registrationRequest: RegistrationRequest) = liveData(Dispatchers.IO) {
-        val data =
         emit(Resource.loading(data = null))
         try {
             emit(
@@ -55,6 +55,22 @@ class MainViewModel @Inject constructor(
                         )
                     )
                 )
+            } catch (exception: Exception) {
+                emit(Resource.error(data = null, message = exception.message ?: "Error Occurred!"))
+            }
+        }
+
+    /**
+     * @param accessToken Current Access token stored
+     *
+     * Gets Response from API One for Token Refresh call
+     */
+    fun getConfig(accessToken: String) =
+
+    liveData(Dispatchers.IO) {
+        emit(Resource.loading(data = null))
+            try {
+                emit(Resource.success(data = apiOneRepository.getConfig(accessToken)))
             } catch (exception: Exception) {
                 emit(Resource.error(data = null, message = exception.message ?: "Error Occurred!"))
             }

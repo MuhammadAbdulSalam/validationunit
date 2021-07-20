@@ -40,9 +40,13 @@ class LoginCheckerFragment : Fragment() {
 
     private fun checkUserRegistration() {
         if (prefs.accessToken == "") {
-            //TODO no config before login
-            this.findNavController()
+           findNavController()
                 .navigate(LoginCheckerFragmentDirections.actionLoginCheckerToFragmentRegistration())
+        }
+        else
+        {
+          findNavController()
+                .navigate(LoginCheckerFragmentDirections.actionFragmentLoginCheckerToFragmentNoConfigHorizon())
         }
     }
 }

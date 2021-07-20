@@ -18,9 +18,8 @@ class ApiHelper @Inject constructor(private val apiService: ApiOneRetrofitBuilde
             registrationRequest.version
         )
 
-    suspend fun getRefreshTokenResponse(
-        authToken: String,
-        refreshTokenRequest: RefreshTokenRequest
-    ) =
-        apiService.refreshToken(authToken, refreshTokenRequest)
+    suspend fun getRefreshTokenResponse(authToken: String, refreshTokenRequest: RefreshTokenRequest
+    ) = apiService.refreshToken(authToken, refreshTokenRequest)
+
+    suspend fun getConfig(authToken: String) = apiService.getConfig(authToken)
 }

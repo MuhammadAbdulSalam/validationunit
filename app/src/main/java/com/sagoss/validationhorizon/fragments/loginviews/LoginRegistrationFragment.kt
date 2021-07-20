@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.activity.addCallback
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.sagoss.validationhorizon.api.models.registration.RegistrationRequest
 import com.sagoss.validationhorizon.databinding.FragmentLoginRegistrationBinding
 import com.sagoss.validationhorizon.utils.Constants
@@ -61,6 +62,11 @@ class LoginRegistrationFragment : Fragment() {
                 when (resource.status) {
                     Status.SUCCESS -> {
                         binding.progressCircular.visibility = View.INVISIBLE
+                        prefs.accessToken = resource.data?.access_token
+                        prefs.refreshToken = resource.data?.refresh_token
+                        prefs.expiryDate = resource.data?.expiry_date
+                        prefs.companyId = resource.data?.access_token
+                        findNavController().popBackStack()
                     }
                     Status.ERROR -> {
                         binding.progressCircular.visibility = View.INVISIBLE

@@ -1,6 +1,8 @@
 package com.sagoss.validationhorizon.api.repository
 
+import android.util.Log
 import com.sagoss.validationhorizon.api.apiInterface.ApiHelper
+import com.sagoss.validationhorizon.api.models.config.Config
 import com.sagoss.validationhorizon.api.models.refreshtoken.RefreshTokenRequest
 import com.sagoss.validationhorizon.api.models.refreshtoken.RefreshTokenResponse
 import com.sagoss.validationhorizon.api.models.registration.RegistrationRequest
@@ -23,6 +25,11 @@ class ApiResponseRepository @Inject constructor(private val apiInterface: ApiHel
     ): RefreshTokenResponse {
         return apiInterface.getRefreshTokenResponse(authToken, refreshTokenRequest)
     }
+
+    suspend fun getConfig(authToken: String): Config {
+        Log.d("-----", "------------------------REPO----------------")
+
+        return apiInterface.getConfig(authToken)}
 
 
 }
