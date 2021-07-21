@@ -40,10 +40,8 @@ class LoginRegistrationFragment : Fragment() {
                 username = binding.registrationUsernameEditText.text.toString(),
                 password = binding.registrationPasswordEditText.text.toString(),
                 app_id = Constants.APP_ID,
-                mobile_id = Settings.Secure.getString(
-                    requireActivity().contentResolver,
-                    Settings.Secure.ANDROID_ID
-                ),
+                mobile_id = Settings.Secure.getString(requireActivity().contentResolver,
+                    Settings.Secure.ANDROID_ID),
                 version = Constants.VERSION
             )
             setupRegistrationObserver(registrationRequest)
@@ -54,7 +52,7 @@ class LoginRegistrationFragment : Fragment() {
     /**
      * @param registrationRequest registration request body
      *
-     * Synchronised Api call response.
+     * Retrieve Registration Data
      */
     private fun setupRegistrationObserver(registrationRequest: RegistrationRequest) {
         viewModel.getRegistration(registrationRequest).observe(viewLifecycleOwner, {
@@ -62,19 +60,12 @@ class LoginRegistrationFragment : Fragment() {
                 when (resource.status) {
                     Status.SUCCESS -> {
                         binding.progressCircular.visibility = View.INVISIBLE
-                        prefs.accessToken = resource.data?.access_token
-                        prefs.refreshToken = resource.data?.refresh_token
-                        prefs.expiryDate = resource.data?.expiry_date
-                        prefs.companyId = resource.data?.access_token
                         findNavController().popBackStack()
                     }
                     Status.ERROR -> {
                         binding.progressCircular.visibility = View.INVISIBLE
-                        HelperUtil.getErrorDialog(
-                            requireContext(), "Something Went Wrong",
-                            resource.message.toString(),
-                            true
-                        ).create().show()
+                        HelperUtil.getErrorDialog(requireContext(), "Something Went Wrong",
+                            resource.message.toString(), true).create().show()
                     }
                     Status.LOADING -> {
                         binding.progressCircular.visibility = View.VISIBLE

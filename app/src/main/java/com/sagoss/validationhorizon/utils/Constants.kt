@@ -53,10 +53,7 @@ object Constants {
     const val VOUCHER_DATE_TO_LIMIT             = "date_to_limit"
     const val VOUCHER_WORK_OFFLINE              = "work_offline"
 
-
-
     const val APP_ID                            = "validation"
     const val VERSION                           = "1.0"
-
 
 }

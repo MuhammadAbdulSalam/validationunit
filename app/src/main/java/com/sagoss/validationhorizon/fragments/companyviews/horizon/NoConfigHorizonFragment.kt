@@ -17,5 +17,4 @@ import dagger.hilt.android.AndroidEntryPoint
 class NoConfigHorizonFragment : NoConfigBaseFragment<FragmentNoConfigHorizonBinding>()  {
         override fun getViewBinding() = FragmentNoConfigHorizonBinding.inflate(layoutInflater)
         override fun tvDeviceID() = binding.deviceIdText
-
 }

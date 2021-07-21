@@ -16,6 +16,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.viewbinding.ViewBinding
 import com.sagoss.validationhorizon.api.models.registration.RegistrationRequest
+import com.sagoss.validationhorizon.fragments.companyviews.horizon.NoConfigHorizonFragmentDirections
 import com.sagoss.validationhorizon.utils.HelperUtil
 import com.sagoss.validationhorizon.utils.Prefs
 import com.sagoss.validationhorizon.utils.Status
@@ -23,11 +24,14 @@ import com.sagoss.validationhorizon.viewmodel.MainViewModel
 
 abstract class NoConfigBaseFragment<VBinding : ViewBinding> : Fragment() {
 
-    val viewModel: MainViewModel by viewModels()
+    protected val viewModel: MainViewModel by viewModels()
     protected lateinit var binding: VBinding
     protected abstract fun tvDeviceID(): TextView
     protected abstract fun getViewBinding(): VBinding
-    lateinit var prefs: Prefs
+    private var handler = Handler(Looper.myLooper()!!)
+    private lateinit var runnable: Runnable
+
+    private lateinit var prefs: Prefs
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -44,7 +48,10 @@ abstract class NoConfigBaseFragment<VBinding : ViewBinding> : Fragment() {
         tvDeviceID().text =
             Settings.Secure.getString(requireActivity().contentResolver, Settings.Secure.ANDROID_ID)
 
-        setupGetConfigObserver("Bearer ${prefs.accessToken.toString()}")
+        runnable = Runnable {
+            setupGetConfigObserver("Bearer ${prefs.accessToken.toString()}")
+            handler.postDelayed(runnable, 10000)
+        }
 
         return binding.root
     }
@@ -52,24 +59,33 @@ abstract class NoConfigBaseFragment<VBinding : ViewBinding> : Fragment() {
     /**
      * @param authToken authorisation Token as Header
      *
-     * Synchronised Api call response.
+     * Retrieve Config data
      */
     private fun setupGetConfigObserver(authToken: String) {
-
         viewModel.getConfig(authToken).observe(viewLifecycleOwner, {
             it?.let { resource ->
                 when (resource.status) {
                     Status.SUCCESS -> {
+                        handler.removeCallbacks(runnable)
+                        findNavController().navigate(
+                            NoConfigHorizonFragmentDirections
+                                .actionFragmentNoConfigHorizonToFragmentGreetingsHorizon(""))
                     }
-                    Status.ERROR -> {
-
-                    }
-                    Status.LOADING -> {
-
-                    }
+                    Status.ERROR -> {}
+                    Status.LOADING -> {}
                 }
             }
         })
+    }
+
+    override fun onStop() {
+        super.onStop()
+        handler.removeCallbacks(runnable)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        runnable.run()
     }
 
 }

@@ -28,8 +28,7 @@ class MainViewModel @Inject constructor(
         try {
             emit(
                 Resource.success(
-                    data = apiOneRepository.getRegistrationResponse(
-                        registrationRequest
+                    data = apiOneRepository.getRegistrationResponse(registrationRequest
                     )
                 )
             )

@@ -102,6 +102,9 @@
         android:name="com.sagoss.validationhorizon.fragments.companyviews.horizon.NoConfigHorizonFragment"
         android:label="No Config"
         tools:layout="@layout/fragment_no_config_horizon">
+        <action
+            android:id="@+id/action_fragment_no_config_horizon_to_fragment_greetings_horizon"
+            app:destination="@id/fragment_greetings_horizon" />
     </fragment>
 
     <fragment
