@@ -8,6 +8,7 @@ import com.sagoss.validationhorizon.utils.Resource
 import com.sagoss.validationhorizon.api.models.registration.RegistrationRequest
 import com.sagoss.validationhorizon.api.repository.ApiResponseRepository
 import com.sagoss.validationhorizon.apitwo.repositiory.ApiTwoResponseRepository
+import com.sagoss.validationhorizon.database.repository.DBRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import javax.inject.Inject
@@ -15,7 +16,8 @@ import javax.inject.Inject
 @HiltViewModel
 class MainViewModel @Inject constructor(
     private val apiOneRepository: ApiResponseRepository,
-    private val apiTwoRepository: ApiTwoResponseRepository
+    private val apiTwoRepository: ApiTwoResponseRepository,
+    private val dbRepository: DBRepository
 ) : ViewModel() {
 
     /**
