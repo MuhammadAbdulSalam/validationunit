@@ -11,7 +11,9 @@ import androidx.navigation.Navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.sagoss.validationhorizon.R
 import com.sagoss.validationhorizon.databinding.FragmentLoginCheckerBinding
+import com.sagoss.validationhorizon.fragments.companyviews.horizon.NoConfigHorizonFragmentDirections
 import com.sagoss.validationhorizon.utils.Prefs
+import com.sagoss.validationhorizon.utils.Status
 import com.sagoss.validationhorizon.viewmodel.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -20,6 +22,7 @@ class LoginCheckerFragment : Fragment() {
 
     private lateinit var binding: FragmentLoginCheckerBinding
     private lateinit var prefs: Prefs
+    private val viewModel: MainViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,14 +42,39 @@ class LoginCheckerFragment : Fragment() {
     }
 
     private fun checkUserRegistration() {
-        if (prefs.accessToken == "") {
-           findNavController()
+        if (prefs.accessToken.isEmpty()) {
+            findNavController()
                 .navigate(LoginCheckerFragmentDirections.actionLoginCheckerToFragmentRegistration())
         }
-        else
-        {
-          findNavController()
-                .navigate(LoginCheckerFragmentDirections.actionFragmentLoginCheckerToFragmentNoConfigHorizon())
+        else {
+            setupGetConfigObserver("Bearer ${prefs.accessToken}")
         }
+    }
+
+    /**
+     * @param authToken authorisation Token as Header
+     *
+     * Retrieve Config data
+     */
+    private fun setupGetConfigObserver(authToken: String) {
+        viewModel.getConfig(authToken).observe(viewLifecycleOwner, {
+            it?.let { resource ->
+                when (resource.status) {
+                    Status.SUCCESS -> {
+                        findNavController().navigate(
+                            LoginCheckerFragmentDirections
+                                .actionFragmentLoginCheckerToFragmentGreetingsHorizon()
+                        )
+                    }
+                    Status.ERROR -> {
+                        findNavController()
+                            .navigate(LoginCheckerFragmentDirections.actionFragmentLoginCheckerToFragmentNoConfigHorizon())
+                    }
+                    Status.LOADING -> {
+                        binding.progressbarLayout.visibility = View.VISIBLE
+                    }
+                }
+            }
+        })
     }
 }

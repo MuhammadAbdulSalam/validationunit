@@ -14,6 +14,6 @@ class ValidationCompleteC2cFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_validation_complete_c2c, container, false)
+        return inflater.inflate(R.layout.fragment_c2c_validation_complete, container, false)
     }
 }

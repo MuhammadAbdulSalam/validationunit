@@ -79,4 +79,5 @@
             android:progressTint="@color/sagoss_blue"
             android:visibility="invisible"/>
     </RelativeLayout>
+
 </layout>

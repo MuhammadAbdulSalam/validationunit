@@ -3,11 +3,13 @@ package com.sagoss.validationhorizon.viewmodel
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
+import com.google.gson.JsonArray
 import com.sagoss.validationhorizon.api.models.refreshtoken.RefreshTokenRequest
 import com.sagoss.validationhorizon.utils.Resource
 import com.sagoss.validationhorizon.api.models.registration.RegistrationRequest
 import com.sagoss.validationhorizon.api.repository.ApiResponseRepository
 import com.sagoss.validationhorizon.apitwo.repositiory.ApiTwoResponseRepository
+import com.sagoss.validationhorizon.database.models.Voucher
 import com.sagoss.validationhorizon.database.repository.DBRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -70,11 +72,11 @@ class MainViewModel @Inject constructor(
 
     liveData(Dispatchers.IO) {
         emit(Resource.loading(data = null))
-            try {
+          //  try {
                 emit(Resource.success(data = apiOneRepository.getConfig(accessToken)))
-            } catch (exception: Exception) {
-                emit(Resource.error(data = null, message = exception.message ?: "Error Occurred!"))
-            }
+//            } catch (exception: Exception) {
+//                emit(Resource.error(data = null, message = exception.message ?: "Error Occurred!"))
+//            }
         }
 
     /**
@@ -127,6 +129,30 @@ class MainViewModel @Inject constructor(
                 emit(Resource.error(data = null, message = exception.message ?: "Error Occurred!"))
             }
         }
+
+    /**
+     * Get list of all vouchers
+     */
+    fun getAllVouchers() =
+        liveData(Dispatchers.IO) {
+            emit(Resource.loading(data = null))
+            try{
+                emit(Resource.success(data = dbRepository.getAllVoucher()))
+            }
+            catch (exception: Exception) {
+                emit(Resource.error(data = null, message = exception.message ?: "Error Occurred!"))
+            }
+
+        }
+
+    /**
+     * @param  vouchers list of vouchers to be added
+     *
+     * Store voucher list in Main database
+     */
+    fun insertVoucher(vouchers: List<Voucher>) = dbRepository.insertAllVouchers(vouchers)
+
+
 
 
 }

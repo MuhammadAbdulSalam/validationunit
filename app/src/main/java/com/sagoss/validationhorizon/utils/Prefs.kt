@@ -5,16 +5,19 @@ import android.content.SharedPreferences
 import com.sagoss.validationhorizon.utils.Constants.ACCESS_TOKEN
 import com.sagoss.validationhorizon.utils.Constants.COMPANY_ID
 import com.sagoss.validationhorizon.utils.Constants.EXPIRY_DATE
+import com.sagoss.validationhorizon.utils.Constants.LOCATION_NAME
 import com.sagoss.validationhorizon.utils.Constants.PREFS_NAME
 import com.sagoss.validationhorizon.utils.Constants.REFRESH_TOKEN
+import com.sagoss.validationhorizon.utils.Constants.SITE_ID
+import com.sagoss.validationhorizon.utils.Constants.STATUS
 import javax.inject.Inject
 
 
 class Prefs @Inject constructor(context: Context) {
     private val prefs: SharedPreferences = context.getSharedPreferences(PREFS_NAME, 0)
 
-    var accessToken: String?
-        get() = prefs.getString(ACCESS_TOKEN, "")
+    var accessToken: String
+        get() = if(prefs.getString(ACCESS_TOKEN, "") == null) "" else prefs.getString(ACCESS_TOKEN, "")!!
         set(value) = prefs.edit().putString(ACCESS_TOKEN, value).apply()
 
     var expiryDate: String?
@@ -29,5 +32,16 @@ class Prefs @Inject constructor(context: Context) {
         get() = prefs.getString(COMPANY_ID, "default")
         set(value) = prefs.edit().putString(COMPANY_ID, value).apply()
 
+    var locationName: String?
+        get() = prefs.getString(LOCATION_NAME, "")
+        set(value) = prefs.edit().putString(LOCATION_NAME, value).apply()
+
+    var siteId: String?
+        get() = prefs.getString(SITE_ID, "")
+        set(value) = prefs.edit().putString(SITE_ID, value).apply()
+
+    var status: String?
+        get() = prefs.getString(STATUS, "")
+        set(value) = prefs.edit().putString(STATUS, value).apply()
 
 }

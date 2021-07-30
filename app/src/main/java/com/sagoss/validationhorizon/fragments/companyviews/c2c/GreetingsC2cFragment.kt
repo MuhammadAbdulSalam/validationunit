@@ -6,18 +6,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.sagoss.validationhorizon.R
-import com.sagoss.validationhorizon.databinding.FragmentGreetingsC2cBinding
+import com.sagoss.validationhorizon.databinding.FragmentC2cGreetingsBinding
 
 class GreetingsC2cFragment : Fragment() {
 
-    private lateinit var binding : FragmentGreetingsC2cBinding
+    private lateinit var binding : FragmentC2cGreetingsBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
 
 
-        return inflater.inflate(R.layout.fragment_greetings_c2c, container, false)
+        return inflater.inflate(R.layout.fragment_c2c_greetings, container, false)
     }
 
 }

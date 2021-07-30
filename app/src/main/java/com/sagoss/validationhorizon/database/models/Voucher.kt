@@ -6,6 +6,7 @@ import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 import com.sagoss.validationhorizon.api.models.config.DateToFixed
 import com.sagoss.validationhorizon.utils.Constants
+import java.io.Serializable
 
 @Entity(tableName = Constants.TABLE_VOUCHERS)
 data class Voucher(
@@ -50,4 +51,4 @@ data class Voucher(
     @ColumnInfo(name = Constants.VOUCHER_DATE_TO_FIXED)
     @SerializedName(Constants.VOUCHER_DATE_TO_FIXED)
     var dateToFixed : List<DateToFixed>? = null
-)
+): Serializable

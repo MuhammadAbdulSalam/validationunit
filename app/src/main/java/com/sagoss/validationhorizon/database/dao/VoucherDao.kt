@@ -16,10 +16,10 @@ interface VoucherDao {
     suspend fun getAll(): List<Voucher>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insert(voucher: Voucher)
+    fun insert(voucher: Voucher)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertAll(listVoucher : List<Voucher>)
+    fun insertAll(listVoucher : List<Voucher>)
 
     @Query("DELETE from ${Constants.TABLE_VOUCHERS}")
     suspend fun deleteAll()

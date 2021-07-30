@@ -14,7 +14,7 @@ class PlateRegistrationGaFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_plate_registration_ga, container, false)
+        return inflater.inflate(R.layout.fragment_ga_plate_registration, container, false)
     }
 
 }

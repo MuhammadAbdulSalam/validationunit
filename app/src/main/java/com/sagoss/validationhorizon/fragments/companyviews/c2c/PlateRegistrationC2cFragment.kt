@@ -16,7 +16,7 @@ class PlateRegistrationC2cFragment : Fragment() {
 
 
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_plate_registration_c2c, container, false)
+        return inflater.inflate(R.layout.fragment_c2c_plate_registration, container, false)
     }
 
 }

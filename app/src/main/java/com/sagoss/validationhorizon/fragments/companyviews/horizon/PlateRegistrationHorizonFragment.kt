@@ -1,20 +1,22 @@
 package com.sagoss.validationhorizon.fragments.companyviews.horizon
 
-import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
+
 import android.view.View
-import android.view.ViewGroup
-import com.sagoss.validationhorizon.R
+import android.widget.TextView
+import android.widget.Toolbar
+import com.sagoss.validationhorizon.databinding.FragmentHorizonPlateRegistrationBinding
+import com.sagoss.validationhorizon.fragments.basefragments.EnterPlateBaseFragment
+import dagger.hilt.android.AndroidEntryPoint
 
-class PlateRegistrationHorizonFragment : Fragment() {
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_plate_registration_horizon, container, false)
+@AndroidEntryPoint
+class PlateRegistrationHorizonFragment : EnterPlateBaseFragment<FragmentHorizonPlateRegistrationBinding>()  {
+    override fun getViewBinding() = FragmentHorizonPlateRegistrationBinding.inflate(layoutInflater)
+    override fun tvPlateTextView() = binding.tvPlateNo
+    override fun btnValidateClickListener(arg: String): View.OnClickListener {
+            TODO()
     }
+
+    override fun getToolbar()= binding.toolbar
+
 
 }

@@ -15,6 +15,6 @@ class GreetingsGaFragment : Fragment() {
     ): View? {
 
 
-        return inflater.inflate(R.layout.fragment_greetings_ga, container, false)
+        return inflater.inflate(R.layout.fragment_ga_greetings, container, false)
     }
 }

@@ -15,10 +15,7 @@
 
         <action
             android:id="@+id/action_login_checker_to_fragment_registration"
-            app:destination="@id/fragment_registration"
-            app:enterAnim="@anim/slide_in_left"
-            app:exitAnim="@anim/slide_in_right"
-            app:popEnterAnim="@anim/slide_out_left" />
+            app:destination="@id/fragment_registration" />
         <action
             android:id="@+id/action_fragment_login_checker_to_fragment_greetings_c2c"
             app:destination="@id/fragment_greetings_c2c" />
@@ -30,8 +27,7 @@
             app:destination="@id/fragment_no_config_horizon" />
         <action
             android:id="@+id/action_fragment_login_checker_to_fragment_greetings_horizon"
-            app:destination="@id/fragment_greetings_horizon"
-            app:popUpTo="@id/fragment_login_checker"/>
+            app:destination="@id/fragment_greetings_horizon" />
 
     </fragment>
 
@@ -48,7 +44,7 @@
         android:id="@+id/fragment_greetings_c2c"
         android:name="com.sagoss.validationhorizon.fragments.companyviews.c2c.GreetingsC2cFragment"
         android:label="Greetings"
-        tools:layout="@layout/fragment_greetings_c2c">
+        tools:layout="@layout/fragment_c2c_greetings">
         <argument
             android:name="extra"
             app:argType="string" />
@@ -58,7 +54,7 @@
         android:id="@+id/fragment_plate_registration_c2c"
         android:name="com.sagoss.validationhorizon.fragments.companyviews.c2c.PlateRegistrationC2cFragment"
         android:label="Enter Reg Plate"
-        tools:layout="@layout/fragment_plate_registration_c2c">
+        tools:layout="@layout/fragment_c2c_plate_registration">
         <argument
             android:name="extra"
             app:argType="string" />
@@ -68,7 +64,7 @@
         android:id="@+id/fragment_validation_complete"
         android:name="com.sagoss.validationhorizon.fragments.companyviews.c2c.ValidationCompleteC2cFragment"
         android:label="Complate"
-        tools:layout="@layout/fragment_validation_complete_c2c">
+        tools:layout="@layout/fragment_c2c_validation_complete">
         <argument
             android:name="extra"
             app:argType="string" />
@@ -78,22 +74,35 @@
     <!-- ********** Horizon Fragments ********** -->
     <fragment
         android:id="@+id/fragment_greetings_horizon"
-        android:name="com.sagoss.validationhorizon.fragments.companyviews.horizon.GreetingsHorizonFragment"
+        android:name="com.sagoss.validationhorizon.fragments.companyviews.horizon.GreetingsHorizonFragmentGreetings"
         android:label="Greetings"
-        tools:layout="@layout/fragment_greetings_horizon">
-        <argument
-            android:name="extra"
-            app:argType="string" />
+        tools:layout="@layout/fragment_horizon_greetings">
+        <action
+            android:id="@+id/action_fragment_greetings_horizon_to_fragment_plate_registration_horizon"
+            app:destination="@id/fragment_plate_registration_horizon" />
+        <action
+            android:id="@+id/action_fragment_greetings_horizon_to_fragment_vouchers_horizon"
+            app:destination="@id/fragment_vouchers_horison" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_vouchers_horison"
+        android:name="com.sagoss.validationhorizon.fragments.companyviews.horizon.VoucherFragmentHorizon"
+        android:label="Vouchers"
+        tools:layout="@layout/fragment_horizon_voucher">
+        <action
+            android:id="@+id/action_fragment_vouchers_horison_to_fragment_plate_registration_horizon"
+            app:destination="@id/fragment_plate_registration_horizon" />
     </fragment>
 
     <fragment
         android:id="@+id/fragment_plate_registration_horizon"
         android:name="com.sagoss.validationhorizon.fragments.companyviews.horizon.PlateRegistrationHorizonFragment"
         android:label="Enter Reg Plate"
-        tools:layout="@layout/fragment_plate_registration_horizon">
+        tools:layout="@layout/fragment_horizon_plate_registration">
         <argument
-            android:name="extra"
-            app:argType="string" />
+            android:name="voucher"
+            app:argType="com.sagoss.validationhorizon.database.models.Voucher" />
     </fragment>
 
     <!-- ********** GA Fragments ********** -->
@@ -101,7 +110,7 @@
         android:id="@+id/fragment_no_config_horizon"
         android:name="com.sagoss.validationhorizon.fragments.companyviews.horizon.NoConfigHorizonFragment"
         android:label="No Config"
-        tools:layout="@layout/fragment_no_config_horizon">
+        tools:layout="@layout/fragment_horizon_no_config">
         <action
             android:id="@+id/action_fragment_no_config_horizon_to_fragment_greetings_horizon"
             app:destination="@id/fragment_greetings_horizon" />
@@ -111,7 +120,7 @@
         android:id="@+id/fragment_greetings_ga"
         android:name="com.sagoss.validationhorizon.fragments.companyviews.greateranglia.GreetingsGaFragment"
         android:label="Greetings"
-        tools:layout="@layout/fragment_greetings_ga">
+        tools:layout="@layout/fragment_ga_greetings">
         <argument
             android:name="extra"
             app:argType="string" />
@@ -121,7 +130,7 @@
         android:id="@+id/fragment_plate_registration_ga"
         android:name="com.sagoss.validationhorizon.fragments.companyviews.greateranglia.PlateRegistrationGaFragment"
         android:label="Enter Reg Number"
-        tools:layout="@layout/fragment_plate_registration_ga">
+        tools:layout="@layout/fragment_ga_plate_registration">
         <argument
             android:name="extra"
             app:argType="string" />

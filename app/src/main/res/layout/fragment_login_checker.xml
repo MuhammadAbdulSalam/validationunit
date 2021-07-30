@@ -40,7 +40,9 @@
                 android:text="Please wait..."/>
         </LinearLayout>
 
-
+        <TextView
+            android:id="@+id/tv_app_version"
+            style="@style/Version.info.textview"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

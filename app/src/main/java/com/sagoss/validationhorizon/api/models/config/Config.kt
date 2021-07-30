@@ -1,5 +1,6 @@
 package com.sagoss.validationhorizon.api.models.config
 
+import com.google.gson.JsonArray
 import com.google.gson.annotations.SerializedName
 import com.sagoss.validationhorizon.database.models.Voucher
 import org.json.JSONArray
@@ -19,5 +20,5 @@ data class Config(
     val location_name: String,
 
     @SerializedName("vouchers")
-    val vouchers: List<Voucher>
+    val vouchers: JsonArray
 )
