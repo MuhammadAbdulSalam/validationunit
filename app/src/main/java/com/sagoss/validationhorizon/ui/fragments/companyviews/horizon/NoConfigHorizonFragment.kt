@@ -1,7 +1,7 @@
-package com.sagoss.validationhorizon.fragments.companyviews.horizon
+package com.sagoss.validationhorizon.ui.fragments.companyviews.horizon
 
 import com.sagoss.validationhorizon.databinding.FragmentHorizonNoConfigBinding
-import com.sagoss.validationhorizon.fragments.basefragments.NoConfigBaseFragment
+import com.sagoss.validationhorizon.ui.fragments.basefragments.NoConfigBaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

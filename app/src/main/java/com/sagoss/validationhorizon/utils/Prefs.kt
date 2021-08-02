@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.SharedPreferences
 import com.sagoss.validationhorizon.utils.Constants.ACCESS_TOKEN
 import com.sagoss.validationhorizon.utils.Constants.COMPANY_ID
+import com.sagoss.validationhorizon.utils.Constants.DATE_FROM
 import com.sagoss.validationhorizon.utils.Constants.EXPIRY_DATE
 import com.sagoss.validationhorizon.utils.Constants.LOCATION_NAME
 import com.sagoss.validationhorizon.utils.Constants.PREFS_NAME
@@ -43,5 +44,9 @@ class Prefs @Inject constructor(context: Context) {
     var status: String?
         get() = prefs.getString(STATUS, "")
         set(value) = prefs.edit().putString(STATUS, value).apply()
+
+    var date_from : String?
+        get() = prefs.getString(DATE_FROM, "")
+        set(value) = prefs.edit().putString(DATE_FROM, value).apply()
 
 }

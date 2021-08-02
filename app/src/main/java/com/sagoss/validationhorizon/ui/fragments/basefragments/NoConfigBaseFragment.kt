@@ -1,11 +1,10 @@
-package com.sagoss.validationhorizon.fragments.basefragments
+package com.sagoss.validationhorizon.ui.fragments.basefragments
 
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.provider.Settings
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,16 +14,10 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.viewbinding.ViewBinding
-import com.google.gson.Gson
-import com.sagoss.validationhorizon.api.models.registration.RegistrationRequest
-import com.sagoss.validationhorizon.database.models.Voucher
-import com.sagoss.validationhorizon.database.repository.DBRepository
-import com.sagoss.validationhorizon.fragments.companyviews.horizon.NoConfigHorizonFragmentDirections
-import com.sagoss.validationhorizon.utils.HelperUtil
+import com.sagoss.validationhorizon.ui.fragments.companyviews.horizon.NoConfigHorizonFragmentDirections
 import com.sagoss.validationhorizon.utils.Prefs
 import com.sagoss.validationhorizon.utils.Status
 import com.sagoss.validationhorizon.viewmodel.MainViewModel
-import javax.inject.Inject
 
 abstract class NoConfigBaseFragment<VBinding : ViewBinding> : Fragment() {
 

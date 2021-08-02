@@ -25,7 +25,7 @@ object Constants {
     const val COMPANY_ID                        = "company_id"
     const val LOCATION_NAME                     = "location_name"
     const val SITE_ID                           = "site_id"
-    const val STATUS                                  = "status"
+    const val STATUS                            = "status"
 
     const val PARAM_USERNAME                    = "username"
     const val PARAM_PASSWORD                    = "password"

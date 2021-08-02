@@ -16,6 +16,7 @@
     <color name="sagoss_blue">#FF4069b2</color>
     <color name="sagoss_purple">#FF6f3996</color>
     <color name="light_grey">#56959595</color>
+    <color name="colorSelectDateTo">#B7C1BA</color>
 
     <color name="c2c_primary">#bc0087</color>
     <color name="c2c_dark">#231f20</color>

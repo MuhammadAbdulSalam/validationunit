@@ -2,4 +2,6 @@
     <string name="app_name">validationunit</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="stay_label"> Please select appropriate exemption</string>
+    <string name="hotel_park">How long would you like to park?</string>
+
 </resources>

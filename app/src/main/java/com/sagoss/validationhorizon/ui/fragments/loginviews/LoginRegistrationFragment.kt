@@ -1,4 +1,4 @@
-package com.sagoss.validationhorizon.fragments.loginviews
+package com.sagoss.validationhorizon.ui.fragments.loginviews
 
 import android.annotation.SuppressLint
 import android.os.Bundle

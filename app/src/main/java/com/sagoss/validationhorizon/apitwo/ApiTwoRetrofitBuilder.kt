@@ -1,5 +1,6 @@
 package com.sagoss.validationhorizon.apitwo
 
+import com.google.gson.JsonObject
 import com.sagoss.validationhorizon.apitwo.models.validate.ValidateResponse
 import com.sagoss.validationhorizon.utils.Constants
 import okhttp3.OkHttpClient
@@ -27,7 +28,6 @@ interface ApiTwoRetrofitBuilder {
         @Query(Constants.DATE_FROM) date_from: String,
         @Query(Constants.DATE_TO) date_to: String?
     ): ValidateResponse
-
 
     companion object {
         private const val BASE_URL = Constants.API_URL_TWO

@@ -1,4 +1,4 @@
-package com.sagoss.validationhorizon.fragments.companyviews.greateranglia
+package com.sagoss.validationhorizon.ui.fragments.companyviews.greateranglia
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

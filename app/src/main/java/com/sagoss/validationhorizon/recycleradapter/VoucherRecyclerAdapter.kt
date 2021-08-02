@@ -1,8 +1,5 @@
 package com.sagoss.validationhorizon.recycleradapter
 
-import android.bluetooth.BluetoothDevice
-import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
@@ -12,7 +9,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.sagoss.validationhorizon.database.models.Voucher
 import com.sagoss.validationhorizon.databinding.LayoutVouchersItemBinding
-import com.sagoss.validationhorizon.fragments.basefragments.VouchersListBaseFragment
+import com.sagoss.validationhorizon.ui.fragments.basefragments.VouchersListBaseFragment
 
 class VoucherRecyclerAdapter(private val backgroundColor: Int, private val fragment: Fragment) :
     ListAdapter<Voucher, RecyclerView.ViewHolder>(VoucherDiffClass()) {
@@ -39,10 +36,7 @@ class VoucherRecyclerAdapter(private val backgroundColor: Int, private val fragm
 
         init {
             binding.itemCardView.setCardBackgroundColor(ContextCompat.getColor(fragment.requireContext(), backgroundColor))
-            binding.setClickListener {
-                Log.d("-------", "--------------" + binding.model?.voucherName)
-                (fragment as VouchersListBaseFragment<*>).onRecyclerClick(binding.model!!)
-            }
+            binding.setClickListener { (fragment as VouchersListBaseFragment<*>).onRecyclerClick(binding.model!!) }
         }
 
         fun bind(item: Voucher) {

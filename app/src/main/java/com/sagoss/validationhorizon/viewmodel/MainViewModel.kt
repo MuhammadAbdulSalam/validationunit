@@ -86,7 +86,7 @@ class MainViewModel @Inject constructor(
      *
      * Get response from API Two validation request
      */
-    suspend fun checkDateIn(plate: String, token: String, checkDateIn: String) =
+    fun checkDateIn(plate: String, token: String, checkDateIn: String) =
         liveData(Dispatchers.IO) {
             emit(Resource.loading(data = null))
             try {

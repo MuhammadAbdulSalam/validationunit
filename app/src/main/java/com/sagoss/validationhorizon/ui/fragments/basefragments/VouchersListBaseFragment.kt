@@ -1,13 +1,9 @@
-package com.sagoss.validationhorizon.fragments.basefragments
+package com.sagoss.validationhorizon.ui.fragments.basefragments
 
-import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Adapter
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavDirections
@@ -17,24 +13,23 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
 import com.google.android.material.appbar.MaterialToolbar
 import com.sagoss.validationhorizon.database.models.Voucher
-import com.sagoss.validationhorizon.fragments.companyviews.horizon.NoConfigHorizonFragmentDirections
 import com.sagoss.validationhorizon.recycleradapter.VoucherRecyclerAdapter
 import com.sagoss.validationhorizon.utils.Status
 import com.sagoss.validationhorizon.viewmodel.MainViewModel
 
 abstract class VouchersListBaseFragment<VBinding : ViewBinding> : Fragment() {
 
+    protected val viewModel: MainViewModel by viewModels()
+
     protected lateinit var binding: VBinding
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var adapter: VoucherRecyclerAdapter
+
     protected abstract fun getViewBinding(): VBinding
     protected abstract fun getRecycler(): RecyclerView
     protected abstract fun getRecyclerDirection(voucher: Voucher): NavDirections
     protected abstract fun getRecyclerItemColor(): Int
     protected abstract fun getToolbar(): MaterialToolbar
-
-    protected val viewModel: MainViewModel by viewModels()
-
-    private lateinit var recyclerView: RecyclerView
-    private lateinit var adapter: VoucherRecyclerAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {

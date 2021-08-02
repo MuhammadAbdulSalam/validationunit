@@ -1,10 +1,9 @@
-package com.sagoss.validationhorizon.fragments.companyviews.horizon
+package com.sagoss.validationhorizon.ui.fragments.companyviews.horizon
 
-import android.util.Log
 import android.view.View
 import androidx.navigation.fragment.findNavController
 import com.sagoss.validationhorizon.databinding.FragmentHorizonGreetingsBinding
-import com.sagoss.validationhorizon.fragments.basefragments.GreetingsBaseFragment
+import com.sagoss.validationhorizon.ui.fragments.basefragments.GreetingsBaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
