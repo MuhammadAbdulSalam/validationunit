@@ -1,4 +1,4 @@
-package com.sagoss.validationhorizon.recycleradapter
+package com.sagoss.validationhorizon.ui.recycleradapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

@@ -1,6 +1,7 @@
 package com.sagoss.validationhorizon.ui.fragments.basefragments
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,6 +14,7 @@ import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.button.MaterialButton
 import com.sagoss.validationhorizon.database.models.Voucher
 import com.sagoss.validationhorizon.ui.dialogs.DialogDateTo
+import com.sagoss.validationhorizon.ui.dialogs.DialogDateTo.OnMyDialogResult
 import com.sagoss.validationhorizon.utils.HelperUtil
 import com.sagoss.validationhorizon.utils.Prefs
 import com.sagoss.validationhorizon.utils.Status
@@ -57,7 +59,7 @@ abstract class EnterPlateBaseFragment<VBinding : ViewBinding> : Fragment() {
         viewModel.checkDateIn(plate!!, token, "1").observe(viewLifecycleOwner, {
             it?.let { resource ->
                 when (resource.status) {
-                    Status.SUCCESS -> onCheckDateInSuccess(resource.data!!.valid)
+                    Status.SUCCESS ->  if(currentVoucher().dateFrom) askForDuration() else askForDateTo()
                     Status.ERROR -> { TODO() }
                     Status.LOADING -> { }
                 }
@@ -65,25 +67,45 @@ abstract class EnterPlateBaseFragment<VBinding : ViewBinding> : Fragment() {
         })
     }
 
-    /**
-     * check if numberplate valid
-     *
-     * Ask for durations according to voucher duration types
-     */
-    private fun onCheckDateInSuccess(valid: String) {
+    private fun askForDateTo(){
         val dateFrom = HelperUtil.getCurrentDateTimeString("YYYY-MM-dd HH:mm:ss")
-        if(currentVoucher().dateFrom) { askForDuration() }
+        prefs.date_from = dateFrom
+
+        if(currentVoucher().dateTo)
+        {
+            if(!currentVoucher().dateToFixed.isNullOrEmpty())
+            {
+                if(currentVoucher().dateToFixed!!.size > 1)
+                {
+                    //TODO hotel activity
+                }
+                else if(currentVoucher().dateToFixed!!.size == 1)
+                {
+                    //TODO check voucher validate
+                }
+            }
+            else
+            {
+                if(!currentVoucher().dateToUnit.isNullOrEmpty())
+                {
+                  showDateToDialog()
+                }
+            }
+        }
         else
         {
-            prefs.date_from = dateFrom
-            askForDateTo()
+            // TODO regidster plate check voucher
         }
     }
 
-    private fun askForDateTo(){
+    private fun showDateToDialog(){
         val dialogDateTo = DialogDateTo(requireContext())
         dialogDateTo.show()
-
+        dialogDateTo.setDialogResult(object : OnMyDialogResult {
+            override fun finish(result: String?) {
+                //TODO validate
+            }
+        })
     }
 
     private fun askForDuration(){

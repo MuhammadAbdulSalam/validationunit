@@ -1,4 +1,4 @@
-package com.sagoss.validationhorizon.moduleinjector
+package com.sagoss.validationhorizon.utils.moduleinjector
 
 import android.content.Context
 import androidx.room.Room

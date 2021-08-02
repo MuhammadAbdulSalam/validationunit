@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
 import com.google.android.material.appbar.MaterialToolbar
 import com.sagoss.validationhorizon.database.models.Voucher
-import com.sagoss.validationhorizon.recycleradapter.VoucherRecyclerAdapter
+import com.sagoss.validationhorizon.ui.recycleradapter.VoucherRecyclerAdapter
 import com.sagoss.validationhorizon.utils.Status
 import com.sagoss.validationhorizon.viewmodel.MainViewModel
 
