@@ -1,20 +1,19 @@
 package com.sagoss.validationhorizon.ui.fragments.basefragments
 
 import android.annotation.SuppressLint
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.activity.addCallback
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
-import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
 import androidx.viewbinding.ViewBinding
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.button.MaterialButton
-import com.google.android.material.textfield.TextInputEditText
 import com.sagoss.validationhorizon.R
 import com.sagoss.validationhorizon.database.models.Voucher
 import com.sagoss.validationhorizon.utils.HelperUtil
@@ -22,6 +21,7 @@ import com.sagoss.validationhorizon.utils.Prefs
 import java.text.SimpleDateFormat
 import java.util.*
 
+@SuppressLint("SetTextI18n")
 abstract class EnterDateToBaseFragment<VBinding : ViewBinding> : Fragment() {
 
     protected lateinit var binding              : VBinding
@@ -76,7 +76,8 @@ abstract class EnterDateToBaseFragment<VBinding : ViewBinding> : Fragment() {
                 val adjustedDate = adjustDateAndTime(incrementUnit, incrementAmount)
                 expiryTextView().text = HelperUtil.getFormattedDate(adjustedDate)
                 amount += incrementAmount
-                durationTextView().text = "$amount $incrementUnitName"
+                val unitName  = if(amount == 1 && incrementUnitName == "DAYS") "DAY" else incrementUnitName
+                durationTextView().text = "$amount $unitName"
             } else {
                 HelperUtil.getErrorDialog(requireContext(), getString(R.string.LIMIT_EXCEED),
                     getString(R.string.DURATION_LIMIT_MSG) + "$amount $incrementUnitName",
@@ -90,7 +91,8 @@ abstract class EnterDateToBaseFragment<VBinding : ViewBinding> : Fragment() {
                 val adjustedDate = adjustDateAndTime(incrementUnit, -incrementAmount)
                 expiryTextView().text = HelperUtil.getFormattedDate(adjustedDate)
                 amount -= incrementAmount
-                durationTextView().text = "$amount $incrementUnitName"
+                val unitName  = if(amount == 1 && incrementUnitName == "DAYS") "DAY" else incrementUnitName
+                durationTextView().text = "$amount $unitName"
             } else {
                 HelperUtil.getErrorDialog(
                     requireContext(),
@@ -116,9 +118,10 @@ abstract class EnterDateToBaseFragment<VBinding : ViewBinding> : Fragment() {
         incrementUnit = unit
         incrementAmount = increment
         initialAmount = initial
-        incrementUnitName = unitName
+        incrementUnitName = if(initialAmount == 1 && unitName == "DAYS") "DAY" else unitName
         if (perIncremental != null) { minutesPerIncrement = perIncremental }
-        durationTextView().text = "$initialAmount  unitName"
+        durationTextView().text = "$initialAmount  $incrementUnitName"
+        incrementUnitName = unitName
     }
 
 
@@ -148,7 +151,7 @@ abstract class EnterDateToBaseFragment<VBinding : ViewBinding> : Fragment() {
         calendar.add(field, amount)
         val adjustedDate = calendar.time
         val dateFormat = SimpleDateFormat("YYYY-MM-dd HH:mm:ss", Locale.UK)
-        chosenDateAndTime = dateFormat.format(dateFormat)
+        chosenDateAndTime = dateFormat.format(adjustedDate)
         return adjustedDate
     }
 

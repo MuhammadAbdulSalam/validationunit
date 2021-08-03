@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.view.View
 import android.view.Window
 import androidx.core.content.ContextCompat
-import com.sagoss.validationhorizon.databinding.DialogEnterDateToBinding
 import com.sagoss.validationhorizon.databinding.DialogEnterEntryTimeBinding
 
 class DialogEntryTime(private val mContext: Context, private val defaultColor: Int) : Dialog(mContext) {

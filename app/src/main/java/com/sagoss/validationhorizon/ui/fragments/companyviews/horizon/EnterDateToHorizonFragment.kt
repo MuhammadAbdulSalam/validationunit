@@ -16,7 +16,9 @@ import com.sagoss.validationhorizon.databinding.FragmentHorizonEnterDateToBindin
 import com.sagoss.validationhorizon.databinding.FragmentHorizonPlateRegistrationBinding
 import com.sagoss.validationhorizon.ui.fragments.basefragments.EnterDateToBaseFragment
 import com.sagoss.validationhorizon.ui.fragments.basefragments.EnterPlateBaseFragment
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class EnterDateToHorizonFragment : EnterDateToBaseFragment<FragmentHorizonEnterDateToBinding>() {
     private val args: EnterDateToHorizonFragmentArgs by navArgs()
 
