@@ -3,5 +3,8 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="stay_label"> Please select appropriate exemption</string>
     <string name="hotel_park">How long would you like to park?</string>
+    <string name="entry_time_label">Your vehicle registration number ( %1$s ) does not appear to have been processed yet. Please adjust your entry time using the buttons below.</string>
+    <string name="LIMIT_EXCEED">Limit Exceeded</string>
+    <string name="DURATION_LIMIT_MSG">The duration of your stay cannot exceed the limit of</string>
 
 </resources>

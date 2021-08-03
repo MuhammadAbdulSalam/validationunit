@@ -53,11 +53,21 @@ interface ApiOneRetrofitBuilder {
         @Body refreshTokenRequest: RefreshTokenRequest
     ): RefreshTokenResponse
 
+
+    /**
+     * Get config request
+     *
+     * @param authToken authentication token stored at point
+     *
+     * @return config json to Object
+     */
     @Headers(Constants.APPLICATION_JSON)
     @GET(Constants.ENDPOINT_CONFIG)
     suspend fun getConfig(
         @Header(Constants.AUTHORISATION) authToken: String,
     ): Config
+
+
 
     /**
      * Retrofit builder component

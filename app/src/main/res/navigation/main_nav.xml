@@ -103,6 +103,22 @@
         <argument
             android:name="voucher"
             app:argType="com.sagoss.validationhorizon.database.models.Voucher" />
+        <action
+            android:id="@+id/action_fragment_plate_registration_horizon_to_fragment_enter_date_to_horizon"
+            app:destination="@id/fragment_enter_date_to_horizon" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_enter_date_to_horizon"
+        android:name="com.sagoss.validationhorizon.ui.fragments.companyviews.horizon.EnterDateToHorizonFragment"
+        android:label="Enter Reg Plate"
+        tools:layout="@layout/fragment_horizon_enter_date_to">
+        <argument
+            android:name="voucher"
+            app:argType="com.sagoss.validationhorizon.database.models.Voucher" />
+        <argument
+            android:name="plate_number"
+            app:argType="string" />
     </fragment>
 
     <!-- ********** GA Fragments ********** -->

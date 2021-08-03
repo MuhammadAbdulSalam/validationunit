@@ -41,4 +41,43 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textAlignment">center</item>
     </style>
+
+    <style name="CustomDatePicker" >
+        <item name="android:textSize">24sp</item>
+        <item name="colorControlNormal">@color/sagoss_blue</item>
+    </style>
+
+    <style name="Theme.horizon.cardview" parent="CardView">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="cardElevation">10dp</item>
+        <item name="cardCornerRadius">5dp</item>
+    </style>
+
+    <style name="TitleText">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:padding">20dp</item>
+        <item name="android:textSize">30sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textAlignment">center</item>
+    </style>
+
+    <style name="DurationLabel">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">20dp</item>
+        <item name="android:background">@color/white</item>
+        <item name="android:ems">10</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">32sp</item>
+    </style>
+
+    <style name="DurationButtons" parent="Widget.MaterialComponents.Button">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:padding">10dp</item>
+        <item name="android:textSize">50sp</item>
+    </style>
+
 </resources>

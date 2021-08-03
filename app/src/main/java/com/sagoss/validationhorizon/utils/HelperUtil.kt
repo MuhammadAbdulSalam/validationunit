@@ -52,4 +52,33 @@ object HelperUtil {
     }
 
 
+    fun getDateByString(dateString : String, format : String) : Date{
+
+        val dateFormat = SimpleDateFormat(format, Locale.UK)
+        return dateFormat.parse(dateString)
+    }
+
+    fun getDayOfMonthSuffix(date: Date): String {
+        val dayFormat: SimpleDateFormat = SimpleDateFormat("dd",  Locale.UK)
+
+
+        val day = dayFormat.format(date).toInt()
+        if (day >= 11 && day <= 13) {
+            return "th"
+        }
+        when (day % 10) {
+            1 -> return "st"
+            2 -> return "nd"
+            3 -> return "rd"
+            else -> return "th"
+        }
+    }
+
+    fun getFormattedDate(date : Date):String{
+        var dayNumberSuffix = HelperUtil.getDayOfMonthSuffix(date)
+        val dateFormat = SimpleDateFormat("EEE dd'$dayNumberSuffix' MMM HH:mm",  Locale.UK)
+        return dateFormat.format(date).toUpperCase()
+
+    }
+
 }
