@@ -5,17 +5,27 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
+import androidx.navigation.NavDirections
+import androidx.navigation.fragment.navArgs
 import com.sagoss.validationhorizon.R
+import com.sagoss.validationhorizon.database.models.Voucher
+import com.sagoss.validationhorizon.databinding.FragmentHorizonValidationResultsBinding
+import com.sagoss.validationhorizon.databinding.FragmentHorizonVoucherBinding
+import com.sagoss.validationhorizon.ui.fragments.basefragments.ValidationResultsBaseFragment
+import com.sagoss.validationhorizon.ui.fragments.basefragments.VouchersListBaseFragment
+import com.sagoss.validationhorizon.utils.Constants
+import dagger.hilt.android.AndroidEntryPoint
 
-class ValidationResultsHorizonFragment : Fragment() {
-
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_horizon_validation_results, container, false)
-    }
-
+@AndroidEntryPoint
+class ValidationResultsHorizonFragment : ValidationResultsBaseFragment<FragmentHorizonValidationResultsBinding>() {
+    private val args                        : ValidationResultsHorizonFragmentArgs by navArgs()
+    override fun getViewBinding()           = FragmentHorizonValidationResultsBinding.inflate(layoutInflater)
+    override fun currentVoucher()           = args.voucher
+    override fun dateTo()                   = args.dateTo
+    override fun dateFrom()                 = args.dateFrom
+    override fun plateNumber()              = args.plateNumber
+    override fun successMsg()               = Constants.HORIZON_MSG
+    override fun plateTextBox()             = binding.tvPlateNo
+    override fun msgTextBox()               = binding.thanksMessageTextView
 }

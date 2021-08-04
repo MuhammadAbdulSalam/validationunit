@@ -113,7 +113,7 @@ class MainViewModel @Inject constructor(
      *
      * Get response from API Two validation request
      */
-    suspend fun checkVoucher(plate: String, token: String, date_from: String, date_to: String?) =
+    fun checkVoucher(plate: String, token: String, date_from: String, date_to: String?) =
         liveData(Dispatchers.IO) {
             emit(Resource.loading(data = null))
             try {

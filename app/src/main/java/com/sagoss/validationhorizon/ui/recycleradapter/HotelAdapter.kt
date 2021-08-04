@@ -39,7 +39,7 @@ class HotelAdapter(private val backgroundColor: Int, private val fragment: Fragm
 
         init {
             binding.itemCardView.setCardBackgroundColor(ContextCompat.getColor(fragment.requireContext(), backgroundColor))
-            binding.setClickListener { (fragment as HotelBaseFragment<*>).onRecyclerItemSelected() }
+            binding.setClickListener { (fragment as HotelBaseFragment<*>).onRecyclerItemSelected(binding.model!!) }
         }
 
         fun bind(item: DateToFixed) {

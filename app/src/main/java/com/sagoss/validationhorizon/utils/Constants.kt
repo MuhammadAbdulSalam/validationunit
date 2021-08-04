@@ -59,4 +59,8 @@ object Constants {
     const val APP_ID                            = "validation"
     const val VERSION                           = "1.0"
 
+    const val C2C_MSG                           = "Thank you. Your vehicle has been exempted for 24h from point of entry"
+    const val GREATER_ANGLIA_MSG                = "Thank you. Your vehicle has been exempted for 24h from point of entry"
+    const val HORIZON_MSG                       = "Thank you. Your vehicle has been exempted."
+
 }

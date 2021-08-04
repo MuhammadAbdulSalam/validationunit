@@ -179,6 +179,12 @@
     <argument
         android:name="plate_number"
         app:argType="string" />
+        <argument
+            android:name="date_to"
+            app:argType="string" />
+        <argument
+            android:name="date_from"
+            app:argType="string" />
 </fragment>
 
 
