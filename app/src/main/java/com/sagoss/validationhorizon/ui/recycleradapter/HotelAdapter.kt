@@ -7,16 +7,19 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.sagoss.validationhorizon.api.models.config.DateToFixed
 import com.sagoss.validationhorizon.database.models.Voucher
+import com.sagoss.validationhorizon.databinding.LayoutDateToFixedHotelItemBinding
 import com.sagoss.validationhorizon.databinding.LayoutVouchersItemBinding
+import com.sagoss.validationhorizon.ui.fragments.basefragments.HotelBaseFragment
 import com.sagoss.validationhorizon.ui.fragments.basefragments.VouchersListBaseFragment
 
-class VoucherRecyclerAdapter(private val backgroundColor: Int, private val fragment: Fragment) :
-    ListAdapter<Voucher, RecyclerView.ViewHolder>(VoucherDiffClass()) {
+class HotelAdapter(private val backgroundColor: Int, private val fragment: Fragment) :
+    ListAdapter<DateToFixed, RecyclerView.ViewHolder>(HotelVoucherDiff()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        return VoucherViewHolder(
-            binding = LayoutVouchersItemBinding.inflate(
+        return HotelVoucherViewHolder(
+            binding = LayoutDateToFixedHotelItemBinding.inflate(
                 LayoutInflater.from(parent.context), parent, false),
             backgroundColor = backgroundColor,
             fragment = fragment
@@ -25,21 +28,21 @@ class VoucherRecyclerAdapter(private val backgroundColor: Int, private val fragm
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val device = getItem(position)
-        (holder as VoucherViewHolder).bind(device)
+        (holder as HotelVoucherViewHolder).bind(device)
     }
 
-    class VoucherViewHolder(
-        private val binding: LayoutVouchersItemBinding,
+    class HotelVoucherViewHolder(
+        private val binding: LayoutDateToFixedHotelItemBinding,
         private val backgroundColor: Int,
         private val fragment: Fragment
     ) : RecyclerView.ViewHolder(binding.root) {
 
         init {
             binding.itemCardView.setCardBackgroundColor(ContextCompat.getColor(fragment.requireContext(), backgroundColor))
-            binding.setClickListener { (fragment as VouchersListBaseFragment<*>).onRecyclerClick(binding.model!!) }
+            binding.setClickListener { (fragment as HotelBaseFragment<*>).onRecyclerItemSelected() }
         }
 
-        fun bind(item: Voucher) {
+        fun bind(item: DateToFixed) {
             binding.apply {
                 model = item
                 executePendingBindings()
@@ -48,12 +51,12 @@ class VoucherRecyclerAdapter(private val backgroundColor: Int, private val fragm
     }
 }
 
-private class VoucherDiffClass : DiffUtil.ItemCallback<Voucher>() {
-    override fun areItemsTheSame(oldItem: Voucher, newItem: Voucher): Boolean {
-        return oldItem.voucherName == newItem.voucherName
+private class HotelVoucherDiff : DiffUtil.ItemCallback<DateToFixed>() {
+    override fun areItemsTheSame(oldItem: DateToFixed, newItem: DateToFixed): Boolean {
+        return oldItem.name == newItem.name
     }
 
-    override fun areContentsTheSame(oldItem: Voucher, newItem: Voucher): Boolean {
+    override fun areContentsTheSame(oldItem: DateToFixed, newItem: DateToFixed): Boolean {
         return oldItem == newItem
     }
 }

@@ -25,17 +25,6 @@ import java.util.*
 abstract class EnterDateToBaseFragment<VBinding : ViewBinding> : Fragment() {
 
     protected lateinit var binding              : VBinding
-    protected abstract fun getViewBinding()     : VBinding
-    protected abstract fun getToolbar()         : MaterialToolbar
-    protected abstract fun btnAdd()             : MaterialButton
-    protected abstract fun btnSubtract()        : MaterialButton
-    protected abstract fun btnConfirm()         : MaterialButton
-    protected abstract fun durationTextView()   : TextView
-    protected abstract fun expiryTextView()     : TextView
-
-    protected abstract fun currentVoucher()     : Voucher
-    protected abstract fun plate()              : String
-
     private lateinit var prefs                  : Prefs
     private var dateToUnit                      = ""
     private var chosenDateAndTime               = ""
@@ -48,6 +37,15 @@ abstract class EnterDateToBaseFragment<VBinding : ViewBinding> : Fragment() {
     private var limit                           = 0
     private var plate                           = ""
 
+    protected abstract fun getViewBinding()     : VBinding
+    protected abstract fun getToolbar()         : MaterialToolbar
+    protected abstract fun btnAdd()             : MaterialButton
+    protected abstract fun btnSubtract()        : MaterialButton
+    protected abstract fun btnConfirm()         : MaterialButton
+    protected abstract fun durationTextView()   : TextView
+    protected abstract fun expiryTextView()     : TextView
+    protected abstract fun currentVoucher()     : Voucher
+    protected abstract fun plate()              : String
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {

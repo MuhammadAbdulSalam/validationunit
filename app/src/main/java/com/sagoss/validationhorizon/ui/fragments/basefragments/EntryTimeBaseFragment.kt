@@ -39,7 +39,6 @@ abstract class EntryTimeBaseFragment<VBinding : ViewBinding> : Fragment() {
     @SuppressLint("SimpleDateFormat", "NewApi", "WeekBasedYear")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {}
         prefs = Prefs(requireContext())
 
         btnValidate().setOnClickListener{
@@ -59,8 +58,6 @@ abstract class EntryTimeBaseFragment<VBinding : ViewBinding> : Fragment() {
     private fun askDateTo(){
         if(currentVoucher().dateTo)
         {
-
-
             if(!currentVoucher().dateToFixed.isNullOrEmpty()){
                 if(currentVoucher().dateToFixed!!.size > 1)
                 {

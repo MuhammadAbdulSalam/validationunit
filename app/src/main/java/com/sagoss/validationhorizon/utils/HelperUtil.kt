@@ -81,4 +81,26 @@ object HelperUtil {
 
     }
 
+    fun getMillisecondsByDate(dateString : String, format : String) : Long{
+
+        val dateFormat = SimpleDateFormat(format, Locale.UK)
+        val date = dateFormat.parse(dateString)
+        return date.time
+    }
+
+    fun getDateTimeString(dateMillis : Long, format : String ) : String{
+        val dateFormat = SimpleDateFormat(format, Locale.UK)
+        return dateFormat.format(dateMillis)
+    }
+
+    fun getDateTo(durationInMinutes: Int, dateFrom: String): String {
+        val dateFromInMillisec =getMillisecondsByDate(
+            dateFrom,
+            "yyyy-MM-dd HH:mm:ss")
+        val durationInMillisec: Long = durationInMinutes * 60000L
+        val dateToinMillisec = dateFromInMillisec + durationInMillisec
+        return getDateTimeString(dateToinMillisec, "yyyy-MM-dd HH:mm:ss")
+    }
+
+
 }

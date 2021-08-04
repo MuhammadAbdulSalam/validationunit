@@ -122,10 +122,6 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/stayTextView" />
 
-
-        <TextView
-            android:id="@+id/tv_app_version"
-            style="@style/Version.info.textview"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

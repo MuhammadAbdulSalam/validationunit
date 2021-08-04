@@ -14,17 +14,15 @@ import com.sagoss.validationhorizon.utils.Prefs
 
 abstract class GreetingsBaseFragment<VBinding : ViewBinding> : Fragment() {
 
-    protected lateinit var binding: VBinding
-    protected abstract fun getViewBinding(): VBinding
-    protected abstract fun tvGreetingsMsg(): TextView
-    protected abstract fun tvGreetingsMsgClickListener() : View.OnClickListener
+    protected lateinit var binding                          : VBinding
+    protected abstract fun getViewBinding()                 : VBinding
+    protected abstract fun tvGreetingsMsg()                 : TextView
+    protected abstract fun tvGreetingsMsgClickListener()    : View.OnClickListener
 
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
-    ): View? {
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = getViewBinding()
-
         return binding.root
     }
 

@@ -96,10 +96,5 @@
             android:visibility="invisible"
             app:layout_constraintLeft_toLeftOf="@id/btn_validate"
             android:layout_marginTop="30dp"/>
-
-
-        <TextView
-            android:id="@+id/tv_app_version"
-            style="@style/Version.info.textview"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

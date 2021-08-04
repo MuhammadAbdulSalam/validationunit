@@ -84,10 +84,6 @@
                 android:backgroundTint="@color/horizon_primary"
                 app:layout_constraintTop_toBottomOf="@id/card_time_date"
                 app:layout_constraintRight_toRightOf="@id/card_time_date"/>
-
-        <TextView
-            android:id="@+id/tv_app_version"
-            style="@style/Version.info.textview"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 

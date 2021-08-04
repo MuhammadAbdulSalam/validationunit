@@ -30,4 +30,9 @@ class PlateRegistrationHorizonFragment : EnterPlateBaseFragment<FragmentHorizonP
                                         .actionFragmentPlateRegistrationHorizonToFragmentEntryTimeHorizon(
                                             voucher        = currentVoucher(),
                                             plateNumber    = tvPlateTextView().text.toString())
+
+    override fun enterHotelFrag()       = PlateRegistrationHorizonFragmentDirections
+                                        .actionFragmentPlateRegistrationHorizonToFragmentHorizonHotel(
+                                            voucher        = currentVoucher(),
+                                            plateNumber    = tvPlateTextView().text.toString())
 }

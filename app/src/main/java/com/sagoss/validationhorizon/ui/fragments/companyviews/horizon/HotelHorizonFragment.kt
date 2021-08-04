@@ -5,16 +5,24 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.RecyclerView
 import com.sagoss.validationhorizon.R
+import com.sagoss.validationhorizon.database.models.Voucher
+import com.sagoss.validationhorizon.databinding.FragmentHorizonGreetingsBinding
+import com.sagoss.validationhorizon.databinding.FragmentHorizonHotelBinding
+import com.sagoss.validationhorizon.ui.fragments.basefragments.GreetingsBaseFragment
+import com.sagoss.validationhorizon.ui.fragments.basefragments.HotelBaseFragment
+import dagger.hilt.android.AndroidEntryPoint
 
-class HotelHorizonFragment : Fragment() {
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_horizon_hotel, container, false)
-    }
-
+@AndroidEntryPoint
+class HotelHorizonFragment : HotelBaseFragment<FragmentHorizonHotelBinding>() {
+    private val args                        : HotelHorizonFragmentArgs by navArgs()
+    override fun getViewBinding()           = FragmentHorizonHotelBinding.inflate(layoutInflater)
+    override fun recycler()                 = binding.recycler
+    override fun getVoucher()               = args.voucher
+    override fun getItemColor()             = R.color.horizon_primary
+    override fun plateNumber()              = args.plateNumber
 }

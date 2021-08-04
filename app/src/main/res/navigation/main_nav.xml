@@ -39,7 +39,7 @@
         tools:layout="@layout/fragment_login_registration">
     </fragment>
 
-    <!-- ********** C2C Fragments ********** -->
+    <!-- * *********** C2C Fragments ********** *-->
     <fragment
         android:id="@+id/fragment_greetings_c2c"
         android:name="com.sagoss.validationhorizon.ui.fragments.companyviews.c2c.GreetingsC2cFragment"
@@ -109,6 +109,9 @@
         <action
             android:id="@+id/action_fragment_plate_registration_horizon_to_fragment_entry_time_horizon"
             app:destination="@id/fragment_entry_time_horizon" />
+        <action
+            android:id="@+id/action_fragment_plate_registration_horizon_to_fragment_horizon_hotel"
+            app:destination="@id/fragment_horizon_hotel" />
     </fragment>
 
     <fragment
@@ -122,6 +125,9 @@
         <argument
             android:name="plate_number"
             app:argType="string" />
+        <action
+            android:id="@+id/action_fragment_enter_date_to_horizon_to_fragment_horizon_validation"
+            app:destination="@id/fragment_horizon_validation" />
     </fragment>
 
     <fragment
@@ -138,7 +144,43 @@
         <action
             android:id="@+id/action_fragment_entry_time_horizon_to_fragment_enter_date_to_horizon"
             app:destination="@id/fragment_enter_date_to_horizon" />
+        <action
+            android:id="@+id/action_fragment_entry_time_horizon_to_fragment_horizon_hotel"
+            app:destination="@id/fragment_horizon_hotel" />
+        <action
+            android:id="@+id/action_fragment_entry_time_horizon_to_fragment_horizon_validation"
+            app:destination="@id/fragment_horizon_validation" />
     </fragment>
+
+    <fragment
+        android:id="@+id/fragment_horizon_hotel"
+        android:name="com.sagoss.validationhorizon.ui.fragments.companyviews.horizon.HotelHorizonFragment"
+        android:label="Enter Reg Plate"
+        tools:layout="@layout/fragment_horizon_hotel">
+        <argument
+            android:name="voucher"
+            app:argType="com.sagoss.validationhorizon.database.models.Voucher" />
+        <argument
+            android:name="plate_number"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_fragment_horizon_hotel_to_fragment_horizon_validation"
+            app:destination="@id/fragment_horizon_validation" />
+    </fragment>
+
+    <fragment
+    android:id="@+id/fragment_horizon_validation"
+    android:name="com.sagoss.validationhorizon.ui.fragments.companyviews.horizon.ValidationResultsHorizonFragment"
+    android:label="Enter Reg Plate"
+    tools:layout="@layout/fragment_horizon_validation_results">
+    <argument
+        android:name="voucher"
+        app:argType="com.sagoss.validationhorizon.database.models.Voucher" />
+    <argument
+        android:name="plate_number"
+        app:argType="string" />
+</fragment>
+
 
     <!-- ********** GA Fragments ********** -->
     <fragment

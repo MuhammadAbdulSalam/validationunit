@@ -19,17 +19,16 @@ import com.sagoss.validationhorizon.viewmodel.MainViewModel
 
 abstract class VouchersListBaseFragment<VBinding : ViewBinding> : Fragment() {
 
-    protected val viewModel: MainViewModel by viewModels()
+    protected val viewModel                                         : MainViewModel by viewModels()
+    protected lateinit var binding                                  : VBinding
+    private lateinit var recyclerView                               : RecyclerView
+    private lateinit var adapter                                    : VoucherRecyclerAdapter
 
-    protected lateinit var binding: VBinding
-    private lateinit var recyclerView: RecyclerView
-    private lateinit var adapter: VoucherRecyclerAdapter
-
-    protected abstract fun getViewBinding(): VBinding
-    protected abstract fun getRecycler(): RecyclerView
-    protected abstract fun getRecyclerDirection(voucher: Voucher): NavDirections
-    protected abstract fun getRecyclerItemColor(): Int
-    protected abstract fun getToolbar(): MaterialToolbar
+    protected abstract fun getViewBinding()                         : VBinding
+    protected abstract fun getRecycler()                            : RecyclerView
+    protected abstract fun getRecyclerDirection(voucher: Voucher)   : NavDirections
+    protected abstract fun getRecyclerItemColor()                   : Int
+    protected abstract fun getToolbar()                             : MaterialToolbar
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {

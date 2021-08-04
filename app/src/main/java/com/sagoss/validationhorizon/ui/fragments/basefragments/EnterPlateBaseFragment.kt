@@ -38,6 +38,8 @@ abstract class EnterPlateBaseFragment<VBinding : ViewBinding> : Fragment() {
     protected abstract fun progressbar()        : CircularProgressIndicator
     protected abstract fun enterDateToFrag()    : NavDirections
     protected abstract fun enterEntryDateFrag() : NavDirections
+    protected abstract fun enterHotelFrag()     : NavDirections
+
 
 
     override fun onCreateView(
@@ -96,7 +98,7 @@ abstract class EnterPlateBaseFragment<VBinding : ViewBinding> : Fragment() {
         if (currentVoucher().dateTo) {
             if (!currentVoucher().dateToFixed.isNullOrEmpty()) {
                 if (currentVoucher().dateToFixed!!.size > 1) {
-                    //TODO hotel activity
+                    findNavController().navigate(enterHotelFrag())
                 } else if (currentVoucher().dateToFixed!!.size == 1) {
                     //TODO check voucher validate
                 }

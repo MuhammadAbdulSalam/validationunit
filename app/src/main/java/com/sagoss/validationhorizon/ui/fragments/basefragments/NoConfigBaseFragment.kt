@@ -21,16 +21,14 @@ import com.sagoss.validationhorizon.viewmodel.MainViewModel
 
 abstract class NoConfigBaseFragment<VBinding : ViewBinding> : Fragment() {
 
-    protected val viewModel: MainViewModel by viewModels()
-    protected lateinit var binding: VBinding
-    protected abstract fun tvDeviceID(): TextView
-    protected abstract fun getViewBinding(): VBinding
-    private var handler = Handler(Looper.myLooper()!!)
-    private lateinit var runnable: Runnable
+    protected val viewModel                     : MainViewModel by viewModels()
+    protected lateinit var binding              : VBinding
+    private lateinit var runnable               : Runnable
+    private lateinit var prefs                  : Prefs
+    private var handler                         = Handler(Looper.myLooper()!!)
 
-    private lateinit var prefs: Prefs
-
-
+    protected abstract fun tvDeviceID()         : TextView
+    protected abstract fun getViewBinding()     : VBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = getViewBinding()
