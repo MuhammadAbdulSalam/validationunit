@@ -76,7 +76,6 @@ abstract class EnterPlateBaseFragment<VBinding : ViewBinding> : Fragment() {
                         progressbar().visibility = View.INVISIBLE
                         validateButton().visibility = View.VISIBLE
                         if (currentVoucher().dateFrom) askForEntryTime() else askForDateTo()
-
                     }
                     Status.ERROR -> {
                         progressbar().visibility = View.INVISIBLE
@@ -103,7 +102,7 @@ abstract class EnterPlateBaseFragment<VBinding : ViewBinding> : Fragment() {
                 }
             } else {
                 if (!currentVoucher().dateToUnit.isNullOrEmpty()) {
-                    showDateToDialog()
+                    askDateToFrag()
                 }
             }
         } else {
@@ -112,17 +111,17 @@ abstract class EnterPlateBaseFragment<VBinding : ViewBinding> : Fragment() {
     }
 
     /**
-     * Show dialog to enter a valid till date
-     *
-     * Once validity date is selected move to validating plate
+     * Show Fragment to enter a valid till date
      */
-    private fun showDateToDialog() {
+    private fun askDateToFrag() {
       findNavController().navigate(enterDateToFrag())
     }
 
+    /**
+     * Show Enter Entry Time fragment
+     */
     private fun askForEntryTime() {
-        val dialogEntryTime = DialogEntryTime(requireContext(), defaultColor())
-        dialogEntryTime.show()
+        findNavController().navigate(enterEntryDateFrag())
     }
 
 }

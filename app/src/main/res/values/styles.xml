@@ -42,9 +42,10 @@
         <item name="android:textAlignment">center</item>
     </style>
 
-    <style name="CustomDatePicker" >
-        <item name="android:textSize">24sp</item>
-        <item name="colorControlNormal">@color/sagoss_blue</item>
+    <style name="CustomDatePicker">
+        <item name="android:textSize">30sp</item>
+        <item name="android:textColorPrimary">@color/white</item>
+        <item name="colorControlNormal">@android:color/holo_blue_bright</item>
     </style>
 
     <style name="Theme.horizon.cardview" parent="CardView">

@@ -20,12 +20,14 @@ class PlateRegistrationHorizonFragment : EnterPlateBaseFragment<FragmentHorizonP
     override fun currentVoucher()       = args.voucher
     override fun defaultColor()         = R.color.horizon_primary
     override fun progressbar()          = binding.progressbarValidate
+
     override fun enterDateToFrag()      = PlateRegistrationHorizonFragmentDirections
                                          .actionFragmentPlateRegistrationHorizonToFragmentEnterDateToHorizon(
                                              voucher        = currentVoucher(),
                                              plateNumber    = tvPlateTextView().text.toString())
 
-    override fun enterEntryDateFrag(): NavDirections {
-        TODO("Not yet implemented")
-    }
+    override fun enterEntryDateFrag()   = PlateRegistrationHorizonFragmentDirections
+                                        .actionFragmentPlateRegistrationHorizonToFragmentEntryTimeHorizon(
+                                            voucher        = currentVoucher(),
+                                            plateNumber    = tvPlateTextView().text.toString())
 }
