@@ -1,3 +1,12 @@
+<!--
+  ~ Copyright (c) 2021. Author Muhammad Abdul Salam.
+  ~ Property of Sagoss Group
+  ~
+  ~ It is against law to modify, replicate or distribute this code
+  ~ Permission of owner (Sagoss Group) is needed in order to
+  ~ modify, replicate or distribute this code.
+  -->
+
 <androidx.appcompat.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:local="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -18,7 +27,6 @@
         <ImageView
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:layout_centerInParent="true"
             android:src="@drawable/sagoss_logo" />
         <TextView
             android:layout_width="wrap_content"

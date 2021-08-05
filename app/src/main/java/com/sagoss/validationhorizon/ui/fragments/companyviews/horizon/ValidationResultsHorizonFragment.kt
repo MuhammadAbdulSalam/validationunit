@@ -1,23 +1,17 @@
+/*
+ * Copyright (c) 2021. Author Muhammad Abdul Salam.
+ * Property of Sagoss Group
+ *
+ * It is against law to modify, replicate or distribute this code
+ * Permission of owner (Sagoss Group) is needed in order to
+ * modify, replicate or distribute this code.
+ */
+
 package com.sagoss.validationhorizon.ui.fragments.companyviews.horizon
 
-import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.TextView
-import androidx.cardview.widget.CardView
-import androidx.navigation.NavDirections
 import androidx.navigation.fragment.navArgs
-import com.google.android.material.button.MaterialButton
-import com.google.android.material.progressindicator.CircularProgressIndicator
-import com.sagoss.validationhorizon.R
-import com.sagoss.validationhorizon.database.models.Voucher
 import com.sagoss.validationhorizon.databinding.FragmentHorizonValidationResultsBinding
-import com.sagoss.validationhorizon.databinding.FragmentHorizonVoucherBinding
 import com.sagoss.validationhorizon.ui.fragments.basefragments.ValidationResultsBaseFragment
-import com.sagoss.validationhorizon.ui.fragments.basefragments.VouchersListBaseFragment
-import com.sagoss.validationhorizon.utils.Constants
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

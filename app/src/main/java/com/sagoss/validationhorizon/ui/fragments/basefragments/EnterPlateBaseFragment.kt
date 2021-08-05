@@ -1,3 +1,12 @@
+/*
+ * Copyright (c) 2021. Author Muhammad Abdul Salam.
+ * Property of Sagoss Group
+ *
+ * It is against law to modify, replicate or distribute this code
+ * Permission of owner (Sagoss Group) is needed in order to
+ * modify, replicate or distribute this code.
+ */
+
 package com.sagoss.validationhorizon.ui.fragments.basefragments
 
 import android.os.Bundle
@@ -97,11 +106,14 @@ abstract class EnterPlateBaseFragment<VBinding : ViewBinding> : Fragment() {
         prefs.date_from = dateFrom
         if (currentVoucher().dateTo) {
             if (!currentVoucher().dateToFixed.isNullOrEmpty()) {
-                    if (currentVoucher().dateToFixed!!.size > 1) { findNavController().navigate(enterHotelFrag()) }
+                if (currentVoucher().dateToFixed!!.size > 1) {
+                    findNavController().navigate(enterHotelFrag())
+                    }
                     else if (currentVoucher().dateToFixed!!.size == 1) {
-                        val dateFixed = currentVoucher().dateToFixed?.get(0)
+                    val dateFixed = currentVoucher().dateToFixed?.get(0)
                         val dateTo = HelperUtil.getDateTo(dateFixed?.unit!!, prefs.date_from.toString())
-                        findNavController().navigate(enterValidationFrag(dateTo, dateFrom)) }
+                        findNavController().navigate(enterValidationFrag(dateTo, dateFrom))
+                    }
             } else if (!currentVoucher().dateToUnit.isNullOrEmpty()) {
                 findNavController().navigate(enterDateToFrag()) }
         }
