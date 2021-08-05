@@ -27,7 +27,12 @@
             app:destination="@id/fragment_no_config_horizon" />
         <action
             android:id="@+id/action_fragment_login_checker_to_fragment_greetings_horizon"
-            app:destination="@id/fragment_greetings_horizon" />
+            app:destination="@id/fragment_greetings_horizon"
+            app:enterAnim="@anim/slide_in_from_right"
+            app:exitAnim="@anim/slide_out_to_left"
+            app:popExitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@anim/slide_in_from_left"
+            />
 
     </fragment>
 
@@ -36,8 +41,7 @@
         android:id="@+id/fragment_registration"
         android:name="com.sagoss.validationhorizon.ui.fragments.loginviews.LoginRegistrationFragment"
         android:label="Registration"
-        tools:layout="@layout/fragment_login_registration">
-    </fragment>
+        tools:layout="@layout/fragment_login_registration" />
 
     <!-- * *********** C2C Fragments ********** *-->
     <fragment
@@ -82,7 +86,12 @@
             app:destination="@id/fragment_plate_registration_horizon" />
         <action
             android:id="@+id/action_fragment_greetings_horizon_to_fragment_vouchers_horizon"
-            app:destination="@id/fragment_vouchers_horison" />
+            app:destination="@id/fragment_vouchers_horison"
+            app:enterAnim="@anim/slide_in_from_right"
+            app:exitAnim="@anim/slide_out_to_left"
+            app:popExitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@anim/slide_in_from_left"
+           />
     </fragment>
 
     <fragment
@@ -92,7 +101,11 @@
         tools:layout="@layout/fragment_horizon_voucher">
         <action
             android:id="@+id/action_fragment_vouchers_horison_to_fragment_plate_registration_horizon"
-            app:destination="@id/fragment_plate_registration_horizon" />
+            app:destination="@id/fragment_plate_registration_horizon"
+            app:enterAnim="@anim/slide_in_from_right"
+            app:exitAnim="@anim/slide_out_to_left"
+            app:popExitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@anim/slide_in_from_left"/>
     </fragment>
 
     <fragment
@@ -105,13 +118,32 @@
             app:argType="com.sagoss.validationhorizon.database.models.Voucher" />
         <action
             android:id="@+id/action_fragment_plate_registration_horizon_to_fragment_enter_date_to_horizon"
-            app:destination="@id/fragment_enter_date_to_horizon" />
+            app:destination="@id/fragment_enter_date_to_horizon"
+            app:enterAnim="@anim/slide_in_from_right"
+            app:exitAnim="@anim/slide_out_to_left"
+            app:popExitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@anim/slide_in_from_left"/>
         <action
             android:id="@+id/action_fragment_plate_registration_horizon_to_fragment_entry_time_horizon"
-            app:destination="@id/fragment_entry_time_horizon" />
+            app:destination="@id/fragment_entry_time_horizon"
+            app:enterAnim="@anim/slide_in_from_right"
+            app:exitAnim="@anim/slide_out_to_left"
+            app:popExitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@anim/slide_in_from_left"/>
         <action
             android:id="@+id/action_fragment_plate_registration_horizon_to_fragment_horizon_hotel"
-            app:destination="@id/fragment_horizon_hotel" />
+            app:destination="@id/fragment_horizon_hotel"
+            app:enterAnim="@anim/slide_in_from_right"
+            app:exitAnim="@anim/slide_out_to_left"
+            app:popExitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@anim/slide_in_from_left"/>
+        <action
+            android:id="@+id/action_fragment_plate_registration_horizon_to_fragment_horizon_validation"
+            app:destination="@id/fragment_horizon_validation"
+            app:enterAnim="@anim/slide_in_from_right"
+            app:exitAnim="@anim/slide_out_to_left"
+            app:popExitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@anim/slide_in_from_left"/>
     </fragment>
 
     <fragment
@@ -127,7 +159,11 @@
             app:argType="string" />
         <action
             android:id="@+id/action_fragment_enter_date_to_horizon_to_fragment_horizon_validation"
-            app:destination="@id/fragment_horizon_validation" />
+            app:destination="@id/fragment_horizon_validation"
+            app:enterAnim="@anim/slide_in_from_right"
+            app:exitAnim="@anim/slide_out_to_left"
+            app:popExitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@anim/slide_in_from_left"/>
     </fragment>
 
     <fragment
@@ -143,13 +179,25 @@
             app:argType="string" />
         <action
             android:id="@+id/action_fragment_entry_time_horizon_to_fragment_enter_date_to_horizon"
-            app:destination="@id/fragment_enter_date_to_horizon" />
+            app:destination="@id/fragment_enter_date_to_horizon"
+            app:enterAnim="@anim/slide_in_from_right"
+            app:exitAnim="@anim/slide_out_to_left"
+            app:popExitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@anim/slide_in_from_left"/>
         <action
             android:id="@+id/action_fragment_entry_time_horizon_to_fragment_horizon_hotel"
-            app:destination="@id/fragment_horizon_hotel" />
+            app:destination="@id/fragment_horizon_hotel"
+            app:enterAnim="@anim/slide_in_from_right"
+            app:exitAnim="@anim/slide_out_to_left"
+            app:popExitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@anim/slide_in_from_left"/>
         <action
             android:id="@+id/action_fragment_entry_time_horizon_to_fragment_horizon_validation"
-            app:destination="@id/fragment_horizon_validation" />
+            app:destination="@id/fragment_horizon_validation"
+            app:enterAnim="@anim/slide_in_from_right"
+            app:exitAnim="@anim/slide_out_to_left"
+            app:popExitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@anim/slide_in_from_left"/>
     </fragment>
 
     <fragment
@@ -165,27 +213,38 @@
             app:argType="string" />
         <action
             android:id="@+id/action_fragment_horizon_hotel_to_fragment_horizon_validation"
-            app:destination="@id/fragment_horizon_validation" />
+            app:destination="@id/fragment_horizon_validation"
+            app:enterAnim="@anim/slide_in_from_right"
+            app:exitAnim="@anim/slide_out_to_left"
+            app:popExitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@anim/slide_in_from_left"/>
     </fragment>
 
     <fragment
-    android:id="@+id/fragment_horizon_validation"
-    android:name="com.sagoss.validationhorizon.ui.fragments.companyviews.horizon.ValidationResultsHorizonFragment"
-    android:label="Enter Reg Plate"
-    tools:layout="@layout/fragment_horizon_validation_results">
-    <argument
-        android:name="voucher"
-        app:argType="com.sagoss.validationhorizon.database.models.Voucher" />
-    <argument
-        android:name="plate_number"
-        app:argType="string" />
+        android:id="@+id/fragment_horizon_validation"
+        android:name="com.sagoss.validationhorizon.ui.fragments.companyviews.horizon.ValidationResultsHorizonFragment"
+        android:label="Enter Reg Plate"
+        tools:layout="@layout/fragment_horizon_validation_results">
+        <argument
+            android:name="voucher"
+            app:argType="com.sagoss.validationhorizon.database.models.Voucher" />
+        <argument
+            android:name="plate_number"
+            app:argType="string" />
         <argument
             android:name="date_to"
             app:argType="string" />
         <argument
             android:name="date_from"
             app:argType="string" />
-</fragment>
+        <action
+            android:id="@+id/action_fragment_horizon_validation_to_fragment_greetings_horizon"
+            app:destination="@id/fragment_greetings_horizon"
+            app:enterAnim="@anim/slide_in_from_left"
+            app:exitAnim="@anim/slide_out_to_right"
+            app:popExitAnim="@android:anim/slide_in_left"
+            app:popEnterAnim="@anim/slide_out_to_right"/>
+    </fragment>
 
 
     <!-- ********** GA Fragments ********** -->

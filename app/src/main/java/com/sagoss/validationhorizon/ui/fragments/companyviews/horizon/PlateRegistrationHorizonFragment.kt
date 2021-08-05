@@ -1,9 +1,7 @@
 package com.sagoss.validationhorizon.ui.fragments.companyviews.horizon
 
 
-import androidx.navigation.NavDirections
 import androidx.navigation.fragment.navArgs
-import com.google.android.material.progressindicator.CircularProgressIndicator
 import com.sagoss.validationhorizon.R
 import com.sagoss.validationhorizon.databinding.FragmentHorizonPlateRegistrationBinding
 import com.sagoss.validationhorizon.ui.fragments.basefragments.EnterPlateBaseFragment
@@ -35,4 +33,12 @@ class PlateRegistrationHorizonFragment : EnterPlateBaseFragment<FragmentHorizonP
                                         .actionFragmentPlateRegistrationHorizonToFragmentHorizonHotel(
                                             voucher        = currentVoucher(),
                                             plateNumber    = tvPlateTextView().text.toString())
+
+    override fun enterValidationFrag(dateTo: String, dateFrom: String)
+                                        = PlateRegistrationHorizonFragmentDirections
+                                        .actionFragmentPlateRegistrationHorizonToFragmentHorizonValidation(
+                                            voucher = args.voucher,
+                                            plateNumber = binding.tvPlateNo.text.toString(),
+                                            dateTo = dateTo,
+                                            dateFrom = dateFrom)
 }

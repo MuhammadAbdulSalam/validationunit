@@ -63,4 +63,8 @@ object Constants {
     const val GREATER_ANGLIA_MSG                = "Thank you. Your vehicle has been exempted for 24h from point of entry"
     const val HORIZON_MSG                       = "Thank you. Your vehicle has been exempted."
 
+    const val NO_MATCH                          = "0"
+    const val MATCH_REDEEMED                    = "1"
+    const val NOT_APPLICABLE                    = "2"
+
 }

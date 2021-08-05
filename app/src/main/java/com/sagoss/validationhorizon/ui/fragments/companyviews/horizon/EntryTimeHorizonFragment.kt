@@ -9,6 +9,7 @@ import android.widget.DatePicker
 import android.widget.TimePicker
 import androidx.navigation.NavArgs
 import androidx.navigation.fragment.navArgs
+import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.button.MaterialButton
 import com.sagoss.validationhorizon.R
 import com.sagoss.validationhorizon.database.models.Voucher
@@ -23,4 +24,5 @@ class EntryTimeHorizonFragment : EntryTimeBaseFragment<FragmentHorizonEntryTimeB
     override fun btnValidate()      = binding.btnValidate
     override fun currentVoucher()   = args.voucher
     override fun plate()            = args.plateNumber
+    override fun getToolbar()       = binding.toolbar
 }

@@ -26,6 +26,7 @@ class HotelHorizonFragment : HotelBaseFragment<FragmentHorizonHotelBinding>() {
     override fun getVoucher()               = args.voucher
     override fun getItemColor()             = R.color.horizon_primary
     override fun plateNumber()              = args.plateNumber
+    override fun getToolbar()               = binding.toolbar
 
     override fun validateFrag(dateFrom: String, dateTo: String
     ): NavDirections {

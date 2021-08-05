@@ -9,6 +9,7 @@ import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
+import com.google.android.material.appbar.MaterialToolbar
 import com.sagoss.validationhorizon.api.models.config.DateToFixed
 import com.sagoss.validationhorizon.database.models.Voucher
 import com.sagoss.validationhorizon.ui.recycleradapter.HotelAdapter
@@ -24,6 +25,7 @@ abstract class HotelBaseFragment<VBinding : ViewBinding> : Fragment() {
     protected abstract fun getVoucher()         : Voucher
     protected abstract fun getItemColor()       : Int
     protected abstract fun plateNumber()        : String
+    protected abstract fun getToolbar()         : MaterialToolbar
     protected abstract fun validateFrag(
         dateFrom: String,
         dateTo: String
@@ -37,6 +39,7 @@ abstract class HotelBaseFragment<VBinding : ViewBinding> : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        getToolbar().setNavigationOnClickListener { findNavController().navigateUp() }
         prefs = Prefs(requireContext())
         val listOfDateToFixed = getVoucher().dateToFixed
         val recyclerView = recycler()

@@ -28,4 +28,6 @@ class ValidationResultsHorizonFragment : ValidationResultsBaseFragment<FragmentH
     override fun successMsg()               = Constants.HORIZON_MSG
     override fun plateTextBox()             = binding.tvPlateNo
     override fun msgTextBox()               = binding.thanksMessageTextView
+    override fun enterHomeFrag()            = ValidationResultsHorizonFragmentDirections
+                                            .actionFragmentHorizonValidationToFragmentGreetingsHorizon()
 }

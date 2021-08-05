@@ -11,7 +11,9 @@ import android.widget.TextView
 import android.widget.TimePicker
 import androidx.activity.addCallback
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.viewbinding.ViewBinding
+import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.button.MaterialButton
 import com.sagoss.validationhorizon.database.models.Voucher
 import com.sagoss.validationhorizon.utils.Prefs
@@ -27,8 +29,9 @@ abstract class EntryTimeBaseFragment<VBinding : ViewBinding> : Fragment() {
     protected abstract fun datePicker()         : DatePicker
     protected abstract fun timePicker()         : TimePicker
     protected abstract fun btnValidate()        : MaterialButton
-    protected abstract fun currentVoucher()         : Voucher
+    protected abstract fun currentVoucher()     : Voucher
     protected abstract fun plate()              : String
+    protected abstract fun getToolbar()         : MaterialToolbar
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -39,6 +42,7 @@ abstract class EntryTimeBaseFragment<VBinding : ViewBinding> : Fragment() {
     @SuppressLint("SimpleDateFormat", "NewApi", "WeekBasedYear")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        getToolbar().setNavigationOnClickListener { findNavController().navigateUp() }
         prefs = Prefs(requireContext())
 
         btnValidate().setOnClickListener{

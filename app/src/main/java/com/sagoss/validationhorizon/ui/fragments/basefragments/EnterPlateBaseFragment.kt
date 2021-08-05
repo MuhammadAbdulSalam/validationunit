@@ -1,6 +1,7 @@
 package com.sagoss.validationhorizon.ui.fragments.basefragments
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,7 +16,6 @@ import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.progressindicator.CircularProgressIndicator
 import com.sagoss.validationhorizon.database.models.Voucher
-import com.sagoss.validationhorizon.ui.dialogs.DialogEntryTime
 import com.sagoss.validationhorizon.utils.HelperUtil
 import com.sagoss.validationhorizon.utils.Prefs
 import com.sagoss.validationhorizon.utils.Status
@@ -24,27 +24,26 @@ import com.sagoss.validationhorizon.viewmodel.MainViewModel
 
 abstract class EnterPlateBaseFragment<VBinding : ViewBinding> : Fragment() {
 
-    protected val viewModel: MainViewModel by viewModels()
+    protected val viewModel                         : MainViewModel by viewModels()
+    private lateinit var prefs                      : Prefs
+    protected lateinit var binding                  : VBinding
 
-    private lateinit var prefs                  : Prefs
-    protected lateinit var binding              : VBinding
-
-    protected abstract fun getViewBinding()     : VBinding
-    protected abstract fun tvPlateTextView()    : TextView
-    protected abstract fun getToolbar()         : MaterialToolbar
-    protected abstract fun validateButton()     : MaterialButton
-    protected abstract fun currentVoucher()     : Voucher
-    protected abstract fun defaultColor()       : Int
-    protected abstract fun progressbar()        : CircularProgressIndicator
-    protected abstract fun enterDateToFrag()    : NavDirections
-    protected abstract fun enterEntryDateFrag() : NavDirections
-    protected abstract fun enterHotelFrag()     : NavDirections
-
-
+    protected abstract fun getViewBinding()         : VBinding
+    protected abstract fun tvPlateTextView()        : TextView
+    protected abstract fun getToolbar()             : MaterialToolbar
+    protected abstract fun validateButton()         : MaterialButton
+    protected abstract fun currentVoucher()         : Voucher
+    protected abstract fun defaultColor()           : Int
+    protected abstract fun progressbar()            : CircularProgressIndicator
+    protected abstract fun enterDateToFrag()        : NavDirections
+    protected abstract fun enterEntryDateFrag()     : NavDirections
+    protected abstract fun enterHotelFrag()         : NavDirections
+    protected abstract fun enterValidationFrag(
+        dateTo: String,
+        dateFrom: String)                           : NavDirections
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
-    ): View? {
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = getViewBinding()
         return binding.root
     }
@@ -64,7 +63,6 @@ abstract class EnterPlateBaseFragment<VBinding : ViewBinding> : Fragment() {
 
     /**
      * Validate Number Plate
-     *
      * Check with API if number plate is valid or not Using Api Two
      */
     private fun validateNumberPlate() {
@@ -77,53 +75,37 @@ abstract class EnterPlateBaseFragment<VBinding : ViewBinding> : Fragment() {
                     Status.SUCCESS -> {
                         progressbar().visibility = View.INVISIBLE
                         validateButton().visibility = View.VISIBLE
-                        if (currentVoucher().dateFrom) askForEntryTime() else askForDateTo()
+                        if (currentVoucher().dateFrom) findNavController().navigate(enterEntryDateFrag()) else askForDateTo()
                     }
                     Status.ERROR -> {
                         progressbar().visibility = View.INVISIBLE
                         validateButton().visibility = View.VISIBLE
                         //TODO show error
                     }
-                    Status.LOADING -> {
-                    }
+                    Status.LOADING -> { }
                 }
             }
         })
     }
 
+    /**
+     * Check if dates needs to be entered manually
+     * Navigate according to date_to and date_from requirements
+     */
     private fun askForDateTo() {
         val dateFrom = HelperUtil.getCurrentDateTimeString("YYYY-MM-dd HH:mm:ss")
         prefs.date_from = dateFrom
-
         if (currentVoucher().dateTo) {
             if (!currentVoucher().dateToFixed.isNullOrEmpty()) {
-                if (currentVoucher().dateToFixed!!.size > 1) {
-                    findNavController().navigate(enterHotelFrag())
-                } else if (currentVoucher().dateToFixed!!.size == 1) {
-                    //TODO check voucher validate
-                }
-            } else {
-                if (!currentVoucher().dateToUnit.isNullOrEmpty()) {
-                    askDateToFrag()
-                }
-            }
-        } else {
-            // TODO regidster plate check voucher
+                    if (currentVoucher().dateToFixed!!.size > 1) { findNavController().navigate(enterHotelFrag()) }
+                    else if (currentVoucher().dateToFixed!!.size == 1) {
+                        val dateFixed = currentVoucher().dateToFixed?.get(0)
+                        val dateTo = HelperUtil.getDateTo(dateFixed?.unit!!, prefs.date_from.toString())
+                        findNavController().navigate(enterValidationFrag(dateTo, dateFrom)) }
+            } else if (!currentVoucher().dateToUnit.isNullOrEmpty()) {
+                findNavController().navigate(enterDateToFrag()) }
         }
-    }
-
-    /**
-     * Show Fragment to enter a valid till date
-     */
-    private fun askDateToFrag() {
-      findNavController().navigate(enterDateToFrag())
-    }
-
-    /**
-     * Show Enter Entry Time fragment
-     */
-    private fun askForEntryTime() {
-        findNavController().navigate(enterEntryDateFrag())
+        else { findNavController().navigate(enterValidationFrag("", dateFrom)) }
     }
 
 }
