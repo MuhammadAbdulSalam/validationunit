@@ -32,10 +32,10 @@ class HotelHorizonFragment : HotelBaseFragment<FragmentHorizonHotelBinding>() {
     ): NavDirections {
      return HotelHorizonFragmentDirections
           .actionFragmentHorizonHotelToFragmentHorizonValidation(
-              plateNumber = args.plateNumber,
-              voucher = args.voucher,
-              dateTo = dateTo,
-              dateFrom = dateFrom )
+              plateNumber   = args.plateNumber,
+              voucher       = args.voucher,
+              dateTo        = dateTo,
+              dateFrom      = dateFrom )
     }
 
 }

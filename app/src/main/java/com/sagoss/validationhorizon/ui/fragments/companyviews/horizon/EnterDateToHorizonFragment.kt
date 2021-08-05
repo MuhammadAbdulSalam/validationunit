@@ -31,5 +31,15 @@ class EnterDateToHorizonFragment : EnterDateToBaseFragment<FragmentHorizonEnterD
     override fun plate()                     = args.plateNumber
     override fun durationTextView()          = binding.durationField
     override fun expiryTextView()            = binding.ExitBeforeField
+
+    override fun enterValidationFrag(
+        dateTo: String,
+        dateFrom: String)                    = EnterDateToHorizonFragmentDirections
+                                             .actionFragmentEnterDateToHorizonToFragmentHorizonValidation(
+                                                voucher         = args.voucher,
+                                                plateNumber     = args.plateNumber,
+                                                dateTo          = dateTo,
+                                                dateFrom        = dateFrom)
 }
+
 

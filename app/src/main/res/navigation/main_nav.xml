@@ -30,7 +30,7 @@
             app:destination="@id/fragment_greetings_horizon"
             app:enterAnim="@anim/slide_in_from_right"
             app:exitAnim="@anim/slide_out_to_left"
-            app:popExitAnim="@android:anim/slide_out_right"
+            app:popExitAnim="@anim/slide_out_to_right"
             app:popEnterAnim="@anim/slide_in_from_left"
             />
 
@@ -89,7 +89,7 @@
             app:destination="@id/fragment_vouchers_horison"
             app:enterAnim="@anim/slide_in_from_right"
             app:exitAnim="@anim/slide_out_to_left"
-            app:popExitAnim="@android:anim/slide_out_right"
+            app:popExitAnim="@anim/slide_out_to_right"
             app:popEnterAnim="@anim/slide_in_from_left"
            />
     </fragment>
@@ -104,7 +104,7 @@
             app:destination="@id/fragment_plate_registration_horizon"
             app:enterAnim="@anim/slide_in_from_right"
             app:exitAnim="@anim/slide_out_to_left"
-            app:popExitAnim="@android:anim/slide_out_right"
+            app:popExitAnim="@anim/slide_out_to_right"
             app:popEnterAnim="@anim/slide_in_from_left"/>
     </fragment>
 
@@ -121,28 +121,28 @@
             app:destination="@id/fragment_enter_date_to_horizon"
             app:enterAnim="@anim/slide_in_from_right"
             app:exitAnim="@anim/slide_out_to_left"
-            app:popExitAnim="@android:anim/slide_out_right"
+            app:popExitAnim="@anim/slide_out_to_right"
             app:popEnterAnim="@anim/slide_in_from_left"/>
         <action
             android:id="@+id/action_fragment_plate_registration_horizon_to_fragment_entry_time_horizon"
             app:destination="@id/fragment_entry_time_horizon"
             app:enterAnim="@anim/slide_in_from_right"
             app:exitAnim="@anim/slide_out_to_left"
-            app:popExitAnim="@android:anim/slide_out_right"
+            app:popExitAnim="@anim/slide_out_to_right"
             app:popEnterAnim="@anim/slide_in_from_left"/>
         <action
             android:id="@+id/action_fragment_plate_registration_horizon_to_fragment_horizon_hotel"
             app:destination="@id/fragment_horizon_hotel"
             app:enterAnim="@anim/slide_in_from_right"
             app:exitAnim="@anim/slide_out_to_left"
-            app:popExitAnim="@android:anim/slide_out_right"
+            app:popExitAnim="@anim/slide_out_to_right"
             app:popEnterAnim="@anim/slide_in_from_left"/>
         <action
             android:id="@+id/action_fragment_plate_registration_horizon_to_fragment_horizon_validation"
             app:destination="@id/fragment_horizon_validation"
             app:enterAnim="@anim/slide_in_from_right"
             app:exitAnim="@anim/slide_out_to_left"
-            app:popExitAnim="@android:anim/slide_out_right"
+            app:popExitAnim="@anim/slide_out_to_right"
             app:popEnterAnim="@anim/slide_in_from_left"/>
     </fragment>
 
@@ -162,7 +162,7 @@
             app:destination="@id/fragment_horizon_validation"
             app:enterAnim="@anim/slide_in_from_right"
             app:exitAnim="@anim/slide_out_to_left"
-            app:popExitAnim="@android:anim/slide_out_right"
+            app:popExitAnim="@anim/slide_out_to_right"
             app:popEnterAnim="@anim/slide_in_from_left"/>
     </fragment>
 
@@ -182,21 +182,21 @@
             app:destination="@id/fragment_enter_date_to_horizon"
             app:enterAnim="@anim/slide_in_from_right"
             app:exitAnim="@anim/slide_out_to_left"
-            app:popExitAnim="@android:anim/slide_out_right"
+            app:popExitAnim="@anim/slide_out_to_right"
             app:popEnterAnim="@anim/slide_in_from_left"/>
         <action
             android:id="@+id/action_fragment_entry_time_horizon_to_fragment_horizon_hotel"
             app:destination="@id/fragment_horizon_hotel"
             app:enterAnim="@anim/slide_in_from_right"
             app:exitAnim="@anim/slide_out_to_left"
-            app:popExitAnim="@android:anim/slide_out_right"
+            app:popExitAnim="@anim/slide_out_to_right"
             app:popEnterAnim="@anim/slide_in_from_left"/>
         <action
             android:id="@+id/action_fragment_entry_time_horizon_to_fragment_horizon_validation"
             app:destination="@id/fragment_horizon_validation"
             app:enterAnim="@anim/slide_in_from_right"
             app:exitAnim="@anim/slide_out_to_left"
-            app:popExitAnim="@android:anim/slide_out_right"
+            app:popExitAnim="@anim/slide_out_to_right"
             app:popEnterAnim="@anim/slide_in_from_left"/>
     </fragment>
 
@@ -216,7 +216,7 @@
             app:destination="@id/fragment_horizon_validation"
             app:enterAnim="@anim/slide_in_from_right"
             app:exitAnim="@anim/slide_out_to_left"
-            app:popExitAnim="@android:anim/slide_out_right"
+            app:popExitAnim="@anim/slide_out_to_right"
             app:popEnterAnim="@anim/slide_in_from_left"/>
     </fragment>
 

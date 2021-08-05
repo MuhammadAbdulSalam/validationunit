@@ -2,36 +2,43 @@ package com.sagoss.validationhorizon.ui.fragments.basefragments
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.DatePicker
 import android.widget.TextView
 import android.widget.TimePicker
-import androidx.activity.addCallback
 import androidx.fragment.app.Fragment
+import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
 import androidx.viewbinding.ViewBinding
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.button.MaterialButton
+import com.sagoss.validationhorizon.R
 import com.sagoss.validationhorizon.database.models.Voucher
+import com.sagoss.validationhorizon.utils.HelperUtil
 import com.sagoss.validationhorizon.utils.Prefs
 import java.text.SimpleDateFormat
 import java.util.*
 
 abstract class EntryTimeBaseFragment<VBinding : ViewBinding> : Fragment() {
 
-    protected lateinit var binding              : VBinding
-    private lateinit var prefs                  : Prefs
+    protected lateinit var binding                  : VBinding
+    private lateinit var prefs                      : Prefs
 
-    protected abstract fun getViewBinding()     : VBinding
-    protected abstract fun datePicker()         : DatePicker
-    protected abstract fun timePicker()         : TimePicker
-    protected abstract fun btnValidate()        : MaterialButton
-    protected abstract fun currentVoucher()     : Voucher
-    protected abstract fun plate()              : String
-    protected abstract fun getToolbar()         : MaterialToolbar
+    protected abstract fun getViewBinding()         : VBinding
+    protected abstract fun datePicker()             : DatePicker
+    protected abstract fun timePicker()             : TimePicker
+    protected abstract fun btnValidate()            : MaterialButton
+    protected abstract fun tvTitle()                : TextView
+    protected abstract fun currentVoucher()         : Voucher
+    protected abstract fun plate()                  : String
+    protected abstract fun getToolbar()             : MaterialToolbar
+    protected abstract fun enterDateToFrag()        : NavDirections
+    protected abstract fun enterHotelFrag()         : NavDirections
+    protected abstract fun enterValidationFrag(
+        dateTo: String,
+        dateFrom: String)                           : NavDirections
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -44,6 +51,7 @@ abstract class EntryTimeBaseFragment<VBinding : ViewBinding> : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         getToolbar().setNavigationOnClickListener { findNavController().navigateUp() }
         prefs = Prefs(requireContext())
+        tvTitle().text = getString(R.string.entry_time_label, plate().uppercase(Locale.getDefault()))
 
         btnValidate().setOnClickListener{
             val calendar = Calendar.getInstance()
@@ -53,38 +61,44 @@ abstract class EntryTimeBaseFragment<VBinding : ViewBinding> : Fragment() {
                 datePicker().dayOfMonth,
                 timePicker().hour,
                 timePicker().minute)
-            val chosenDateAndTime = SimpleDateFormat("YYYY-MM-dd HH:mm:ss").format(calendar.time)
+            val chosenDateAndTime = SimpleDateFormat("YYYY-MM-dd HH:mm:ss")
+                .format(calendar.time)
             prefs.date_from = chosenDateAndTime
             askDateTo()
         }
     }
 
+    /**
+     * If contains dateToList move to Hotel Frag
+     * If date to is required move to date to fragment
+     * if date to is not required then validate current plate
+     */
     private fun askDateTo(){
         if(currentVoucher().dateTo)
         {
             if(!currentVoucher().dateToFixed.isNullOrEmpty()){
-                if(currentVoucher().dateToFixed!!.size > 1)
-                {
-                    //TODO hotel activity
-                }
+                if(currentVoucher().dateToFixed!!.size > 1) {
+                    findNavController().navigate(enterHotelFrag()) }
                 else if(currentVoucher().dateToFixed!!.size == 1)
                 {
-                    //TODO validate
+                    val dateFixed = currentVoucher().dateToFixed?.get(0)
+                    val dateTo = HelperUtil.getDateTo(
+                        dateFixed?.unit!!,
+                        prefs.date_from.toString())
+                    findNavController().navigate(enterValidationFrag(
+                        dateTo,
+                        prefs.date_from.toString()))
                 }
             }
             else {
-
                 if(!currentVoucher().dateToUnit.isNullOrEmpty()){
-                    //TODO ask for date to fragment
-                }
+                    findNavController().navigate(enterDateToFrag()) }
             }
-
-
         }
-        else
-        {
-              // TODO Validate
+        else {
+            findNavController().navigate(enterValidationFrag("", prefs.date_from.toString()))
         }
     }
+
 
 }

@@ -6,5 +6,8 @@
     <string name="entry_time_label">Your vehicle registration number ( %1$s ) does not appear to have been processed yet. Please adjust your entry time using the buttons below.</string>
     <string name="LIMIT_EXCEED">Limit Exceeded</string>
     <string name="DURATION_LIMIT_MSG">The duration of your stay cannot exceed the limit of</string>
+    <string name="horizon_msg">Thank you. Your vehicle has been exempted.</string>
+
+
 
 </resources>

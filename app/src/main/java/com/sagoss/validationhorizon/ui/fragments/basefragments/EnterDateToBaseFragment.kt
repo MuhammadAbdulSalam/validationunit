@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
+import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
 import androidx.viewbinding.ViewBinding
 import com.google.android.material.appbar.MaterialToolbar
@@ -24,28 +25,32 @@ import java.util.*
 @SuppressLint("SetTextI18n")
 abstract class EnterDateToBaseFragment<VBinding : ViewBinding> : Fragment() {
 
-    protected lateinit var binding              : VBinding
-    private lateinit var prefs                  : Prefs
-    private var dateToUnit                      = ""
-    private var chosenDateAndTime               = ""
-    private val calendar                        = Calendar.getInstance()
-    private var incrementUnit                   = Calendar.DATE
-    private var incrementUnitName               = "DAY"
-    private var incrementAmount                 = 1
-    private var initialAmount                   = 1
-    private var minutesPerIncrement             = 1
-    private var limit                           = 0
-    private var plate                           = ""
+    protected lateinit var binding                  : VBinding
+    private lateinit var prefs                      : Prefs
+    private var dateToUnit                          = ""
+    private var chosenDateAndTime                   = ""
+    private val calendar                            = Calendar.getInstance()
+    private var incrementUnit                       = Calendar.DATE
+    private var incrementUnitName                   = "DAY"
+    private var incrementAmount                     = 1
+    private var initialAmount                       = 1
+    private var minutesPerIncrement                 = 1
+    private var limit                               = 0
+    private var plate                               = ""
 
-    protected abstract fun getViewBinding()     : VBinding
-    protected abstract fun getToolbar()         : MaterialToolbar
-    protected abstract fun btnAdd()             : MaterialButton
-    protected abstract fun btnSubtract()        : MaterialButton
-    protected abstract fun btnConfirm()         : MaterialButton
-    protected abstract fun durationTextView()   : TextView
-    protected abstract fun expiryTextView()     : TextView
-    protected abstract fun currentVoucher()     : Voucher
-    protected abstract fun plate()              : String
+    protected abstract fun getViewBinding()         : VBinding
+    protected abstract fun getToolbar()             : MaterialToolbar
+    protected abstract fun btnAdd()                 : MaterialButton
+    protected abstract fun btnSubtract()            : MaterialButton
+    protected abstract fun btnConfirm()             : MaterialButton
+    protected abstract fun durationTextView()       : TextView
+    protected abstract fun expiryTextView()         : TextView
+    protected abstract fun currentVoucher()         : Voucher
+    protected abstract fun plate()                  : String
+    protected abstract fun enterValidationFrag(
+        dateTo: String,
+        dateFrom: String)                           : NavDirections
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -74,7 +79,8 @@ abstract class EnterDateToBaseFragment<VBinding : ViewBinding> : Fragment() {
                 val adjustedDate = adjustDateAndTime(incrementUnit, incrementAmount)
                 expiryTextView().text = HelperUtil.getFormattedDate(adjustedDate)
                 amount += incrementAmount
-                val unitName  = if(amount == 1 && incrementUnitName == "DAYS") "DAY" else incrementUnitName
+                val unitName =
+                    if(amount == 1 && incrementUnitName == "DAYS") "DAY" else incrementUnitName
                 durationTextView().text = "$amount $unitName"
             } else {
                 HelperUtil.getErrorDialog(requireContext(), getString(R.string.LIMIT_EXCEED),
@@ -89,7 +95,8 @@ abstract class EnterDateToBaseFragment<VBinding : ViewBinding> : Fragment() {
                 val adjustedDate = adjustDateAndTime(incrementUnit, -incrementAmount)
                 expiryTextView().text = HelperUtil.getFormattedDate(adjustedDate)
                 amount -= incrementAmount
-                val unitName  = if(amount == 1 && incrementUnitName == "DAYS") "DAY" else incrementUnitName
+                val unitName  =
+                    if(amount == 1 && incrementUnitName == "DAYS") "DAY" else incrementUnitName
                 durationTextView().text = "$amount $unitName"
             } else {
                 HelperUtil.getErrorDialog(
@@ -99,6 +106,13 @@ abstract class EnterDateToBaseFragment<VBinding : ViewBinding> : Fragment() {
                     true
                 )
             }
+        }
+
+        btnConfirm().setOnClickListener{
+            findNavController().navigate(enterValidationFrag(
+                chosenDateAndTime,
+                prefs.date_from.toString())
+            )
         }
     }
 
@@ -111,8 +125,8 @@ abstract class EnterDateToBaseFragment<VBinding : ViewBinding> : Fragment() {
      *
      * Adjust incremental counter for add and subtract buttons
      */
-    private fun updateCalendar(unit: Int, increment: Int, initial: Int, unitName: String, perIncremental: Int?
-    ) {
+    private fun updateCalendar(unit: Int, increment: Int, initial: Int, unitName: String,
+                               perIncremental: Int?) {
         incrementUnit = unit
         incrementAmount = increment
         initialAmount = initial

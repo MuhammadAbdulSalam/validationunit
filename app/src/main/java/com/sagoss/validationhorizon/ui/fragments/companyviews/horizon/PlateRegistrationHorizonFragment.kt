@@ -37,8 +37,8 @@ class PlateRegistrationHorizonFragment : EnterPlateBaseFragment<FragmentHorizonP
     override fun enterValidationFrag(dateTo: String, dateFrom: String)
                                         = PlateRegistrationHorizonFragmentDirections
                                         .actionFragmentPlateRegistrationHorizonToFragmentHorizonValidation(
-                                            voucher = args.voucher,
-                                            plateNumber = binding.tvPlateNo.text.toString(),
-                                            dateTo = dateTo,
-                                            dateFrom = dateFrom)
+                                            voucher         = args.voucher,
+                                            plateNumber     = binding.tvPlateNo.text.toString(),
+                                            dateTo          = dateTo,
+                                            dateFrom        = dateFrom)
 }

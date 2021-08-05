@@ -16,6 +16,7 @@ class VoucherFragmentHorizon : VouchersListBaseFragment<FragmentHorizonVoucherBi
     override fun getToolbar()               = binding.toolbar
 
     override fun getRecyclerDirection(voucher: Voucher): NavDirections {
-        return VoucherFragmentHorizonDirections.actionFragmentVouchersHorisonToFragmentPlateRegistrationHorizon(voucher)
+        return VoucherFragmentHorizonDirections
+            .actionFragmentVouchersHorisonToFragmentPlateRegistrationHorizon(voucher)
     }
 }

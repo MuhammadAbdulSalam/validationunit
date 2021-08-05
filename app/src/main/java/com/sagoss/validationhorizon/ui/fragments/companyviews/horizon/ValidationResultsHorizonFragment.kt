@@ -6,8 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.cardview.widget.CardView
 import androidx.navigation.NavDirections
 import androidx.navigation.fragment.navArgs
+import com.google.android.material.button.MaterialButton
+import com.google.android.material.progressindicator.CircularProgressIndicator
 import com.sagoss.validationhorizon.R
 import com.sagoss.validationhorizon.database.models.Voucher
 import com.sagoss.validationhorizon.databinding.FragmentHorizonValidationResultsBinding
@@ -25,9 +28,11 @@ class ValidationResultsHorizonFragment : ValidationResultsBaseFragment<FragmentH
     override fun dateTo()                   = args.dateTo
     override fun dateFrom()                 = args.dateFrom
     override fun plateNumber()              = args.plateNumber
-    override fun successMsg()               = Constants.HORIZON_MSG
     override fun plateTextBox()             = binding.tvPlateNo
-    override fun msgTextBox()               = binding.thanksMessageTextView
+    override fun successCard()              = binding.successCard
+    override fun failureCard()              = binding.failureCard
+    override fun progressbar()              = binding.layoutProgressbar
+    override fun btnDone()                  = binding.btnDone
     override fun enterHomeFrag()            = ValidationResultsHorizonFragmentDirections
                                             .actionFragmentHorizonValidationToFragmentGreetingsHorizon()
 }
