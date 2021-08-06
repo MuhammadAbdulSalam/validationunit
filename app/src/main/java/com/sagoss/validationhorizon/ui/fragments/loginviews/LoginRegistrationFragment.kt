@@ -10,8 +10,10 @@
 package com.sagoss.validationhorizon.ui.fragments.loginviews
 
 import android.annotation.SuppressLint
+import android.app.AlertDialog
 import android.os.Bundle
 import android.provider.Settings
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -19,30 +21,34 @@ import android.view.ViewGroup
 import androidx.activity.addCallback
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.sagoss.validationhorizon.MainActivity
+import com.sagoss.validationhorizon.R
 import com.sagoss.validationhorizon.api.models.registration.RegistrationRequest
 import com.sagoss.validationhorizon.databinding.FragmentLoginRegistrationBinding
-import com.sagoss.validationhorizon.utils.Constants
-import com.sagoss.validationhorizon.utils.HelperUtil
-import com.sagoss.validationhorizon.utils.Prefs
-import com.sagoss.validationhorizon.utils.Status
+import com.sagoss.validationhorizon.utils.*
 import com.sagoss.validationhorizon.viewmodel.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 @SuppressLint("HardwareIds")
-class LoginRegistrationFragment : Fragment() {
+class LoginRegistrationFragment : Fragment(), InternetConnectionInterface {
 
-    private lateinit var binding: FragmentLoginRegistrationBinding
-    private lateinit var prefs: Prefs
-    private val viewModel: MainViewModel by viewModels()
+    private lateinit var binding        : FragmentLoginRegistrationBinding
+    private lateinit var prefs          : Prefs
+    private lateinit var helperDialog   : AlertDialog
+    private val viewModel               : MainViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
         prefs = Prefs(requireContext())
         binding = FragmentLoginRegistrationBinding.inflate(inflater, container, false)
-
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {}
+        helperDialog = HelperUtil.getErrorDialog(
+            requireContext(), getString(R.string.NO_INTERNET_TITLE),
+            getString(R.string.INTERNET_MSG),
+            false
+        ).create()
 
         binding.registerButton.setOnClickListener {
             val registrationRequest = RegistrationRequest(
@@ -53,7 +59,7 @@ class LoginRegistrationFragment : Fragment() {
                     Settings.Secure.ANDROID_ID),
                 version = Constants.VERSION
             )
-            setupRegistrationObserver(registrationRequest)
+            if(HelperUtil.isNetworkAvailable(requireContext()))setupRegistrationObserver(registrationRequest)
         }
         return binding.root
     }
@@ -82,5 +88,27 @@ class LoginRegistrationFragment : Fragment() {
                 }
             }
         })
+    }
+
+    @Override
+    override fun onDisconnected() {
+        helperDialog.show()
+    }
+
+    @Override
+    override fun onConnected() {
+        helperDialog.dismiss()
+    }
+
+    @Override
+    override fun onResume() {
+        super.onResume()
+        MainActivity.connectionListener = this
+    }
+
+    @Override
+    override fun onStop() {
+        super.onStop()
+        MainActivity.connectionListener = null
     }
 }

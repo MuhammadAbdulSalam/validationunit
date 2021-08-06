@@ -113,7 +113,7 @@ abstract class EnterDateToBaseFragment<VBinding : ViewBinding> : Fragment() {
                     "Limit Error",
                     "The duration of your stay must be at least $amount $incrementUnitName",
                     true
-                )
+                ).show()
             }
         }
 

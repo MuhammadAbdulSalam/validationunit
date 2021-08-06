@@ -161,7 +161,4 @@ class MainViewModel @Inject constructor(
      */
     fun insertVoucher(vouchers: List<Voucher>) = dbRepository.insertAllVouchers(vouchers)
 
-
-
-
 }

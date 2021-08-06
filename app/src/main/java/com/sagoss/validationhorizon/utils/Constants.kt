@@ -74,5 +74,7 @@ object Constants {
     const val NO_MATCH                          = "0"
     const val MATCH_REDEEMED                    = "1"
     const val NOT_APPLICABLE                    = "2"
+    const val CONFIG                            = "config"
+
 
 }

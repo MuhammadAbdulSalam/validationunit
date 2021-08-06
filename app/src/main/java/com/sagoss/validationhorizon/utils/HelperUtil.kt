@@ -10,15 +10,13 @@
 package com.sagoss.validationhorizon.utils
 
 import android.app.AlertDialog
-import android.app.Dialog
 import android.content.Context
-import android.content.DialogInterface
-import android.view.LayoutInflater
-import android.view.View
-import android.view.Window
-import com.sagoss.validationhorizon.databinding.DialogWarningBinding
+import android.net.ConnectivityManager
+import android.net.NetworkInfo
+import androidx.core.content.ContextCompat.getSystemService
 import java.text.SimpleDateFormat
 import java.util.*
+
 
 object HelperUtil {
 
@@ -46,6 +44,12 @@ object HelperUtil {
                 .setPositiveButton("Ok") { dialog, _ -> dialog.dismiss() }
                 .setCancelable(false)
         }
+    }
+
+    fun isNetworkAvailable(context: Context): Boolean {
+        val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val activeNetworkInfo = connectivityManager.activeNetwork
+        return activeNetworkInfo != null
     }
 
     /**

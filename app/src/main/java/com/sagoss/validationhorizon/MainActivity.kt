@@ -14,37 +14,38 @@ import android.app.AlertDialog
 import android.content.*
 import android.net.ConnectivityManager
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.sagoss.validationhorizon.utils.HelperUtil
+import com.sagoss.validationhorizon.utils.InternetConnectionInterface
 import com.sagoss.validationhorizon.utils.Prefs
 import dagger.hilt.android.AndroidEntryPoint
+import kotlin.properties.Delegates
 
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var noInternetDialog: AlertDialog
-
     companion object{
         @SuppressLint("StaticFieldLeak")
-        lateinit var activityContext: Context
+        lateinit var activityContext        : Context
+        var connectionListener              : InternetConnectionInterface? = null
+        var isDisconnected                  = false
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         activityContext = this
-        noInternetDialog = HelperUtil.getErrorDialog(
-            this, "No Internet Connection",
-            "Please enable Wifi or Phone Internet to continue using this app.",
-            false
-        ).create()
     }
 
     private val internetStateReceiver: BroadcastReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context?, intent: Intent?) {
-            val isDisconnected: Boolean =
-                intent!!.getBooleanExtra(ConnectivityManager.EXTRA_NO_CONNECTIVITY, false)
-            if (isDisconnected) noInternetDialog.show() else noInternetDialog.dismiss()
+            if (connectionListener != null) {
+                isDisconnected =
+                    intent!!.getBooleanExtra(ConnectivityManager.EXTRA_NO_CONNECTIVITY, false)
+                if (isDisconnected) connectionListener!!.onDisconnected() else connectionListener!!.onConnected()
+            }
         }
     }
 

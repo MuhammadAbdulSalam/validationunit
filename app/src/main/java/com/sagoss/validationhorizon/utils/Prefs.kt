@@ -13,6 +13,7 @@ import android.content.Context
 import android.content.SharedPreferences
 import com.sagoss.validationhorizon.utils.Constants.ACCESS_TOKEN
 import com.sagoss.validationhorizon.utils.Constants.COMPANY_ID
+import com.sagoss.validationhorizon.utils.Constants.CONFIG
 import com.sagoss.validationhorizon.utils.Constants.DATE_FROM
 import com.sagoss.validationhorizon.utils.Constants.EXPIRY_DATE
 import com.sagoss.validationhorizon.utils.Constants.LOCATION_NAME
@@ -58,4 +59,7 @@ class Prefs @Inject constructor(context: Context) {
         get() = prefs.getString(DATE_FROM, "")
         set(value) = prefs.edit().putString(DATE_FROM, value).apply()
 
+    var config : Boolean
+        get() = prefs.getBoolean(CONFIG, false)
+        set(value) = prefs.edit().putBoolean(CONFIG, value).apply()
 }

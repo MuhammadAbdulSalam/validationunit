@@ -18,6 +18,8 @@
     <string name="horizon_msg">Thank you. Your vehicle has been exempted.</string>
     <string name="no_internet_connection">No Internet Connection</string>
     <string name="internet_msg">Please enable Wifi or Phone Internet to continue using this app.</string>
+    <string name="NO_INTERNET_TITLE">No Internet Connection</string>
+    <string name="INTERNET_MSG">Please enable Wifi or Phone Internet to continue using this app.</string>
 
 
 </resources>

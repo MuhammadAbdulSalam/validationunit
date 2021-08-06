@@ -18,7 +18,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.sagoss.validationhorizon.MainActivity
 import com.sagoss.validationhorizon.databinding.FragmentLoginCheckerBinding
+import com.sagoss.validationhorizon.utils.HelperUtil
+import com.sagoss.validationhorizon.utils.InternetConnectionInterface
 import com.sagoss.validationhorizon.utils.Prefs
 import com.sagoss.validationhorizon.utils.Status
 import com.sagoss.validationhorizon.viewmodel.MainViewModel
@@ -27,20 +30,17 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class LoginCheckerFragment : Fragment() {
 
-    private lateinit var binding: FragmentLoginCheckerBinding
-    private lateinit var prefs: Prefs
-    private val viewModel: MainViewModel by viewModels()
+    private lateinit var binding            : FragmentLoginCheckerBinding
+    private lateinit var prefs              : Prefs
+    private val viewModel                   : MainViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+        savedInstanceState: Bundle?): View? {
 
         prefs = Prefs(requireContext())
         binding = FragmentLoginCheckerBinding.inflate(inflater, container, false)
-
-        Log.d("------------", "------------------" + Settings.Secure.getString(requireActivity().contentResolver,
-            Settings.Secure.ANDROID_ID))
+        binding.progressbarLayout.visibility = View.VISIBLE
 
         return binding.root
     }
@@ -57,7 +57,12 @@ class LoginCheckerFragment : Fragment() {
                 .navigate(LoginCheckerFragmentDirections.actionLoginCheckerToFragmentRegistration())
         }
         else {
-            setupGetConfigObserver("Bearer ${prefs.accessToken}")
+            if(!HelperUtil.isNetworkAvailable(requireContext()))
+            {
+                binding.progressbarLayout.visibility = View.INVISIBLE
+                if(prefs.config) enterGreetingsFrag() else enterNoConfigFrag()
+            }
+            else { setupGetConfigObserver("Bearer ${prefs.accessToken}") }
         }
     }
 
@@ -71,20 +76,30 @@ class LoginCheckerFragment : Fragment() {
             it?.let { resource ->
                 when (resource.status) {
                     Status.SUCCESS -> {
-                        findNavController().navigate(
-                            LoginCheckerFragmentDirections
-                                .actionFragmentLoginCheckerToFragmentGreetingsHorizon()
-                        )
+                        prefs.config = true
+                        binding.progressbarLayout.visibility = View.INVISIBLE
+                        enterGreetingsFrag()
                     }
                     Status.ERROR -> {
-                        findNavController()
-                            .navigate(LoginCheckerFragmentDirections.actionFragmentLoginCheckerToFragmentNoConfigHorizon())
+                        binding.progressbarLayout.visibility = View.INVISIBLE
+                        enterNoConfigFrag()
                     }
-                    Status.LOADING -> {
-                        binding.progressbarLayout.visibility = View.VISIBLE
-                    }
+                    Status.LOADING -> { }
                 }
             }
         })
+    }
+
+    private fun enterGreetingsFrag(){
+        findNavController().navigate(
+            LoginCheckerFragmentDirections
+                .actionFragmentLoginCheckerToFragmentGreetingsHorizon()
+        )
+    }
+
+    private fun enterNoConfigFrag(){
+        findNavController()
+            .navigate(LoginCheckerFragmentDirections.
+            actionFragmentLoginCheckerToFragmentNoConfigHorizon())
     }
 }

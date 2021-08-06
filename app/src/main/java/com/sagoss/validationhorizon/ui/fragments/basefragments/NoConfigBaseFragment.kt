@@ -10,6 +10,7 @@
 package com.sagoss.validationhorizon.ui.fragments.basefragments
 
 import android.annotation.SuppressLint
+import android.app.AlertDialog
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -23,21 +24,30 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.viewbinding.ViewBinding
+import com.sagoss.validationhorizon.MainActivity
+import com.sagoss.validationhorizon.R
 import com.sagoss.validationhorizon.ui.fragments.companyviews.horizon.NoConfigHorizonFragmentDirections
+import com.sagoss.validationhorizon.utils.HelperUtil
+import com.sagoss.validationhorizon.utils.InternetConnectionInterface
 import com.sagoss.validationhorizon.utils.Prefs
 import com.sagoss.validationhorizon.utils.Status
 import com.sagoss.validationhorizon.viewmodel.MainViewModel
 
-abstract class NoConfigBaseFragment<VBinding : ViewBinding> : Fragment() {
+abstract class NoConfigBaseFragment<VBinding : ViewBinding> : Fragment(), InternetConnectionInterface {
 
     protected val viewModel                     : MainViewModel by viewModels()
+
     protected lateinit var binding              : VBinding
     private lateinit var runnable               : Runnable
     private lateinit var prefs                  : Prefs
+    private lateinit var helperDialog           : AlertDialog
+
     private var handler                         = Handler(Looper.myLooper()!!)
+    private var isRunning                       = false
 
     protected abstract fun tvDeviceID()         : TextView
     protected abstract fun getViewBinding()     : VBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = getViewBinding()
@@ -46,12 +56,20 @@ abstract class NoConfigBaseFragment<VBinding : ViewBinding> : Fragment() {
     @SuppressLint("HardwareIds")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+
         prefs = Prefs(requireContext())
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {}
+        helperDialog = HelperUtil.getErrorDialog(
+            requireContext(), getString(R.string.NO_INTERNET_TITLE),
+            getString(R.string.INTERNET_MSG),
+            false
+        ).create()
 
         tvDeviceID().text =
             Settings.Secure.getString(requireActivity().contentResolver, Settings.Secure.ANDROID_ID)
+
         runnable = Runnable {
+            isRunning = true
             setupGetConfigObserver("Bearer ${prefs.accessToken.toString()}")
             handler.postDelayed(runnable, 60000)
         }
@@ -82,15 +100,31 @@ abstract class NoConfigBaseFragment<VBinding : ViewBinding> : Fragment() {
     }
 
     @Override
+    override fun onConnected() {
+        helperDialog.dismiss()
+        if(HelperUtil.isNetworkAvailable(requireContext())) runnable.run()
+    }
+
+    @Override
+    override fun onDisconnected() {
+        if(isRunning) handler.removeCallbacks(runnable)
+        isRunning = false
+        helperDialog.show()
+    }
+
+    @Override
     override fun onStop() {
         super.onStop()
+        isRunning = false
+        MainActivity.connectionListener = null
         handler.removeCallbacks(runnable)
     }
 
     @Override
     override fun onResume() {
         super.onResume()
-        runnable.run()
+        MainActivity.connectionListener = this
+        if(HelperUtil.isNetworkAvailable(requireContext())) runnable.run()
     }
 
 }
