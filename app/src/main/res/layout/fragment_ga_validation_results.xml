@@ -112,7 +112,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
                         android:gravity="center"
-                        android:text="@string/horizon_msg"
+                        android:text="@string/ga_msg"
                         android:textAlignment="center"
                         android:textColor="@android:color/background_light"
                         android:textSize="60sp" />

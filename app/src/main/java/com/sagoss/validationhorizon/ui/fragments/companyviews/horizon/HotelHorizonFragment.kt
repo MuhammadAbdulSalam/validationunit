@@ -9,20 +9,9 @@
 
 package com.sagoss.validationhorizon.ui.fragments.companyviews.horizon
 
-import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.navigation.NavDirections
-import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import androidx.recyclerview.widget.RecyclerView
 import com.sagoss.validationhorizon.R
-import com.sagoss.validationhorizon.database.models.Voucher
-import com.sagoss.validationhorizon.databinding.FragmentHorizonGreetingsBinding
 import com.sagoss.validationhorizon.databinding.FragmentHorizonHotelBinding
-import com.sagoss.validationhorizon.ui.fragments.basefragments.GreetingsBaseFragment
 import com.sagoss.validationhorizon.ui.fragments.basefragments.HotelBaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 

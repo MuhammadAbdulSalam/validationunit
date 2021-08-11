@@ -39,7 +39,7 @@ class VoucherRecyclerAdapter(private val backgroundColor: Int, private val fragm
 
     class VoucherViewHolder(
         private val binding: LayoutVouchersItemBinding,
-        private val backgroundColor: Int,
+        backgroundColor: Int,
         private val fragment: Fragment
     ) : RecyclerView.ViewHolder(binding.root) {
 

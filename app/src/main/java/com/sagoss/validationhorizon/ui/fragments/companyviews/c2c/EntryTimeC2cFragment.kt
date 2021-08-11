@@ -7,17 +7,16 @@
  * modify, replicate or distribute this code.
  */
 
-package com.sagoss.validationhorizon.ui.fragments.companyviews.greateranglia
+package com.sagoss.validationhorizon.ui.fragments.companyviews.c2c
 
 import androidx.navigation.fragment.navArgs
-import com.sagoss.validationhorizon.databinding.FragmentGaEnterTimeBinding
+import com.sagoss.validationhorizon.databinding.FragmentC2cEntryTimeBinding
 import com.sagoss.validationhorizon.ui.fragments.basefragments.EntryTimeBaseFragment
 
+class EntryTimeC2cFragment : EntryTimeBaseFragment<FragmentC2cEntryTimeBinding>()  {
 
-class EnterTimeGaFragment : EntryTimeBaseFragment<FragmentGaEnterTimeBinding>()  {
-
-    private val args                        : EnterTimeGaFragmentArgs by navArgs()
-    override fun getViewBinding()           = FragmentGaEnterTimeBinding.inflate(layoutInflater)
+    private val args                        : EntryTimeC2cFragmentArgs by navArgs()
+    override fun getViewBinding()           = FragmentC2cEntryTimeBinding.inflate(layoutInflater)
     override fun datePicker()               = binding.datePicker
     override fun timePicker()               = binding.timePicker
     override fun btnValidate()              = binding.btnValidate
@@ -26,20 +25,20 @@ class EnterTimeGaFragment : EntryTimeBaseFragment<FragmentGaEnterTimeBinding>() 
     override fun getToolbar()               = binding.toolbar
     override fun tvTitle()                  = binding.tvTitle
 
-    override fun enterDateToFrag()          = EnterTimeGaFragmentDirections
-                                            .actionFragmentDateFromGaToFragmentDateToGa(
+    override fun enterDateToFrag()          = EntryTimeC2cFragmentDirections
+                                            .actionFragmentDateFromC2cToFragmentDateToC2c(
                                                 voucher     = args.voucher,
                                                 plateNumber = args.plateNumber)
 
-    override fun enterHotelFrag()           = EnterTimeGaFragmentDirections
-                                            .actionFragmentDateFromGaToFragmentHotelGa(
+    override fun enterHotelFrag()           = EntryTimeC2cFragmentDirections
+                                            .actionFragmentDateFromC2cToFragmentHotelC2c(
                                                 voucher     = args.voucher,
                                                 plateNumber = args.plateNumber)
 
     override fun enterValidationFrag(
         dateTo: String,
-        dateFrom: String)                   = EnterTimeGaFragmentDirections
-                                            .actionFragmentDateFromGaToFragmentValidationGa(
+        dateFrom: String)                   = EntryTimeC2cFragmentDirections
+                                            .actionFragmentDateFromC2cToFragmentValidationComplete(
                                                 voucher     = args.voucher,
                                                 plateNumber = args.plateNumber,
                                                 dateTo      = dateTo,

@@ -9,23 +9,51 @@
 
 package com.sagoss.validationhorizon.ui.fragments.companyviews.c2c
 
-import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import androidx.navigation.fragment.navArgs
 import com.sagoss.validationhorizon.R
+import com.sagoss.validationhorizon.databinding.FragmentC2cPlateRegistrationBinding
+import com.sagoss.validationhorizon.ui.fragments.basefragments.EnterPlateBaseFragment
+import dagger.hilt.android.AndroidEntryPoint
 
-class PlateRegistrationC2cFragment : Fragment() {
+@AndroidEntryPoint
+class PlateRegistrationC2cFragment : EnterPlateBaseFragment<FragmentC2cPlateRegistrationBinding>() {
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    private val args                        : PlateRegistrationC2cFragmentArgs by navArgs()
 
+    override fun getViewBinding()           = FragmentC2cPlateRegistrationBinding.inflate(layoutInflater)
+    override fun tvPlateTextView()          = binding.tvPlateNo
+    override fun getToolbar()               = binding.toolbar
+    override fun validateButton()           = binding.btnValidate
+    override fun currentVoucher()           = args.voucher
+    override fun defaultColor()             = R.color.c2c_primary
+    override fun progressbar()              = binding.progressbarValidate
 
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_c2c_plate_registration, container, false)
-    }
+    override fun enterDateToFrag()          = PlateRegistrationC2cFragmentDirections
+                                            .actionFragmentPlateRegistrationC2cToFragmentDateToC2c(
+                                                voucher     = currentVoucher(),
+                                                plateNumber = tvPlateTextView().text.toString()
+                                            )
+
+    override fun enterEntryDateFrag()       = PlateRegistrationC2cFragmentDirections
+                                            .actionFragmentPlateRegistrationC2cToFragmentDateFromC2c(
+                                                voucher     = currentVoucher(),
+                                                plateNumber = tvPlateTextView().text.toString()
+                                            )
+
+    override fun enterHotelFrag()           = PlateRegistrationC2cFragmentDirections
+                                            .actionFragmentPlateRegistrationC2cToFragmentHotelC2c(
+                                                voucher     = currentVoucher(),
+                                                plateNumber = tvPlateTextView().text.toString()
+                                            )
+
+    override fun enterValidationFrag(
+        dateTo: String,
+        dateFrom: String)                   = PlateRegistrationC2cFragmentDirections
+                                            .actionFragmentPlateRegistrationC2cToFragmentValidationComplete(
+                                                voucher     = args.voucher,
+                                                plateNumber = binding.tvPlateNo.text.toString(),
+                                                dateTo      = dateTo,
+                                                dateFrom    = dateFrom
+                                            )
 
 }

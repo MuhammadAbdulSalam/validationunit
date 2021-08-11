@@ -17,11 +17,8 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.sagoss.validationhorizon.api.models.config.DateToFixed
-import com.sagoss.validationhorizon.database.models.Voucher
 import com.sagoss.validationhorizon.databinding.LayoutDateToFixedHotelItemBinding
-import com.sagoss.validationhorizon.databinding.LayoutVouchersItemBinding
 import com.sagoss.validationhorizon.ui.fragments.basefragments.HotelBaseFragment
-import com.sagoss.validationhorizon.ui.fragments.basefragments.VouchersListBaseFragment
 
 class HotelAdapter(private val backgroundColor: Int, private val fragment: Fragment) :
     ListAdapter<DateToFixed, RecyclerView.ViewHolder>(HotelVoucherDiff()) {
@@ -42,7 +39,7 @@ class HotelAdapter(private val backgroundColor: Int, private val fragment: Fragm
 
     class HotelVoucherViewHolder(
         private val binding: LayoutDateToFixedHotelItemBinding,
-        private val backgroundColor: Int,
+        backgroundColor: Int,
         private val fragment: Fragment
     ) : RecyclerView.ViewHolder(binding.root) {
 

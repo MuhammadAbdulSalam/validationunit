@@ -16,11 +16,15 @@
     <string name="LIMIT_EXCEED">Limit Exceeded</string>
     <string name="DURATION_LIMIT_MSG">The duration of your stay cannot exceed the limit of</string>
     <string name="horizon_msg">Thank you. Your vehicle has been exempted.</string>
+    <string name="ga_msg">Thank you. Your vehicle has been exempted for 24h from point of entry</string>
     <string name="no_internet_connection">No Internet Connection</string>
     <string name="internet_msg">Please enable Wifi or Phone Internet to continue using this app.</string>
     <string name="NO_INTERNET_TITLE">No Internet Connection</string>
     <string name="INTERNET_MSG">Please enable Wifi or Phone Internet to continue using this app.</string>
     <string name="ga_app">Greater Anglia Validation App</string>
+    <string name="c2c_app">c2c Validation App</string>
+
+
 
 
 </resources>

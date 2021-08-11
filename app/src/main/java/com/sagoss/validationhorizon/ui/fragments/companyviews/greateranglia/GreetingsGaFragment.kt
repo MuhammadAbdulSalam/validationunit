@@ -9,17 +9,10 @@
 
 package com.sagoss.validationhorizon.ui.fragments.companyviews.greateranglia
 
-import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
-import com.sagoss.validationhorizon.R
 import com.sagoss.validationhorizon.databinding.FragmentGaGreetingsBinding
-import com.sagoss.validationhorizon.databinding.FragmentHorizonGreetingsBinding
 import com.sagoss.validationhorizon.ui.fragments.basefragments.GreetingsBaseFragment
-import com.sagoss.validationhorizon.ui.fragments.companyviews.horizon.GreetingsHorizonFragmentGreetingsDirections
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

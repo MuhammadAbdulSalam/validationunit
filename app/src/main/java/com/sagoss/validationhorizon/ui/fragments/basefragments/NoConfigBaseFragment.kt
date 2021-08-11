@@ -27,7 +27,6 @@ import androidx.navigation.fragment.findNavController
 import androidx.viewbinding.ViewBinding
 import com.sagoss.validationhorizon.MainActivity
 import com.sagoss.validationhorizon.R
-import com.sagoss.validationhorizon.ui.fragments.companyviews.horizon.NoConfigHorizonFragmentDirections
 import com.sagoss.validationhorizon.utils.HelperUtil
 import com.sagoss.validationhorizon.utils.InternetConnectionInterface
 import com.sagoss.validationhorizon.utils.Prefs

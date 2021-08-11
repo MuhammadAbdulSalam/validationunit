@@ -9,24 +9,21 @@
 
 package com.sagoss.validationhorizon.ui.fragments.companyviews.c2c
 
-import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import com.sagoss.validationhorizon.R
+import androidx.navigation.fragment.findNavController
 import com.sagoss.validationhorizon.databinding.FragmentC2cGreetingsBinding
+import com.sagoss.validationhorizon.ui.fragments.basefragments.GreetingsBaseFragment
+import dagger.hilt.android.AndroidEntryPoint
 
-class GreetingsC2cFragment : Fragment() {
+@AndroidEntryPoint
+class GreetingsC2cFragment : GreetingsBaseFragment<FragmentC2cGreetingsBinding>() {
 
-    private lateinit var binding : FragmentC2cGreetingsBinding
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun getViewBinding()               = FragmentC2cGreetingsBinding.inflate(layoutInflater)
+    override fun tvGreetingsMsg()               = binding.tvWelcomeMsg
 
-
-        return inflater.inflate(R.layout.fragment_c2c_greetings, container, false)
-    }
+    override fun tvGreetingsMsgClickListener()  = View.OnClickListener {
+                                                findNavController().navigate(
+                                                    GreetingsC2cFragmentDirections
+                                                        .actionFragmentGreetingsC2cToFragmentVouchersC2c()) }
 
 }

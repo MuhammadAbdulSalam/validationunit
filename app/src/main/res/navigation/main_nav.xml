@@ -46,6 +46,9 @@
         <action
             android:id="@+id/action_fragment_login_checker_to_fragment_no_config_ga"
             app:destination="@id/fragment_no_config_ga" />
+        <action
+            android:id="@+id/action_fragment_login_checker_to_fragment_no_config_c2c"
+            app:destination="@id/fragment_no_config_c2c" />
 
     </fragment>
 
@@ -61,14 +64,58 @@
     <!--                             *********************************
     ******************************************* C2C Fragments **************************************
                                      *********************************                           -->
+
+    <fragment
+        android:id="@+id/fragment_no_config_c2c"
+        android:name="com.sagoss.validationhorizon.ui.fragments.companyviews.c2c.NoConfigC2cFragment"
+        android:label="No Config"
+        tools:layout="@layout/fragment_c2c_no_config">
+        <action
+            android:id="@+id/action_fragment_no_config_c2c_to_fragment_greetings_c2c"
+            app:destination="@id/fragment_greetings_c2c"
+            app:enterAnim="@anim/slide_in_from_right"
+            app:exitAnim="@anim/slide_out_to_left"
+            app:popEnterAnim="@anim/slide_in_from_left"
+            app:popExitAnim="@anim/slide_out_to_right" />
+    </fragment>
+
     <fragment
         android:id="@+id/fragment_greetings_c2c"
         android:name="com.sagoss.validationhorizon.ui.fragments.companyviews.c2c.GreetingsC2cFragment"
         android:label="Greetings"
         tools:layout="@layout/fragment_c2c_greetings">
-        <argument
-            android:name="extra"
-            app:argType="string" />
+        <action
+            android:id="@+id/action_fragment_greetings_c2c_to_fragment_vouchers_c2c"
+            app:destination="@id/fragment_vouchers_c2c"
+            app:enterAnim="@anim/slide_in_from_right"
+            app:exitAnim="@anim/slide_out_to_left"
+            app:popEnterAnim="@anim/slide_in_from_left"
+            app:popExitAnim="@anim/slide_out_to_right" />
+        <action
+            android:id="@+id/action_fragment_greetings_c2c_to_fragment_plate_registration_c2c"
+            app:destination="@id/fragment_plate_registration_c2c"
+            app:enterAnim="@anim/slide_in_from_right"
+            app:exitAnim="@anim/slide_out_to_left"
+            app:popEnterAnim="@anim/slide_in_from_left"
+            app:popExitAnim="@anim/slide_out_to_right" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_vouchers_c2c"
+        android:name="com.sagoss.validationhorizon.ui.fragments.companyviews.c2c.VoucherC2cFragment"
+        android:label="Greetings"
+        tools:layout="@layout/fragment_c2c_voucher"
+        app:enterAnim="@anim/slide_in_from_right"
+        app:exitAnim="@anim/slide_out_to_left"
+        app:popEnterAnim="@anim/slide_in_from_left"
+        app:popExitAnim="@anim/slide_out_to_right" >
+        <action
+            android:id="@+id/action_fragment_vouchers_c2c_to_fragment_plate_registration_c2c"
+            app:destination="@id/fragment_plate_registration_c2c"
+            app:enterAnim="@anim/slide_in_from_right"
+            app:exitAnim="@anim/slide_out_to_left"
+            app:popEnterAnim="@anim/slide_in_from_left"
+            app:popExitAnim="@anim/slide_out_to_right" />
     </fragment>
 
     <fragment
@@ -77,18 +124,136 @@
         android:label="Enter Reg Plate"
         tools:layout="@layout/fragment_c2c_plate_registration">
         <argument
-            android:name="extra"
+            android:name="voucher"
+            app:argType="com.sagoss.validationhorizon.database.models.Voucher" />
+        <action
+            android:id="@+id/action_fragment_plate_registration_c2c_to_fragment_date_to_c2c"
+            app:destination="@id/fragment_date_to_c2c"
+            app:enterAnim="@anim/slide_in_from_right"
+            app:exitAnim="@anim/slide_out_to_left"
+            app:popEnterAnim="@anim/slide_in_from_left"
+            app:popExitAnim="@anim/slide_out_to_right" />
+        <action
+            android:id="@+id/action_fragment_plate_registration_c2c_to_fragment_date_from_c2c"
+            app:destination="@id/fragment_date_from_c2c"
+            app:enterAnim="@anim/slide_in_from_right"
+            app:exitAnim="@anim/slide_out_to_left"
+            app:popEnterAnim="@anim/slide_in_from_left"
+            app:popExitAnim="@anim/slide_out_to_right" />
+        <action
+            android:id="@+id/action_fragment_plate_registration_c2c_to_fragment_hotel_c2c"
+            app:destination="@id/fragment_hotel_c2c"
+            app:enterAnim="@anim/slide_in_from_right"
+            app:exitAnim="@anim/slide_out_to_left"
+            app:popEnterAnim="@anim/slide_in_from_left"
+            app:popExitAnim="@anim/slide_out_to_right" />
+        <action
+            android:id="@+id/action_fragment_plate_registration_c2c_to_fragment_validation_complete"
+            app:destination="@id/fragment_validation_complete"
+            app:enterAnim="@anim/slide_in_from_right"
+            app:exitAnim="@anim/slide_out_to_left"
+            app:popEnterAnim="@anim/slide_in_from_left"
+            app:popExitAnim="@anim/slide_out_to_right" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_date_to_c2c"
+        android:name="com.sagoss.validationhorizon.ui.fragments.companyviews.c2c.EnterDateToC2cFragment"
+        android:label="Greetings"
+        tools:layout="@layout/fragment_c2c_enter_date_to">
+        <argument
+            android:name="voucher"
+            app:argType="com.sagoss.validationhorizon.database.models.Voucher" />
+        <argument
+            android:name="plate_number"
             app:argType="string" />
+        <action
+            android:id="@+id/action_fragment_date_to_c2c_to_fragment_validation_complete"
+            app:destination="@id/fragment_validation_complete"
+            app:enterAnim="@anim/slide_in_from_right"
+            app:exitAnim="@anim/slide_out_to_left"
+            app:popEnterAnim="@anim/slide_in_from_left"
+            app:popExitAnim="@anim/slide_out_to_right" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_date_from_c2c"
+        android:name="com.sagoss.validationhorizon.ui.fragments.companyviews.c2c.EntryTimeC2cFragment"
+        android:label="Greetings"
+        tools:layout="@layout/fragment_c2c_entry_time">
+        <argument
+            android:name="voucher"
+            app:argType="com.sagoss.validationhorizon.database.models.Voucher" />
+        <argument
+            android:name="plate_number"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_fragment_date_from_c2c_to_fragment_date_to_c2c"
+            app:destination="@id/fragment_date_to_c2c"
+            app:enterAnim="@anim/slide_in_from_right"
+            app:exitAnim="@anim/slide_out_to_left"
+            app:popEnterAnim="@anim/slide_in_from_left"
+            app:popExitAnim="@anim/slide_out_to_right" />
+        <action
+            android:id="@+id/action_fragment_date_from_c2c_to_fragment_hotel_c2c"
+            app:destination="@id/fragment_hotel_c2c"
+            app:enterAnim="@anim/slide_in_from_right"
+            app:exitAnim="@anim/slide_out_to_left"
+            app:popEnterAnim="@anim/slide_in_from_left"
+            app:popExitAnim="@anim/slide_out_to_right" />
+        <action
+            android:id="@+id/action_fragment_date_from_c2c_to_fragment_validation_complete"
+            app:destination="@id/fragment_validation_complete"
+            app:enterAnim="@anim/slide_in_from_right"
+            app:exitAnim="@anim/slide_out_to_left"
+            app:popEnterAnim="@anim/slide_in_from_left"
+            app:popExitAnim="@anim/slide_out_to_right" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_hotel_c2c"
+        android:name="com.sagoss.validationhorizon.ui.fragments.companyviews.c2c.HotelC2cFragment"
+        android:label="Greetings"
+        tools:layout="@layout/fragment_c2c_hotel">
+        <argument
+            android:name="voucher"
+            app:argType="com.sagoss.validationhorizon.database.models.Voucher" />
+        <argument
+            android:name="plate_number"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_fragment_hotel_c2c_to_fragment_validation_complete"
+            app:destination="@id/fragment_validation_complete"
+            app:enterAnim="@anim/slide_in_from_right"
+            app:exitAnim="@anim/slide_out_to_left"
+            app:popEnterAnim="@anim/slide_in_from_left"
+            app:popExitAnim="@anim/slide_out_to_right" />
     </fragment>
 
     <fragment
         android:id="@+id/fragment_validation_complete"
-        android:name="com.sagoss.validationhorizon.ui.fragments.companyviews.c2c.ValidationCompleteC2cFragment"
+        android:name="com.sagoss.validationhorizon.ui.fragments.companyviews.c2c.ValidationResultsC2cFragment"
         android:label="Complate"
         tools:layout="@layout/fragment_c2c_validation_complete">
         <argument
-            android:name="extra"
+            android:name="voucher"
+            app:argType="com.sagoss.validationhorizon.database.models.Voucher" />
+        <argument
+            android:name="plate_number"
             app:argType="string" />
+        <argument
+            android:name="date_to"
+            app:argType="string" />
+        <argument
+            android:name="date_from"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_fragment_validation_complete_to_fragment_no_config_c2c"
+            app:destination="@id/fragment_no_config_c2c"
+            app:enterAnim="@anim/slide_in_from_right"
+            app:exitAnim="@anim/slide_out_to_left"
+            app:popEnterAnim="@anim/slide_in_from_left"
+            app:popExitAnim="@anim/slide_out_to_right" />
     </fragment>
 
 

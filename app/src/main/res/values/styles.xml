@@ -30,6 +30,12 @@
         <item name="backgroundColor">@color/horizon_primary</item>
     </style>
 
+    <style name="Theme.c2c.toolbar" parent="Widget.MaterialComponents.Toolbar">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">?attr/actionBarSize</item>
+        <item name="backgroundColor">@color/c2c_primary</item>
+    </style>
+
     <style name="Theme.horizon.image_logo" parent="Base.CardView">
         <item name="android:layout_width">150dp</item>
         <item name="android:layout_height">40dp</item>
@@ -42,6 +48,14 @@
         <item name="android:layout_width">150dp</item>
         <item name="android:layout_height">40dp</item>
         <item name="android:src">@drawable/ga_logo</item>
+        <item name="android:scaleType">centerInside</item>
+        <item name="android:layout_marginTop">20dp</item>
+    </style>
+
+    <style name="Theme.c2c.image_logo" parent="Base.CardView">
+        <item name="android:layout_width">150dp</item>
+        <item name="android:layout_height">40dp</item>
+        <item name="android:src">@drawable/c2c_logo</item>
         <item name="android:scaleType">centerInside</item>
         <item name="android:layout_marginTop">20dp</item>
     </style>
