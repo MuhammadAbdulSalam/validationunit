@@ -25,7 +25,7 @@ interface RequestDao {
     suspend fun getAll(): List<Request>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insert(request: Request)
+    fun insert(request: Request)
 
     @Query("DELETE from ${Constants.TABLE_REQUESTS}")
     suspend fun deleteAll()

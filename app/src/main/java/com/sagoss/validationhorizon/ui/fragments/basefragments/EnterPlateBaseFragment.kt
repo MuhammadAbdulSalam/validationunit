@@ -64,9 +64,14 @@ abstract class EnterPlateBaseFragment<VBinding : ViewBinding> : Fragment() {
         progressbar().setIndicatorColor(ContextCompat.getColor(requireContext(), defaultColor()))
 
         validateButton().setOnClickListener {
-            validateNumberPlate()
             progressbar().visibility = View.VISIBLE
             validateButton().visibility = View.INVISIBLE
+            if(HelperUtil.isNetworkAvailable(requireContext())) { validateNumberPlate() }
+            else
+            {
+                if (currentVoucher().dateFrom) findNavController().navigate(enterEntryDateFrag())
+                else askForDateTo()
+            }
         }
     }
 

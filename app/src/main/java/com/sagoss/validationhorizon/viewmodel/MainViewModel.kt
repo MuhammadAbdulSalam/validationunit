@@ -18,6 +18,7 @@ import com.sagoss.validationhorizon.utils.Resource
 import com.sagoss.validationhorizon.api.models.registration.RegistrationRequest
 import com.sagoss.validationhorizon.api.repository.ApiResponseRepository
 import com.sagoss.validationhorizon.apitwo.repositiory.ApiTwoResponseRepository
+import com.sagoss.validationhorizon.database.models.Request
 import com.sagoss.validationhorizon.database.models.Voucher
 import com.sagoss.validationhorizon.database.repository.DBRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -29,7 +30,7 @@ class MainViewModel @Inject constructor(
     private val apiOneRepository: ApiResponseRepository,
     private val apiTwoRepository: ApiTwoResponseRepository,
     private val dbRepository: DBRepository
-) : ViewModel() {
+    ) : ViewModel() {
 
     /**
      * @param registrationRequest Registration Request Param object
@@ -41,8 +42,7 @@ class MainViewModel @Inject constructor(
         try {
             emit(
                 Resource.success(
-                    data = apiOneRepository.getRegistrationResponse(registrationRequest
-                    )
+                    data = apiOneRepository.getRegistrationResponse(registrationRequest)
                 )
             )
         } catch (exception: Exception) {
@@ -81,11 +81,11 @@ class MainViewModel @Inject constructor(
 
     liveData(Dispatchers.IO) {
         emit(Resource.loading(data = null))
-          //  try {
+            try {
                 emit(Resource.success(data = apiOneRepository.getConfig(accessToken)))
-//            } catch (exception: Exception) {
-//                emit(Resource.error(data = null, message = exception.message ?: "Error Occurred!"))
-//            }
+            } catch (exception: Exception) {
+                emit(Resource.error(data = null, message = exception.message ?: "Error Occurred!"))
+            }
         }
 
     /**
@@ -122,7 +122,7 @@ class MainViewModel @Inject constructor(
      *
      * Get response from API Two validation request
      */
-    fun checkVoucher(plate: String, token: String, date_from: String, date_to: String?) =
+    fun checkVoucher(plate: String, token: String, date_from: String, date_to: String) =
         liveData(Dispatchers.IO) {
             emit(Resource.loading(data = null))
             try {
@@ -155,10 +155,18 @@ class MainViewModel @Inject constructor(
         }
 
     /**
-     * @param  vouchers list of vouchers to be added
+     * @param  request offline validation request to be added
      *
-     * Store voucher list in Main database
+     * Store request in db for later validation
      */
-    fun insertVoucher(vouchers: List<Voucher>) = dbRepository.insertAllVouchers(vouchers)
-
+    fun saveRequest(request: Request) =
+        liveData(Dispatchers.IO) {
+            emit(Resource.loading(data = null))
+            try{
+                emit(Resource.success(data = dbRepository.insertRequest(request)))
+            }
+            catch (exception: Exception) {
+                emit(Resource.error(data = null, message = exception.message ?: "Error Occurred!"))
+            }
+        }
 }

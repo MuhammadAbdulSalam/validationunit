@@ -61,6 +61,6 @@ class ModuleInjector {
     }
 
     @Provides
-    fun provideStudentDBRepository(voucherDao: VoucherDao, requestDao: RequestDao) =
+    fun provideValidationDBRepository(voucherDao: VoucherDao, requestDao: RequestDao) =
         DBRepository(voucherDao, requestDao)
 }

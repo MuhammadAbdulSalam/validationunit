@@ -23,6 +23,7 @@ import androidx.viewbinding.ViewBinding
 import com.google.android.material.appbar.MaterialToolbar
 import com.sagoss.validationhorizon.database.models.Voucher
 import com.sagoss.validationhorizon.ui.recycleradapter.VoucherRecyclerAdapter
+import com.sagoss.validationhorizon.utils.HelperUtil
 import com.sagoss.validationhorizon.utils.Status
 import com.sagoss.validationhorizon.viewmodel.MainViewModel
 
@@ -82,9 +83,18 @@ abstract class VouchersListBaseFragment<VBinding : ViewBinding> : Fragment() {
 
     /**
      * Direction from voucher recycler item selected
+     *
+     * if internet is not available move to next fragment
+     * if internet is not available and voucher can work offline, move forward
      */
     fun onRecyclerClick(voucher: Voucher){
-        findNavController().navigate(getRecyclerDirection(voucher))
+        if(HelperUtil.isNetworkAvailable(requireContext()) || voucher.workOffline)
+            findNavController().navigate(getRecyclerDirection(voucher))
+        else
+            HelperUtil.getErrorDialog(requireContext(),
+                title = "No Internet Connection",
+                msg = "This voucher cannot be used offline, Please connect to Internet to use this voucher",
+                buttons = true).show()
     }
 
 }

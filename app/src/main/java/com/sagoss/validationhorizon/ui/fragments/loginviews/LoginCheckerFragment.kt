@@ -42,6 +42,9 @@ class LoginCheckerFragment : Fragment() {
         binding = FragmentLoginCheckerBinding.inflate(inflater, container, false)
         binding.progressbarLayout.visibility = View.VISIBLE
 
+        val appId = Settings.Secure.getString(requireActivity().contentResolver, Settings.Secure.ANDROID_ID)
+        Log.d("APP ID:" , "-------> $appId")
+
         return binding.root
     }
 
@@ -54,7 +57,8 @@ class LoginCheckerFragment : Fragment() {
     private fun checkUserRegistration() {
         if (prefs.accessToken.isEmpty()) {
             findNavController()
-                .navigate(LoginCheckerFragmentDirections.actionLoginCheckerToFragmentRegistration())
+                .navigate(LoginCheckerFragmentDirections
+                    .actionLoginCheckerToFragmentRegistration())
         }
         else {
             if(!HelperUtil.isNetworkAvailable(requireContext()))

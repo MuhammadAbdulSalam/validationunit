@@ -22,6 +22,7 @@ import android.widget.TextView
 import androidx.activity.addCallback
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
 import androidx.viewbinding.ViewBinding
 import com.sagoss.validationhorizon.MainActivity
@@ -47,6 +48,7 @@ abstract class NoConfigBaseFragment<VBinding : ViewBinding> : Fragment(), Intern
 
     protected abstract fun tvDeviceID()         : TextView
     protected abstract fun getViewBinding()     : VBinding
+    protected abstract fun getDirection()       : NavDirections
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -88,9 +90,7 @@ abstract class NoConfigBaseFragment<VBinding : ViewBinding> : Fragment(), Intern
                 when (resource.status) {
                     Status.SUCCESS -> {
                         handler.removeCallbacks(runnable)
-                        findNavController().navigate(
-                            NoConfigHorizonFragmentDirections
-                                .actionFragmentNoConfigHorizonToFragmentGreetingsHorizon())
+                        findNavController().navigate(getDirection())
                     }
                     Status.ERROR -> {}
                     Status.LOADING -> {}

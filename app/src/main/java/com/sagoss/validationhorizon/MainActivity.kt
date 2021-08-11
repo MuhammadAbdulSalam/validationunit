@@ -15,7 +15,9 @@ import android.content.*
 import android.net.ConnectivityManager
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
 import com.sagoss.validationhorizon.utils.HelperUtil
 import com.sagoss.validationhorizon.utils.InternetConnectionInterface
 import com.sagoss.validationhorizon.utils.Prefs
@@ -26,6 +28,7 @@ import kotlin.properties.Delegates
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
+    lateinit var noInternetButton: ExtendedFloatingActionButton
     companion object{
         @SuppressLint("StaticFieldLeak")
         lateinit var activityContext        : Context
@@ -36,14 +39,17 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        noInternetButton = findViewById(R.id.no_internet_button)
         activityContext = this
+        if(HelperUtil.isNetworkAvailable(this)) noInternetButton.visibility = View.INVISIBLE else noInternetButton.visibility = View.VISIBLE
     }
 
     private val internetStateReceiver: BroadcastReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context?, intent: Intent?) {
+            isDisconnected =
+                intent!!.getBooleanExtra(ConnectivityManager.EXTRA_NO_CONNECTIVITY, false)
+            if(isDisconnected) noInternetButton.visibility = View.VISIBLE else noInternetButton.visibility = View.INVISIBLE
             if (connectionListener != null) {
-                isDisconnected =
-                    intent!!.getBooleanExtra(ConnectivityManager.EXTRA_NO_CONNECTIVITY, false)
                 if (isDisconnected) connectionListener!!.onDisconnected() else connectionListener!!.onConnected()
             }
         }

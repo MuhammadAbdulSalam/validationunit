@@ -24,7 +24,8 @@ class ApiTwoResponseRepository @Inject constructor(private val apiInterface: Api
 
     suspend fun checkVoucher(plate: String, token: String, date_from: String, date_to: String?
     ): ValidateResponse {
-       return apiInterface.checkVoucher(plate, token, date_from, date_to)
+        val dateTo = if(date_to == "") null else date_to
+       return apiInterface.checkVoucher(plate, token, date_from, dateTo)
     }
 
 }

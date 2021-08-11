@@ -14,16 +14,23 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import com.sagoss.validationhorizon.R
+import com.sagoss.validationhorizon.databinding.FragmentGaGreetingsBinding
+import com.sagoss.validationhorizon.databinding.FragmentHorizonGreetingsBinding
+import com.sagoss.validationhorizon.ui.fragments.basefragments.GreetingsBaseFragment
+import com.sagoss.validationhorizon.ui.fragments.companyviews.horizon.GreetingsHorizonFragmentGreetingsDirections
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
+class GreetingsGaFragment : GreetingsBaseFragment<FragmentGaGreetingsBinding>() {
 
-class GreetingsGaFragment : Fragment() {
-  override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun getViewBinding()               = FragmentGaGreetingsBinding.inflate(layoutInflater)
+    override fun tvGreetingsMsg()               = binding.tvWelcomeMsg
 
+    override fun tvGreetingsMsgClickListener()  = View.OnClickListener {
+                                                 findNavController().navigate(
+                                                    GreetingsGaFragmentDirections
+                                                        .actionFragmentGreetingsGaToFragmentVouchersGa()) }
 
-        return inflater.inflate(R.layout.fragment_ga_greetings, container, false)
-    }
 }

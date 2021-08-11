@@ -18,12 +18,13 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class GreetingsHorizonFragmentGreetings : GreetingsBaseFragment<FragmentHorizonGreetingsBinding>() {
 
-    override fun getViewBinding() = FragmentHorizonGreetingsBinding.inflate(layoutInflater)
-    override fun tvGreetingsMsg() = binding.tvWelcomeMsg
-    override fun tvGreetingsMsgClickListener() = View.OnClickListener {
-            findNavController().navigate(
-                GreetingsHorizonFragmentGreetingsDirections
-                    .actionFragmentGreetingsHorizonToFragmentVouchersHorizon())
-    }
+    override fun getViewBinding()                = FragmentHorizonGreetingsBinding.inflate(layoutInflater)
+    override fun tvGreetingsMsg()                = binding.tvWelcomeMsg
+
+    override fun tvGreetingsMsgClickListener()   = View.OnClickListener {
+                                                    findNavController().navigate(
+                                                        GreetingsHorizonFragmentGreetingsDirections
+                                                            .actionFragmentGreetingsHorizonToFragmentVouchersHorizon())
+                                                    }
 
 }

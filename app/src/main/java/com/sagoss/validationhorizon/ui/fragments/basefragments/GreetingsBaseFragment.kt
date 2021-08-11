@@ -44,6 +44,4 @@ abstract class GreetingsBaseFragment<VBinding : ViewBinding> : Fragment() {
             "Welcome to\n ${Prefs(requireContext()).locationName}\n Press here to begin"
         tvGreetingsMsg().setOnClickListener(tvGreetingsMsgClickListener())
     }
-
-
 }

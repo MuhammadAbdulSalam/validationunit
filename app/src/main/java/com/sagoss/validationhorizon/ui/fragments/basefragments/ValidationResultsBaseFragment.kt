@@ -10,6 +10,7 @@
 package com.sagoss.validationhorizon.ui.fragments.basefragments
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -23,8 +24,10 @@ import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
 import androidx.viewbinding.ViewBinding
 import com.google.android.material.button.MaterialButton
+import com.sagoss.validationhorizon.database.models.Request
 import com.sagoss.validationhorizon.database.models.Voucher
 import com.sagoss.validationhorizon.utils.Constants
+import com.sagoss.validationhorizon.utils.HelperUtil
 import com.sagoss.validationhorizon.utils.Status
 import com.sagoss.validationhorizon.viewmodel.MainViewModel
 import java.util.*
@@ -59,9 +62,10 @@ abstract class ValidationResultsBaseFragment<VBinding : ViewBinding> : Fragment(
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {}
         btnDone().setOnClickListener{
             timer.cancel()
-            findNavController().navigate(enterHomeFrag()) }
+            findNavController().navigate(enterHomeFrag())
+        }
         loadingView()
-        setupVouchersObserver()
+        if(HelperUtil.isNetworkAvailable(requireContext())) setupVouchersObserver() else storeOffline()
     }
 
     /**
@@ -71,9 +75,8 @@ abstract class ValidationResultsBaseFragment<VBinding : ViewBinding> : Fragment(
      * Setup Results view according to results
      */
     private fun setupVouchersObserver() {
-        val dateTo = if(dateTo() == "") null else dateTo()
         viewModel.checkVoucher(
-            plate = plateNumber(), token = currentVoucher().key, date_from = dateFrom(), date_to = dateTo)
+            plate = plateNumber(), token = currentVoucher().key, date_from = dateFrom(), date_to = dateTo())
             .observe(viewLifecycleOwner, {
             it?.let { resource ->
                 goToGreetings()
@@ -84,6 +87,33 @@ abstract class ValidationResultsBaseFragment<VBinding : ViewBinding> : Fragment(
                             Constants.NOT_APPLICABLE,
                             Constants.NO_MATCH-> errorView()
                         }
+                    Status.ERROR -> errorView()
+                    Status.LOADING -> loadingView()
+                }
+            }
+        })
+    }
+
+    /**
+     * If request is done offline, Store date into DB
+     *
+     * Date base insert dao results are taken as validation results
+     * If added show success message else error
+     */
+    private fun storeOffline(){
+        viewModel.saveRequest(Request(
+            id = 0,
+            plate = plateNumber(),
+            token = currentVoucher().key,
+            dateFrom = dateFrom(),
+            dateTo = dateTo(),
+            dateSaved = HelperUtil.getCurrentDateTimeString("YYYY-MM-dd HH:mm:ss")
+        )).observe(viewLifecycleOwner, {
+            it.let {
+                resource ->
+                when(resource.status)
+                {
+                    Status.SUCCESS ->{ successView() }
                     Status.ERROR -> errorView()
                     Status.LOADING -> loadingView()
                 }

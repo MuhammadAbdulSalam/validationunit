@@ -27,7 +27,7 @@ class DBRepository @Inject constructor(private val voucherDao: VoucherDao, priva
 
 
     suspend fun getAllRequests(): List<Request> =  requestDao.getAll()
-    suspend fun insertRequest(request: Request) = requestDao.insert(request)
+    fun insertRequest(request: Request) = requestDao.insert(request)
     suspend fun deleteAllRequests() = requestDao.deleteAll()
     suspend fun deleteOldRequestRecords() = requestDao.deleteOldRecords()
     suspend fun getRequest(id: Long): Request = requestDao.getRequest(id)

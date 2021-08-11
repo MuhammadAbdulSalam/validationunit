@@ -37,14 +37,12 @@ class HotelHorizonFragment : HotelBaseFragment<FragmentHorizonHotelBinding>() {
     override fun plateNumber()              = args.plateNumber
     override fun getToolbar()               = binding.toolbar
 
-    override fun validateFrag(dateFrom: String, dateTo: String
-    ): NavDirections {
-     return HotelHorizonFragmentDirections
-          .actionFragmentHorizonHotelToFragmentHorizonValidation(
-              plateNumber   = args.plateNumber,
-              voucher       = args.voucher,
-              dateTo        = dateTo,
-              dateFrom      = dateFrom )
-    }
-
+    override fun validateFrag(
+        dateFrom: String,
+        dateTo: String)                     = HotelHorizonFragmentDirections
+                                            .actionFragmentHorizonHotelToFragmentHorizonValidation(
+                                             plateNumber   = args.plateNumber,
+                                             voucher       = args.voucher,
+                                             dateTo        = dateTo,
+                                             dateFrom      = dateFrom )
 }
