@@ -48,10 +48,17 @@ object HelperUtil {
         }
     }
 
+    /**
+     * @param accessToken
+     * @return token in correct format to make api call
+     */
     fun getTokenFormat(accessToken:String): String{
         return "Bearer $accessToken"
     }
 
+    /**
+     * @return Boolean of current network status as connected true or disconnected false
+     */
     fun isNetworkAvailable(context: Context): Boolean {
         val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         val activeNetworkInfo = connectivityManager.activeNetwork
@@ -69,12 +76,24 @@ object HelperUtil {
         return dateFormat.format(current)
     }
 
-
+    /**
+     * @param dateString date in string
+     * @param format format of date required
+     *
+     * Converts date string to Date.class
+     *
+     * @return get date from date string
+     */
     fun getDateByString(dateString : String, format : String) : Date{
         val dateFormat = SimpleDateFormat(format, Locale.UK)
         return dateFormat.parse(dateString)
     }
 
+    /**
+     * @param date date to extract suffix from
+     *
+     * @return day of month suffix to be added to date string
+     */
     private fun getDayOfMonthSuffix(date: Date): String {
         val dayFormat: SimpleDateFormat = SimpleDateFormat("dd",  Locale.UK)
         val day = dayFormat.format(date).toInt()
@@ -89,6 +108,11 @@ object HelperUtil {
         }
     }
 
+    /**
+     * @param date date to be converted to string
+     *
+     * @return Formatted date as our server requires
+     */
     fun getFormattedDate(date : Date):String{
         val dayNumberSuffix = HelperUtil.getDayOfMonthSuffix(date)
         val dateFormat = SimpleDateFormat("EEE dd'$dayNumberSuffix' MMM HH:mm",  Locale.UK)
@@ -96,18 +120,35 @@ object HelperUtil {
 
     }
 
+    /**
+     * @param dateString date to be converted to milli seconds
+     * @param format format of date time
+     *
+     * @return milli seconds of date time
+     */
     private fun getMillisecondsByDate(dateString : String, format : String) : Long{
-
         val dateFormat = SimpleDateFormat(format, Locale.UK)
         val date = dateFormat.parse(dateString)
         return date.time
     }
 
+    /**
+     * @param dateMillis date in millis
+     * @param format format of required date string
+     *
+     * @return Date time to string
+     */
     private fun getDateTimeString(dateMillis : Long, format : String ) : String{
         val dateFormat = SimpleDateFormat(format, Locale.UK)
         return dateFormat.format(dateMillis)
     }
 
+    /**
+     * @param durationInMinutes duration amount or units as of x minute to add
+     * @param dateFrom starting point of date
+     *
+     * @return add duration to current date time to get date to
+     */
     fun getDateTo(durationInMinutes: Int, dateFrom: String): String {
         val dateFromInMillisec =getMillisecondsByDate(
             dateFrom,

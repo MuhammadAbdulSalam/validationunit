@@ -34,6 +34,7 @@ class RequestsWorker @AssistedInject constructor(
      */
     override suspend fun doWork(): Result {
         try {
+            Log.d("RequestWorker()", "Running...")
             if(Prefs(applicationContext).config)
             deleteOldTickets()
             validateOfflineRequests()

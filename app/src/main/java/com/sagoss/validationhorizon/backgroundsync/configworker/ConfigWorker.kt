@@ -10,6 +10,7 @@
 package com.sagoss.validationhorizon.backgroundsync.configworker
 
 import android.content.Context
+import android.util.Log
 import androidx.hilt.work.HiltWorker
 import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
@@ -31,6 +32,7 @@ class ConfigWorker @AssistedInject constructor(
      */
     override suspend fun doWork(): Result {
         try {
+            Log.d("ConfigWorker()", "Running...")
             getConfig()
         } catch (e: Exception) {
             e.printStackTrace()
@@ -46,7 +48,7 @@ class ConfigWorker @AssistedInject constructor(
     private suspend fun getConfig() {
         val prefs = Prefs(applicationContext)
         if(Prefs(applicationContext).config)
-        apiOneResponseRepository.getConfig(HelperUtil.getTokenFormat(prefs.accessToken))
+        apiOneResponseRepository.getConfig(HelperUtil.getTokenFormat(prefs.accessToken), applicationContext)
     }
 }
 

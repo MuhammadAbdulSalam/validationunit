@@ -35,6 +35,11 @@ class Application : Application(), Configuration.Provider {
         WorkHelper.initWorkers(this)
     }
 
+    /**
+     * Override Work manager configuration
+     * Implement custom work factory to enable
+     * custom constructors or our workers
+     */
     override fun getWorkManagerConfiguration(): Configuration {
         return Configuration.Builder()
             .setMinimumLoggingLevel(Log.DEBUG)

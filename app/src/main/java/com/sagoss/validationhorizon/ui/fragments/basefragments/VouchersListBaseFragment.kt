@@ -62,9 +62,7 @@ abstract class VouchersListBaseFragment<VBinding : ViewBinding> : Fragment() {
     }
 
     /**
-     * @param authToken authorisation Token as Header
-     *
-     * Retrieve Config data
+     * Retrieve all vouchers list from DB
      */
     private fun setupVouchersObserver() {
         viewModel.getAllVouchers().observe(viewLifecycleOwner, {

@@ -63,8 +63,7 @@ abstract class NoConfigBaseFragment<VBinding : ViewBinding> : Fragment(), Intern
         helperDialog = HelperUtil.getErrorDialog(
             requireContext(), getString(R.string.NO_INTERNET_TITLE),
             getString(R.string.INTERNET_MSG),
-            false
-        ).create()
+            false).create()
 
         tvDeviceID().text =
             Settings.Secure.getString(requireActivity().contentResolver, Settings.Secure.ANDROID_ID)
@@ -84,7 +83,7 @@ abstract class NoConfigBaseFragment<VBinding : ViewBinding> : Fragment(), Intern
      * Retrieve Config data
      */
     private fun setupGetConfigObserver(authToken: String) {
-        viewModel.getConfig(authToken).observe(viewLifecycleOwner, {
+        viewModel.getConfig(authToken, requireContext()).observe(viewLifecycleOwner, {
             it?.let { resource ->
                 when (resource.status) {
                     Status.SUCCESS -> {
@@ -98,12 +97,18 @@ abstract class NoConfigBaseFragment<VBinding : ViewBinding> : Fragment(), Intern
         })
     }
 
+    /**
+     * Start get config runnable to check for config settings
+     */
     @Override
     override fun onConnected() {
         helperDialog.dismiss()
         if(HelperUtil.isNetworkAvailable(requireContext())) runnable.run()
     }
 
+    /**
+     * Disable config check and show disconnected error message
+     */
     @Override
     override fun onDisconnected() {
         if(isRunning) handler.removeCallbacks(runnable)

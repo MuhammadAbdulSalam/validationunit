@@ -142,7 +142,6 @@ abstract class EnterDateToBaseFragment<VBinding : ViewBinding> : Fragment() {
         incrementUnitName = unitName
     }
 
-
     /**
      * Set incremental value based on voucher unit
      */
@@ -156,7 +155,6 @@ abstract class EnterDateToBaseFragment<VBinding : ViewBinding> : Fragment() {
             "30MIN" -> updateCalendar(Calendar.MINUTE, 30, 30, "MINUTES", null)
         }
     }
-
 
     /**
      * @param field field of date to be formatted eg day, month

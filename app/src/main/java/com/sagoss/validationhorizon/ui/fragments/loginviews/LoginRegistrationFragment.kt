@@ -69,7 +69,7 @@ class LoginRegistrationFragment : Fragment(), InternetConnectionInterface {
      * Retrieve Registration Data
      */
     private fun setupRegistrationObserver(registrationRequest: RegistrationRequest) {
-        viewModel.getRegistration(registrationRequest).observe(viewLifecycleOwner, {
+        viewModel.getRegistration(registrationRequest, requireContext()).observe(viewLifecycleOwner, {
             it?.let { resource ->
                 when (resource.status) {
                     Status.SUCCESS -> {
@@ -89,11 +89,17 @@ class LoginRegistrationFragment : Fragment(), InternetConnectionInterface {
         })
     }
 
+    /**
+     * Show no internet dialog on network disconnected
+     */
     @Override
     override fun onDisconnected() {
         helperDialog.show()
     }
 
+    /**
+     * hide no internet dialog on network disconnected
+     */
     @Override
     override fun onConnected() {
         helperDialog.dismiss()

@@ -29,11 +29,11 @@ import javax.inject.Singleton
 @Singleton
 class ApiResponseRepository @Inject constructor(private val apiInterface: ApiHelper, private val dbRepository: DBRepository) {
 
-    suspend fun getRegistrationResponse(registrationRequest: RegistrationRequest):
+    suspend fun getRegistrationResponse(registrationRequest: RegistrationRequest, context: Context):
             RegistrationResponse {
 
         val registrationResponse = apiInterface.getRegistrationResponse(registrationRequest)
-        val prefs = Prefs(MainActivity.activityContext)
+        val prefs = Prefs(context)
 
         prefs.accessToken = registrationResponse.access_token
         prefs.refreshToken = registrationResponse.refresh_token
@@ -49,8 +49,8 @@ class ApiResponseRepository @Inject constructor(private val apiInterface: ApiHel
         return apiInterface.getRefreshTokenResponse(authToken, refreshTokenRequest)
     }
 
-    suspend fun getConfig(authToken: String): Config {
-        val prefs = Prefs(MainActivity.activityContext)
+    suspend fun getConfig(authToken: String, context: Context): Config {
+        val prefs = Prefs(context)
         val config = apiInterface.getConfig(authToken)
         prefs.siteId =config.site_id
         prefs.status =config.status

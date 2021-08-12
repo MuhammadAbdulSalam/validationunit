@@ -9,29 +9,25 @@
 
 package com.sagoss.validationhorizon
 
-import android.annotation.SuppressLint
-import android.app.AlertDialog
-import android.content.*
+import android.content.BroadcastReceiver
+import android.content.Context
+import android.content.Intent
+import android.content.IntentFilter
 import android.net.ConnectivityManager
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
 import com.sagoss.validationhorizon.utils.HelperUtil
 import com.sagoss.validationhorizon.utils.InternetConnectionInterface
-import com.sagoss.validationhorizon.utils.Prefs
 import dagger.hilt.android.AndroidEntryPoint
-import kotlin.properties.Delegates
 
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
-    lateinit var noInternetButton: ExtendedFloatingActionButton
+    lateinit var noInternetButton           : ExtendedFloatingActionButton
     companion object{
-        @SuppressLint("StaticFieldLeak")
-        lateinit var activityContext        : Context
         var connectionListener              : InternetConnectionInterface? = null
         var isDisconnected                  = false
     }
@@ -40,10 +36,14 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         noInternetButton = findViewById(R.id.no_internet_button)
-        activityContext = this
         if(HelperUtil.isNetworkAvailable(this)) noInternetButton.visibility = View.INVISIBLE else noInternetButton.visibility = View.VISIBLE
     }
 
+    /**
+     * Internet broadcast receiver
+     *
+     * Gets network status to update network button and inform fragments
+     */
     private val internetStateReceiver: BroadcastReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context?, intent: Intent?) {
             isDisconnected =
@@ -55,6 +55,9 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * Register Internet broadcast to listen to internet connection
+     */
     @Override
     override fun onResume() {
         super.onResume()
@@ -64,6 +67,9 @@ class MainActivity : AppCompatActivity() {
         )
     }
 
+    /**
+     * Unregister Internet broadcast
+     */
     @Override
     override fun onStop() {
         super.onStop()

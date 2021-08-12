@@ -75,7 +75,7 @@ class LoginCheckerFragment : Fragment() {
      * On success start background worker
      */
     private fun setupGetConfigObserver(authToken: String) {
-        viewModel.getConfig(authToken).observe(viewLifecycleOwner, {
+        viewModel.getConfig(authToken, requireContext()).observe(viewLifecycleOwner, {
             it?.let { resource ->
                 when (resource.status) {
                     Status.SUCCESS -> {

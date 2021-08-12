@@ -9,18 +9,16 @@
 
 package com.sagoss.validationhorizon.viewmodel
 
-import android.util.Log
+import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
-import com.google.gson.JsonArray
 import com.sagoss.validationhorizon.api.models.refreshtoken.RefreshTokenRequest
-import com.sagoss.validationhorizon.utils.Resource
 import com.sagoss.validationhorizon.api.models.registration.RegistrationRequest
 import com.sagoss.validationhorizon.api.repository.ApiResponseRepository
 import com.sagoss.validationhorizon.apitwo.repositiory.ApiTwoResponseRepository
 import com.sagoss.validationhorizon.database.models.Request
-import com.sagoss.validationhorizon.database.models.Voucher
 import com.sagoss.validationhorizon.database.repository.DBRepository
+import com.sagoss.validationhorizon.utils.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import javax.inject.Inject
@@ -37,12 +35,12 @@ class MainViewModel @Inject constructor(
      *
      * Gets response from API One registration call
      */
-    fun getRegistration(registrationRequest: RegistrationRequest) = liveData(Dispatchers.IO) {
+    fun getRegistration(registrationRequest: RegistrationRequest, context: Context) = liveData(Dispatchers.IO) {
         emit(Resource.loading(data = null))
         try {
             emit(
                 Resource.success(
-                    data = apiOneRepository.getRegistrationResponse(registrationRequest)
+                    data = apiOneRepository.getRegistrationResponse(registrationRequest, context)
                 )
             )
         } catch (exception: Exception) {
@@ -77,12 +75,12 @@ class MainViewModel @Inject constructor(
      *
      * Gets Response from API One for Token Refresh call
      */
-    fun getConfig(accessToken: String) =
+    fun getConfig(accessToken: String, context: Context) =
 
     liveData(Dispatchers.IO) {
         emit(Resource.loading(data = null))
             try {
-                emit(Resource.success(data = apiOneRepository.getConfig(accessToken)))
+                emit(Resource.success(data = apiOneRepository.getConfig(accessToken, context)))
             } catch (exception: Exception) {
                 emit(Resource.error(data = null, message = exception.message ?: "Error Occurred!"))
             }
