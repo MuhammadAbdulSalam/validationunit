@@ -1,0 +1,79 @@
+/*
+ * Copyright (c) 2021. Author Muhammad Abdul Salam.
+ * Property of Sagoss Group
+ *
+ * It is against law to modify, replicate or distribute this code
+ * Permission of owner (Sagoss Group) is needed in order to
+ * modify, replicate or distribute this code.
+ */
+
+package com.sagoss.validationhorizon.backgroundsync.requestworker
+
+import android.content.Context
+import android.util.Log
+import androidx.hilt.work.HiltWorker
+import androidx.work.CoroutineWorker
+import androidx.work.WorkerParameters
+import com.sagoss.validationhorizon.apitwo.repositiory.ApiTwoResponseRepository
+import com.sagoss.validationhorizon.database.repository.DBRepository
+import com.sagoss.validationhorizon.utils.Constants
+import com.sagoss.validationhorizon.utils.Prefs
+import dagger.assisted.Assisted
+import dagger.assisted.AssistedInject
+
+@HiltWorker
+class RequestsWorker @AssistedInject constructor(
+    @Assisted appContext: Context,
+    @Assisted workerParams: WorkerParameters,
+    private val dbRepository: DBRepository,
+    private val apiTwoResponseRepository: ApiTwoResponseRepository
+) : CoroutineWorker(appContext, workerParams) {
+
+    /**
+     * Start worker to validate offline stored requests
+     */
+    override suspend fun doWork(): Result {
+        try {
+            if(Prefs(applicationContext).config)
+            deleteOldTickets()
+            validateOfflineRequests()
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+        return Result.success()
+    }
+
+    /**
+     * Validate all requests that were stored in offline mode
+     */
+    private suspend fun validateOfflineRequests() {
+        if (dbRepository.getRequestCount() != 0)
+            dbRepository.getAllRequests().forEach {
+                val result = apiTwoResponseRepository.checkVoucher(
+                    it.plate,
+                    it.token,
+                    it.dateFrom,
+                    it.dateTo
+                )
+                when (result.valid) {
+                    Constants.MATCH_REDEEMED -> deleteSuccessfulRequest(it.id)
+                    Constants.NOT_APPLICABLE,
+                    Constants.NO_MATCH -> {
+                    }
+                }
+            }
+    }
+
+    /**
+     * Delete all records older then 15 days
+     */
+    private suspend fun deleteOldTickets() = dbRepository.deleteOldRequestRecords()
+
+    /**
+     * @param id of Request to be deleted
+     * Delete request from database
+     */
+    private suspend fun deleteSuccessfulRequest(id: Int) = dbRepository.deleteSuccessfulRequest(id)
+
+}
+

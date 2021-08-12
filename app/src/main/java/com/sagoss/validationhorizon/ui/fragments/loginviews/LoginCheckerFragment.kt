@@ -10,8 +10,6 @@
 package com.sagoss.validationhorizon.ui.fragments.loginviews
 
 import android.os.Bundle
-import android.provider.Settings
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -22,6 +20,7 @@ import com.sagoss.validationhorizon.databinding.FragmentLoginCheckerBinding
 import com.sagoss.validationhorizon.utils.HelperUtil
 import com.sagoss.validationhorizon.utils.Prefs
 import com.sagoss.validationhorizon.utils.Status
+import com.sagoss.validationhorizon.utils.ThemeUtil
 import com.sagoss.validationhorizon.viewmodel.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -34,14 +33,11 @@ class LoginCheckerFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?): View? {
+        savedInstanceState: Bundle?): View {
 
         prefs = Prefs(requireContext())
         binding = FragmentLoginCheckerBinding.inflate(inflater, container, false)
         binding.progressbarLayout.visibility = View.VISIBLE
-
-        val appId = Settings.Secure.getString(requireActivity().contentResolver, Settings.Secure.ANDROID_ID)
-        Log.d("APP ID:" , "-------> $appId")
 
         return binding.root
     }
@@ -52,6 +48,10 @@ class LoginCheckerFragment : Fragment() {
         checkUserRegistration()
     }
 
+    /**
+     * Check user registration
+     * Move to fragment according to registration status and network connection
+     */
     private fun checkUserRegistration() {
         if (prefs.accessToken.isEmpty()) {
             findNavController()
@@ -64,7 +64,7 @@ class LoginCheckerFragment : Fragment() {
                 binding.progressbarLayout.visibility = View.INVISIBLE
                 if(prefs.config) enterGreetingsFrag() else enterNoConfigFrag()
             }
-            else { setupGetConfigObserver("Bearer ${prefs.accessToken}") }
+            else { setupGetConfigObserver(HelperUtil.getTokenFormat(prefs.accessToken))}
         }
     }
 
@@ -72,6 +72,7 @@ class LoginCheckerFragment : Fragment() {
      * @param authToken authorisation Token as Header
      *
      * Retrieve Config data
+     * On success start background worker
      */
     private fun setupGetConfigObserver(authToken: String) {
         viewModel.getConfig(authToken).observe(viewLifecycleOwner, {
@@ -92,16 +93,20 @@ class LoginCheckerFragment : Fragment() {
         })
     }
 
+    /**
+     * Check initial direction for greetings page
+     * Rest direction will be followed accordingly
+     */
     private fun enterGreetingsFrag(){
-        findNavController().navigate(
-            LoginCheckerFragmentDirections
-                .actionFragmentLoginCheckerToFragmentGreetingsHorizon()
-        )
+        findNavController().navigate(ThemeUtil.getInitialGreetingsDirection(prefs.companyId!!))
     }
 
+    /**
+     * Move to no config fragment according to company ID
+     * Check initial direction for No config page
+     * Rest direction will be followed accordingly
+     */
     private fun enterNoConfigFrag(){
-        findNavController()
-            .navigate(LoginCheckerFragmentDirections.
-            actionFragmentLoginCheckerToFragmentNoConfigHorizon())
+        findNavController().navigate(ThemeUtil.getInitialNoConfigDirections(prefs.companyId!!))
     }
 }

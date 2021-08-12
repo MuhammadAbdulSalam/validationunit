@@ -14,6 +14,8 @@ import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkInfo
 import androidx.core.content.ContextCompat.getSystemService
+import androidx.navigation.NavDirections
+import com.sagoss.validationhorizon.ui.fragments.loginviews.LoginCheckerFragmentDirections
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -46,6 +48,10 @@ object HelperUtil {
         }
     }
 
+    fun getTokenFormat(accessToken:String): String{
+        return "Bearer $accessToken"
+    }
+
     fun isNetworkAvailable(context: Context): Boolean {
         val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         val activeNetworkInfo = connectivityManager.activeNetwork
@@ -60,48 +66,44 @@ object HelperUtil {
     fun getCurrentDateTimeString(format : String): String {
         val current = Calendar.getInstance().time
         val dateFormat = SimpleDateFormat(format, Locale.UK)
-
         return dateFormat.format(current)
     }
 
 
     fun getDateByString(dateString : String, format : String) : Date{
-
         val dateFormat = SimpleDateFormat(format, Locale.UK)
         return dateFormat.parse(dateString)
     }
 
-    fun getDayOfMonthSuffix(date: Date): String {
+    private fun getDayOfMonthSuffix(date: Date): String {
         val dayFormat: SimpleDateFormat = SimpleDateFormat("dd",  Locale.UK)
-
-
         val day = dayFormat.format(date).toInt()
-        if (day >= 11 && day <= 13) {
+        if (day in 11..13) {
             return "th"
         }
-        when (day % 10) {
-            1 -> return "st"
-            2 -> return "nd"
-            3 -> return "rd"
-            else -> return "th"
+        return when (day % 10) {
+            1 -> "st"
+            2 -> "nd"
+            3 -> "rd"
+            else -> "th"
         }
     }
 
     fun getFormattedDate(date : Date):String{
-        var dayNumberSuffix = HelperUtil.getDayOfMonthSuffix(date)
+        val dayNumberSuffix = HelperUtil.getDayOfMonthSuffix(date)
         val dateFormat = SimpleDateFormat("EEE dd'$dayNumberSuffix' MMM HH:mm",  Locale.UK)
         return dateFormat.format(date).uppercase(Locale.getDefault())
 
     }
 
-    fun getMillisecondsByDate(dateString : String, format : String) : Long{
+    private fun getMillisecondsByDate(dateString : String, format : String) : Long{
 
         val dateFormat = SimpleDateFormat(format, Locale.UK)
         val date = dateFormat.parse(dateString)
         return date.time
     }
 
-    fun getDateTimeString(dateMillis : Long, format : String ) : String{
+    private fun getDateTimeString(dateMillis : Long, format : String ) : String{
         val dateFormat = SimpleDateFormat(format, Locale.UK)
         return dateFormat.format(dateMillis)
     }
@@ -114,6 +116,4 @@ object HelperUtil {
         val dateToinMillisec = dateFromInMillisec + durationInMillisec
         return getDateTimeString(dateToinMillisec, "yyyy-MM-dd HH:mm:ss")
     }
-
-
 }

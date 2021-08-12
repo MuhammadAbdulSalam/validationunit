@@ -28,7 +28,6 @@ abstract class GreetingsBaseFragment<VBinding : ViewBinding> : Fragment() {
     protected abstract fun tvGreetingsMsg()                 : TextView
     protected abstract fun tvGreetingsMsgClickListener()    : View.OnClickListener
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = getViewBinding()
@@ -44,4 +43,5 @@ abstract class GreetingsBaseFragment<VBinding : ViewBinding> : Fragment() {
             "Welcome to\n ${Prefs(requireContext()).locationName}\n Press here to begin"
         tvGreetingsMsg().setOnClickListener(tvGreetingsMsgClickListener())
     }
+
 }

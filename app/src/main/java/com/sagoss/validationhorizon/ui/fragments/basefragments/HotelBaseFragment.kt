@@ -60,6 +60,11 @@ abstract class HotelBaseFragment<VBinding : ViewBinding> : Fragment() {
         adapter.notifyDataSetChanged()
     }
 
+    /**
+     * @param dateToFixed item selected from recycler
+     *
+     * Move direction according to item selected
+     */
     fun onRecyclerItemSelected(dateToFixed: DateToFixed){
         val dateTo = HelperUtil.getDateTo(dateToFixed.unit, prefs.date_from!!)
         findNavController().navigate(validateFrag(dateTo = dateTo, dateFrom = prefs.date_from!!))

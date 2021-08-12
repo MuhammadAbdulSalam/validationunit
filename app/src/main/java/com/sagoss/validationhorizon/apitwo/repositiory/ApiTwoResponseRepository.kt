@@ -9,6 +9,7 @@
 
 package com.sagoss.validationhorizon.apitwo.repositiory
 
+import android.util.Log
 import com.sagoss.validationhorizon.api.apiInterface.ApiHelper
 import com.sagoss.validationhorizon.apitwo.apiinterface.ApiTwoHelper
 import com.sagoss.validationhorizon.apitwo.models.validate.ValidateResponse

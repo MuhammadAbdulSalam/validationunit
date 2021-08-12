@@ -75,6 +75,10 @@ object Constants {
     const val MATCH_REDEEMED                    = "1"
     const val NOT_APPLICABLE                    = "2"
     const val CONFIG                            = "config"
+    const val REQUEST_WORKER_TAG                = "com.sagoss.requestWorker"
+    const val CONFIG_WORKER_TAG                 = "com.sagoss.configWorker"
 
-
+    const val COMPANY_HORIZON                   = "68"
+    const val COMPANY_C2C                       = "62"
+    const val COMPANY_GREATER_ANGLIA            = "21"
 }

@@ -10,6 +10,7 @@
 package com.sagoss.validationhorizon.ui.fragments.basefragments
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -75,7 +76,10 @@ abstract class ValidationResultsBaseFragment<VBinding : ViewBinding> : Fragment(
      */
     private fun setupVouchersObserver() {
         viewModel.checkVoucher(
-            plate = plateNumber(), token = currentVoucher().key, date_from = dateFrom(), date_to = dateTo())
+            plate = plateNumber(),
+            token = currentVoucher().key,
+            date_from = dateFrom(),
+            date_to = dateTo())
             .observe(viewLifecycleOwner, {
             it?.let { resource ->
                 goToGreetings()
