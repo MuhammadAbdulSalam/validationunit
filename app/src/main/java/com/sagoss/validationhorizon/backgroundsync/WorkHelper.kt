@@ -41,7 +41,7 @@ object WorkHelper {
             .build()
 
         val periodicSyncDataWork =
-            PeriodicWorkRequest.Builder(RequestsWorker::class.java, 10, TimeUnit.MINUTES)
+            PeriodicWorkRequest.Builder(RequestsWorker::class.java, 15, TimeUnit.MINUTES)
                 .addTag(Constants.REQUEST_WORKER_TAG)
                 .setConstraints(constraints)
                 .setBackoffCriteria(
@@ -71,7 +71,7 @@ object WorkHelper {
             .build()
 
         val periodicSyncDataWork =
-            PeriodicWorkRequest.Builder(ConfigWorker::class.java, 10, TimeUnit.MINUTES)
+            PeriodicWorkRequest.Builder(ConfigWorker::class.java, 1, TimeUnit.DAYS)
                 .addTag(Constants.CONFIG_WORKER_TAG)
                 .setConstraints(constraints)
                 .setBackoffCriteria(
