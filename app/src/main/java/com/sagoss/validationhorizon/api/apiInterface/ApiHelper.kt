@@ -11,6 +11,7 @@ package com.sagoss.validationhorizon.api.apiInterface
 
 import com.sagoss.validationhorizon.api.ApiOneRetrofitBuilder
 import com.sagoss.validationhorizon.api.models.refreshtoken.RefreshTokenRequest
+import com.sagoss.validationhorizon.api.models.refreshtoken.RefreshTokenResponse
 import com.sagoss.validationhorizon.api.models.registration.RegistrationRequest
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -27,8 +28,15 @@ class ApiHelper @Inject constructor(private val apiService: ApiOneRetrofitBuilde
             registrationRequest.version
         )
 
-    suspend fun getRefreshTokenResponse(authToken: String, refreshTokenRequest: RefreshTokenRequest
-    ) = apiService.refreshToken(authToken, refreshTokenRequest)
+    suspend fun getRefreshTokenResponse(
+        authToken: String,
+        refreshTokenRequest: RefreshTokenRequest
+    ): RefreshTokenResponse
+    = apiService.refreshToken(
+        authToken,
+        refreshTokenRequest.refresh_token,
+        refreshTokenRequest.company_id
+    )
 
     suspend fun getConfig(authToken: String) = apiService.getConfig(authToken)
 }

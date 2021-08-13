@@ -12,10 +12,7 @@ package com.sagoss.validationhorizon.utils
 import android.app.AlertDialog
 import android.content.Context
 import android.net.ConnectivityManager
-import android.net.NetworkInfo
-import androidx.core.content.ContextCompat.getSystemService
-import androidx.navigation.NavDirections
-import com.sagoss.validationhorizon.ui.fragments.loginviews.LoginCheckerFragmentDirections
+import android.util.Log
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -157,4 +154,22 @@ object HelperUtil {
         val dateToinMillisec = dateFromInMillisec + durationInMillisec
         return getDateTimeString(dateToinMillisec, "yyyy-MM-dd HH:mm:ss")
     }
+
+    fun tokenIsExpiring(expiryDate: String): Boolean {
+        val dateFormatInput = SimpleDateFormat("yyyy-MM-dd hh:mm:ss", Locale.UK)
+        val expiryDate = dateFormatInput.parse(expiryDate)
+        val calendar = Calendar.getInstance()
+        val currentDate = calendar.time
+        calendar.time = expiryDate
+        calendar.add(Calendar.MONTH, -1)
+        var validDate = calendar.time
+
+        val dateFormat = SimpleDateFormat("yyyy-MM-dd hh:mm:ss", Locale.UK)
+
+        Log.d("EXPIRY DATE", "expiry: ${expiryDate}--- valid: ${dateFormat.format(validDate)}--- current: ${dateFormat.format(currentDate)}")
+        var isExpiring = currentDate.compareTo(validDate)
+
+        return isExpiring > 0
+    }
+
 }

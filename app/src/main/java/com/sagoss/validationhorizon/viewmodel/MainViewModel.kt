@@ -54,14 +54,14 @@ class MainViewModel @Inject constructor(
      *
      * Gets Response from API One for Token Refresh call
      */
-    fun getRefreshToken(accessToken: String, refreshTokenRequest: RefreshTokenRequest) =
+    fun getRefreshToken(accessToken: String, refreshTokenRequest: RefreshTokenRequest, context: Context) =
         liveData(Dispatchers.IO) {
             emit(Resource.loading(data = null))
             try {
                 emit(
                     Resource.success(
                         data = apiOneRepository.getRefreshTokenResponse(
-                            accessToken, refreshTokenRequest
+                            accessToken, refreshTokenRequest,  context
                         )
                     )
                 )

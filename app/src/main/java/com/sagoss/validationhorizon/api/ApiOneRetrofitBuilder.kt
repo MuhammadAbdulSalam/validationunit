@@ -36,11 +36,11 @@ interface ApiOneRetrofitBuilder {
     @FormUrlEncoded
     @POST(Constants.ENDPOINT_MOBILE)
     suspend fun registration(
-        @Field(value = Constants.PARAM_USERNAME)    username: String,
-        @Field(value = Constants.PARAM_PASSWORD)    password: String,
-        @Field(value = Constants.PARAM_APP_ID)      app_id: String,
-        @Field(value = Constants.PARAM_MOBILE_ID)   mobile_id: String,
-        @Field(value = Constants.PARAM_VERSION)     version: String,
+        @Field(value = Constants.PARAM_USERNAME)    username    : String,
+        @Field(value = Constants.PARAM_PASSWORD)    password    : String,
+        @Field(value = Constants.PARAM_APP_ID)      app_id      : String,
+        @Field(value = Constants.PARAM_MOBILE_ID)   mobile_id   : String,
+        @Field(value = Constants.PARAM_VERSION)     version     : String,
     ): RegistrationResponse
 
 
@@ -56,11 +56,12 @@ interface ApiOneRetrofitBuilder {
      * @return Registration response dataclass as response body
      */
     @FormUrlEncoded
-    @GET(Constants.ENDPOINT_MOBILE)
+    @PUT(Constants.ENDPOINT_MOBILE)
     suspend fun refreshToken(
-        @Header(Constants.AUTHORISATION) authToken: String,
-        @Body refreshTokenRequest: RefreshTokenRequest
-    ): RefreshTokenResponse
+        @Header(Constants.AUTHORISATION)        authToken       : String,
+        @Field(Constants.REFRESH_TOKEN)         refreshToken    :String,
+        @Field(Constants.COMPANY_ID)            companyId       :String,
+        ): RefreshTokenResponse
 
 
     /**

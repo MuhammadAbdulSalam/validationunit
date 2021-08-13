@@ -10,10 +10,7 @@
 package com.sagoss.validationhorizon.api.repository
 
 import android.content.Context
-import android.util.Log
-import androidx.annotation.UiThread
 import com.google.gson.Gson
-import com.sagoss.validationhorizon.MainActivity
 import com.sagoss.validationhorizon.api.apiInterface.ApiHelper
 import com.sagoss.validationhorizon.api.models.config.Config
 import com.sagoss.validationhorizon.api.models.refreshtoken.RefreshTokenRequest
@@ -29,8 +26,10 @@ import javax.inject.Singleton
 @Singleton
 class ApiResponseRepository @Inject constructor(private val apiInterface: ApiHelper, private val dbRepository: DBRepository) {
 
-    suspend fun getRegistrationResponse(registrationRequest: RegistrationRequest, context: Context):
-            RegistrationResponse {
+    suspend fun getRegistrationResponse(
+        registrationRequest: RegistrationRequest,
+        context: Context
+    ): RegistrationResponse {
 
         val registrationResponse = apiInterface.getRegistrationResponse(registrationRequest)
         val prefs = Prefs(context)
@@ -44,9 +43,16 @@ class ApiResponseRepository @Inject constructor(private val apiInterface: ApiHel
 
     suspend fun getRefreshTokenResponse(
         authToken: String,
-        refreshTokenRequest: RefreshTokenRequest
+        refreshTokenRequest: RefreshTokenRequest,
+        context: Context
     ): RefreshTokenResponse {
-        return apiInterface.getRefreshTokenResponse(authToken, refreshTokenRequest)
+        val prefs = Prefs(context)
+        val config = apiInterface.getRefreshTokenResponse(authToken, refreshTokenRequest)
+        prefs.accessToken = config.access_token
+        prefs.refreshToken = config.refresh_token
+        prefs.expiryDate = config.expiry_date
+
+        return config
     }
 
     suspend fun getConfig(authToken: String, context: Context): Config {

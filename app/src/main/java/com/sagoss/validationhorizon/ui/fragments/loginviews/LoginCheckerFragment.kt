@@ -10,7 +10,6 @@
 package com.sagoss.validationhorizon.ui.fragments.loginviews
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,6 +17,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.sagoss.validationhorizon.BuildConfig
+import com.sagoss.validationhorizon.api.models.refreshtoken.RefreshTokenRequest
 import com.sagoss.validationhorizon.databinding.FragmentLoginCheckerBinding
 import com.sagoss.validationhorizon.utils.HelperUtil
 import com.sagoss.validationhorizon.utils.Prefs
@@ -62,6 +62,27 @@ class LoginCheckerFragment : Fragment() {
                 .navigate(LoginCheckerFragmentDirections
                     .actionLoginCheckerToFragmentRegistration())
         }
+        else if(prefs.accessToken.isNotEmpty() && HelperUtil.tokenIsExpiring(prefs.expiryDate.toString()))
+        {
+            if(HelperUtil.isNetworkAvailable(requireContext())) {
+                val request =
+                    RefreshTokenRequest(prefs.refreshToken.toString(), prefs.companyId.toString())
+                refreshToken(HelperUtil.getTokenFormat(prefs.accessToken), request)
+            }
+            else
+            {
+                val dialog = HelperUtil.getErrorDialog(
+                    requireContext(),
+                    title = "No Internet Connection",
+                    msg = "App credentials needs to be updated, Please connect to Internet and press Retry to try again",
+                    buttons = true
+                ).setPositiveButton("Retry") {
+                            dialog, _ ->
+                        dialog.dismiss()
+                       checkUserRegistration() }
+                dialog.show()
+            }
+        }
         else {
             if(!HelperUtil.isNetworkAvailable(requireContext()))
             {
@@ -70,6 +91,39 @@ class LoginCheckerFragment : Fragment() {
             }
             else { setupGetConfigObserver(HelperUtil.getTokenFormat(prefs.accessToken))}
         }
+    }
+
+    /**
+     * @author current auth token
+     *
+     * perform refresh token
+     * If refresh was success get config otherwise show error message
+     */
+    private fun refreshToken(authToken: String, refreshTokenRequest: RefreshTokenRequest){
+        viewModel.getRefreshToken(
+            authToken,
+            refreshTokenRequest,
+            requireContext()).observe(viewLifecycleOwner, {
+            it?.let { resource ->
+                when (resource.status) {
+                    Status.SUCCESS -> setupGetConfigObserver(authToken)
+                    Status.ERROR ->  {
+                        val dialog = HelperUtil.getErrorDialog(
+                            requireContext(),
+                            title = "Error Refresh Token",
+                            msg = "There was an error while refreshing app credentials. Press Retry to try again",
+                            buttons = true
+                            )
+                            .setPositiveButton("Retry") {
+                                    dialog, _ ->
+                                            dialog.dismiss()
+                                            refreshToken(authToken, refreshTokenRequest) }
+                        dialog.show()
+                    }
+                    Status.LOADING -> {}
+                }
+            }
+        })
     }
 
     /**
