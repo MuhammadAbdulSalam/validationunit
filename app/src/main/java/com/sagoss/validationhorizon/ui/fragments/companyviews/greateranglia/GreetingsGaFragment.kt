@@ -20,6 +20,7 @@ class GreetingsGaFragment : GreetingsBaseFragment<FragmentGaGreetingsBinding>() 
 
     override fun getViewBinding()               = FragmentGaGreetingsBinding.inflate(layoutInflater)
     override fun tvGreetingsMsg()               = binding.tvWelcomeMsg
+    override fun tvVersionInfo()                = binding.tvAppVersion
 
     override fun tvGreetingsMsgClickListener()  = View.OnClickListener {
                                                  findNavController().navigate(

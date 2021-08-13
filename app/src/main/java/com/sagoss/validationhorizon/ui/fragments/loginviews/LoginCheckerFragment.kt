@@ -10,12 +10,14 @@
 package com.sagoss.validationhorizon.ui.fragments.loginviews
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.sagoss.validationhorizon.BuildConfig
 import com.sagoss.validationhorizon.databinding.FragmentLoginCheckerBinding
 import com.sagoss.validationhorizon.utils.HelperUtil
 import com.sagoss.validationhorizon.utils.Prefs
@@ -38,6 +40,8 @@ class LoginCheckerFragment : Fragment() {
         prefs = Prefs(requireContext())
         binding = FragmentLoginCheckerBinding.inflate(inflater, container, false)
         binding.progressbarLayout.visibility = View.VISIBLE
+        binding.ivAppLogo.setBackgroundResource(ThemeUtil.getAppIcon(prefs.companyId!!))
+        "Version: ${BuildConfig.VERSION_NAME}".also { binding.tvAppVersion.text = it }
 
         return binding.root
     }

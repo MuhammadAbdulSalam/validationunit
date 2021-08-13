@@ -20,6 +20,7 @@ class GreetingsHorizonFragmentGreetings : GreetingsBaseFragment<FragmentHorizonG
 
     override fun getViewBinding()                = FragmentHorizonGreetingsBinding.inflate(layoutInflater)
     override fun tvGreetingsMsg()                = binding.tvWelcomeMsg
+    override fun tvVersionInfo()                 = binding.tvAppVersion
 
     override fun tvGreetingsMsgClickListener()   = View.OnClickListener {
                                                     findNavController().navigate(

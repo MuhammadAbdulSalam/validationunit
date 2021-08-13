@@ -10,6 +10,7 @@
 package com.sagoss.validationhorizon.ui.fragments.companyviews.c2c
 
 import android.view.View
+import android.widget.TextView
 import androidx.navigation.fragment.findNavController
 import com.sagoss.validationhorizon.databinding.FragmentC2cGreetingsBinding
 import com.sagoss.validationhorizon.ui.fragments.basefragments.GreetingsBaseFragment
@@ -20,6 +21,8 @@ class GreetingsC2cFragment : GreetingsBaseFragment<FragmentC2cGreetingsBinding>(
 
     override fun getViewBinding()               = FragmentC2cGreetingsBinding.inflate(layoutInflater)
     override fun tvGreetingsMsg()               = binding.tvWelcomeMsg
+    override fun tvVersionInfo()                = binding.tvAppVersion
+
 
     override fun tvGreetingsMsgClickListener()  = View.OnClickListener {
                                                 findNavController().navigate(

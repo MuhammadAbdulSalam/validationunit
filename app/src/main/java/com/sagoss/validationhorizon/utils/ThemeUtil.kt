@@ -69,4 +69,18 @@ object ThemeUtil {
             else -> R.color.horizon_primary
         }
     }
+
+    /**
+     * @param companyID as stored or received in response
+     *
+     * @return if regiestered return company logo else sagoss logo
+     */
+    fun getAppIcon(companyID: String): Int{
+        return when (companyID) {
+            Constants.COMPANY_GREATER_ANGLIA -> R.drawable.ga_logo
+            Constants.COMPANY_C2C -> R.drawable.c2c_logo
+            Constants.COMPANY_HORIZON -> R.drawable.horizon_logo
+            else -> R.drawable.sagoss_logo
+        }
+    }
 }

@@ -17,13 +17,12 @@
         android:layout_height="match_parent">
         <ImageView
             android:id="@+id/iv_app_logo"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            android:src="@drawable/sagoss_logo"
             />
         <LinearLayout
             android:id="@+id/progressbar_layout"
@@ -51,7 +50,7 @@
 
         <TextView
             android:id="@+id/tv_app_version"
-            style="@style/Version.info.textview"/>
+            style="@style/Version.info.textview" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -20,6 +20,7 @@ import androidx.activity.addCallback
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.sagoss.validationhorizon.BuildConfig
 import com.sagoss.validationhorizon.MainActivity
 import com.sagoss.validationhorizon.R
 import com.sagoss.validationhorizon.api.models.registration.RegistrationRequest
@@ -43,6 +44,7 @@ class LoginRegistrationFragment : Fragment(), InternetConnectionInterface {
         prefs = Prefs(requireContext())
         binding = FragmentLoginRegistrationBinding.inflate(inflater, container, false)
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {}
+        "Version: ${BuildConfig.VERSION_NAME}".also { binding.tvAppVersion.text = it }
         helperDialog = HelperUtil.getErrorDialog(
             requireContext(), getString(R.string.NO_INTERNET_TITLE),
             getString(R.string.INTERNET_MSG),

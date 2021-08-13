@@ -38,7 +38,7 @@ class ApiResponseRepository @Inject constructor(private val apiInterface: ApiHel
         prefs.accessToken = registrationResponse.access_token
         prefs.refreshToken = registrationResponse.refresh_token
         prefs.expiryDate = registrationResponse.expiry_date
-        prefs.companyId = registrationResponse.access_token
+        prefs.companyId = registrationResponse.company_id
         return registrationResponse
     }
 
