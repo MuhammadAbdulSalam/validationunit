@@ -26,7 +26,7 @@ android {
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
-
+        multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -47,6 +47,11 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    configurations.all {
+        resolutionStrategy {
+            force 'androidx.test:monitor:1.4.0'
+        }
+    }
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -63,6 +68,7 @@ android {
     packagingOptions {
         excludes += "/META-INF/AL2.0"
         excludes += "/META-INF/LGPL2.1"
+        exclude 'META-INF/DEPENDENCIES'
     }
 }
 
@@ -100,4 +106,12 @@ dependencies {
     androidTestImplementation "androidx.test.espresso:espresso-core:$rootProject.espressoVersion"
     androidTestImplementation "com.google.dagger:hilt-android-testing:$rootProject.hiltVersion"
     androidTestImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$rootProject.coroutinesVersion"
+    debugImplementation "androidx.fragment:fragment-testing:$fragment_version"
+    androidTestImplementation "org.mockito:mockito-core:$mockito_core_version"
+    androidTestImplementation "com.linkedin.dexmaker:dexmaker-mockito:$mockito_dex_version"
+    androidTestImplementation("com.android.support.test.espresso:espresso-contrib:$espresso_contrib_version") {
+        exclude group: 'com.android.support', module: 'appcompat'
+        exclude group: 'com.android.support', module: 'support-v4'
+        exclude module: 'recyclerview-v7'
+    }
 }
