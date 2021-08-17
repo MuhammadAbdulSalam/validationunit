@@ -9,3 +9,4 @@
 
 include ':app'
 rootProject.name = "validationunit"
+include ':validationtesting'

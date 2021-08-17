@@ -11,9 +11,6 @@ package com.sagoss.validationhorizon.api.models.config
 
 import com.google.gson.JsonArray
 import com.google.gson.annotations.SerializedName
-import com.sagoss.validationhorizon.database.models.Voucher
-import org.json.JSONArray
-import org.json.JSONObject
 
 data class Config(
     @SerializedName("status")

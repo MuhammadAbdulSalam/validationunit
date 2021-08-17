@@ -10,7 +10,6 @@
 package com.sagoss.validationhorizon.api
 
 import com.sagoss.validationhorizon.api.models.config.Config
-import com.sagoss.validationhorizon.api.models.refreshtoken.RefreshTokenRequest
 import com.sagoss.validationhorizon.api.models.refreshtoken.RefreshTokenResponse
 import com.sagoss.validationhorizon.api.models.registration.RegistrationResponse
 import com.sagoss.validationhorizon.utils.Constants

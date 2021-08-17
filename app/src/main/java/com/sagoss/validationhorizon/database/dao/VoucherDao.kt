@@ -15,9 +15,6 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.sagoss.validationhorizon.database.models.Voucher
 import com.sagoss.validationhorizon.utils.Constants
-import dagger.Module
-import dagger.hilt.InstallIn
-import dagger.hilt.components.SingletonComponent
 
 @Dao
 interface VoucherDao {

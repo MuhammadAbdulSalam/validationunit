@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2021. Author Muhammad Abdul Salam.
+  ~ Property of Sagoss Group
+  ~
+  ~ It is against law to modify, replicate or distribute this code
+  ~ Permission of owner (Sagoss Group) is needed in order to
+  ~ modify, replicate or distribute this code.
+  -->
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appbar"
+            style="@style/Theme.horizon.appbar"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/toolbar"
+                style="@style/Theme.horizon.toolbar"
+                android:background="@color/horizon_primary"
+                app:titleTextColor="@color/white"
+                app:title="Horizon Validation Unit"/>
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <ImageView
+            android:id="@+id/app_logo"
+            style="@style/Theme.horizon.image_logo"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/appbar"
+            />
+
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:text="@string/entry_time_label"
+                app:layout_constraintTop_toBottomOf="@id/app_logo"
+                android:padding="30dp"
+                android:textSize="30sp"/>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_time_date"
+                style="@style/Theme.horizon.cardview"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                android:layout_marginTop="16dp"
+                android:backgroundTint="@color/horizon_primary"
+                app:layout_constraintTop_toBottomOf="@id/tv_title">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:weightSum="2"
+                    android:paddingVertical="20dp"
+                    android:paddingHorizontal="50dp"
+                    android:orientation="horizontal">
+                    <DatePicker
+                        android:id="@+id/date_picker"
+                        android:theme="@style/CustomDatePicker"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:calendarViewShown="false"
+                        android:datePickerMode="spinner"
+                        android:layout_weight="1"
+                        />
+                    <TimePicker
+                        android:id="@+id/time_picker"
+                        android:theme="@style/CustomDatePicker"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="50dp"
+                        android:layout_weight="1"
+                        android:timePickerMode="spinner" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_validate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Validate"
+                android:textSize="20sp"
+                android:layout_marginTop="30dp"
+                android:padding="20dp"
+                android:backgroundTint="@color/horizon_primary"
+                app:layout_constraintTop_toBottomOf="@id/card_time_date"
+                app:layout_constraintRight_toRightOf="@id/card_time_date"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</layout>

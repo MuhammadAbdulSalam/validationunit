@@ -29,6 +29,9 @@
         <entry key="app/src/main/res/layout/fragment_horizon_validation_results.xml" value="0.3389778325123153" />
         <entry key="app/src/main/res/layout/fragment_horizon_voucher.xml" value="0.3389778325123153" />
         <entry key="app/src/main/res/layout/fragment_login_checker.xml" value="0.2672149961744453" />
+        <entry key="validationtesting/src/main/res/layout/activity_main.xml" value="0.2776657182893911" />
+        <entry key="validationtesting/src/main/res/layout/dialog_warning.xml" value="0.37007389162561577" />
+        <entry key="validationtesting/src/main/res/layout/fragment_c2c_enter_date_to.xml" value="0.37007389162561577" />
       </map>
     </option>
   </component>

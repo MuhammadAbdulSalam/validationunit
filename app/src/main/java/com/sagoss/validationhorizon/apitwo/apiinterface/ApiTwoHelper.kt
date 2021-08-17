@@ -9,11 +9,7 @@
 
 package com.sagoss.validationhorizon.apitwo.apiinterface
 
-import com.sagoss.validationhorizon.api.ApiOneRetrofitBuilder
 import com.sagoss.validationhorizon.apitwo.ApiTwoRetrofitBuilder
-import com.sagoss.validationhorizon.apitwo.models.validate.ValidateResponse
-import com.sagoss.validationhorizon.utils.Constants
-import retrofit2.http.Query
 import javax.inject.Inject
 import javax.inject.Singleton
 

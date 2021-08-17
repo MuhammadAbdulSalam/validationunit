@@ -9,8 +9,6 @@
 
 package com.sagoss.validationhorizon.utils
 
-import retrofit2.http.*
-
 object Constants {
     const val API_URL_ONE                       = "https://blinkenterprise.co.uk/api/"
     const val API_URL_TWO                       = "https://blinkenterprise.co.uk/api2/"

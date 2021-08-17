@@ -24,7 +24,6 @@ import com.sagoss.validationhorizon.database.models.Voucher
 import com.sagoss.validationhorizon.ui.recycleradapter.HotelAdapter
 import com.sagoss.validationhorizon.utils.HelperUtil
 import com.sagoss.validationhorizon.utils.Prefs
-import okhttp3.internal.notifyAll
 
 abstract class HotelBaseFragment<VBinding : ViewBinding> : Fragment() {
 
