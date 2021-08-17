@@ -1,0 +1,242 @@
+[
+    {
+        "merged": "/Users/adb_salam/Dev/TopSecret/Android/validationunit/validationtesting/build/intermediates/res/merged/debug/layout_fragment_ga_enter_time.xml.flat",
+        "source": "/Users/adb_salam/Dev/TopSecret/Android/validationunit/validationtesting/src/main/res/layout/fragment_ga_enter_time.xml"
+    },
+    {
+        "merged": "/Users/adb_salam/Dev/TopSecret/Android/validationunit/validationtesting/build/intermediates/res/merged/debug/navigation_main_nav.xml.flat",
+        "source": "/Users/adb_salam/Dev/TopSecret/Android/validationunit/validationtesting/src/main/res/navigation/main_nav.xml"
+    },
+    {
+        "merged": "/Users/adb_salam/Dev/TopSecret/Android/validationunit/validationtesting/build/intermediates/res/merged/debug/drawable_ic_outline_arrow_back_ios_new_24.xml.flat",
+        "source": "/Users/adb_salam/Dev/TopSecret/Android/validationunit/validationtesting/src/main/res/drawable/ic_outline_arrow_back_ios_new_24.xml"
+    },
+    {
+        "merged": "/Users/adb_salam/Dev/TopSecret/Android/validationunit/validationtesting/build/intermediates/res/merged/debug/layout_fragment_ga_plate_registration.xml.flat",
+        "source": "/Users/adb_salam/Dev/TopSecret/Android/validationunit/validationtesting/src/main/res/layout/fragment_ga_plate_registration.xml"
+    },
+    {
+        "merged": "/Users/adb_salam/Dev/TopSecret/Android/validationunit/validationtesting/build/intermediates/res/merged/debug/layout_fragment_horizon_enter_date_to.xml.flat",
+        "source": "/Users/adb_salam/Dev/TopSecret/Android/validationunit/validationtesting/src/main/res/layout/fragment_horizon_enter_date_to.xml"
+    },
+    {
+        "merged": "/Users/adb_salam/Dev/TopSecret/Android/validationunit/validationtesting/build/intermediates/res/merged/debug/layout_fragment_horizon_voucher.xml.flat",
+        "source": "/Users/adb_salam/Dev/TopSecret/Android/validationunit/validationtesting/src/main/res/layout/fragment_horizon_voucher.xml"
+    },
+    {
+        "merged": "/Users/adb_salam/Dev/TopSecret/Android/validationunit/validationtesting/build/intermediates/res/merged/debug/drawable_ga_logo.jpg.flat",
+        "source": "/Users/adb_salam/Dev/TopSecret/Android/validationunit/validationtesting/src/main/res/drawable/ga_logo.jpg"
+    },
+    {
+        "merged": "/Users/adb_salam/Dev/TopSecret/Android/validationunit/validationtesting/build/intermediates/res/merged/debug/mipmap-hdpi_ic_launcher.png.flat",
+        "source": "/Users/adb_salam/Dev/TopSecret/Android/validationunit/validationtesting/src/main/res/mipmap-hdpi/ic_launcher.png"
+    },
+    {
+        "merged": "/Users/adb_salam/Dev/TopSecret/Android/validationunit/validationtesting/build/intermediates/res/merged/debug/layout_fragment_ga_voucher.xml.flat",
+        "source": "/Users/adb_salam/Dev/TopSecret/Android/validationunit/validationtesting/src/main/res/layout/fragment_ga_voucher.xml"
+    },
+    {
+        "merged": "/Users/adb_salam/Dev/TopSecret/Android/validationunit/validationtesting/build/intermediates/res/merged/debug/drawable_ic_baseline_cancel_24.xml.flat",
+        "source": "/Users/adb_salam/Dev/TopSecret/Android/validationunit/validationtesting/src/main/res/drawable/ic_baseline_cancel_24.xml"
+    },
+    {
+        "merged": "/Users/adb_salam/Dev/TopSecret/Android/validationunit/validationtesting/build/intermediates/res/merged/debug/anim_slide_in_from_right.xml.flat",
+        "source": "/Users/adb_salam/Dev/TopSecret/Android/validationunit/validationtesting/src/main/res/anim/slide_in_from_right.xml"
+    },
+    {
+        "merged": "/Users/adb_salam/Dev/TopSecret/Android/validationunit/validationtesting/build/intermediates/res/merged/debug/layout_fragment_horizon_no_config.xml.flat",
+        "source": "/Users/adb_salam/Dev/TopSecret/Android/validationunit/validationtesting/src/main/res/layout/fragment_horizon_no_config.xml"
+    },
+    {
+        "merged": "/Users/adb_salam/Dev/TopSecret/Android/validationunit/validationtesting/build/intermediates/res/merged/debug/mipmap-xxxhdpi_ic_launcher.png.flat",
+        "source": "/Users/adb_salam/Dev/TopSecret/Android/validationunit/validationtesting/src/main/res/mipmap-xxxhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "/Users/adb_salam/Dev/TopSecret/Android/validationunit/validationtesting/build/intermediates/res/merged/debug/anim_slide_out_to_right.xml.flat",
+        "source": "/Users/adb_salam/Dev/TopSecret/Android/validationunit/validationtesting/src/main/res/anim/slide_out_to_right.xml"
+    },
+    {
+        "merged": "/Users/adb_salam/Dev/TopSecret/Android/validationunit/validationtesting/build/intermediates/res/merged/debug/drawable_ic_baseline_android_24.xml.flat",
+        "source": "/Users/adb_salam/Dev/TopSecret/Android/validationunit/validationtesting/src/main/res/drawable/ic_baseline_android_24.xml"
+    },
+    {
+        "merged": "/Users/adb_salam/Dev/TopSecret/Android/validationunit/validationtesting/build/intermediates/res/merged/debug/layout_fragment_ga_validation_results.xml.flat",
+        "source": "/Users/adb_salam/Dev/TopSecret/Android/validationunit/validationtesting/src/main/res/layout/fragment_ga_validation_results.xml"
+    },
+    {
+        "merged": "/Users/adb_salam/Dev/TopSecret/Android/validationunit/validationtesting/build/intermediates/res/merged/debug/layout_fragment_horizon_greetings.xml.flat",
+        "source": "/Users/adb_salam/Dev/TopSecret/Android/validationunit/validationtesting/src/main/res/layout/fragment_horizon_greetings.xml"
+    },
+    {
+        "merged": "/Users/adb_salam/Dev/TopSecret/Android/validationunit/validationtesting/build/intermediates/res/merged/debug/mipmap-mdpi_ic_launcher.png.flat",
+        "source": "/Users/adb_salam/Dev/TopSecret/Android/validationunit/validationtesting/src/main/res/mipmap-mdpi/ic_launcher.png"
+    },
+    {
+        "merged": "/Users/adb_salam/Dev/TopSecret/Android/validationunit/validationtesting/build/intermediates/res/merged/debug/layout_fragment_c2c_enter_date_to.xml.flat",
+        "source": "/Users/adb_salam/Dev/TopSecret/Android/validationunit/validationtesting/src/main/res/layout/fragment_c2c_enter_date_to.xml"
+    },
+    {
+        "merged": "/Users/adb_salam/Dev/TopSecret/Android/validationunit/validationtesting/build/intermediates/res/merged/debug/layout_fragment_c2c_plate_registration.xml.flat",
+        "source": "/Users/adb_salam/Dev/TopSecret/Android/validationunit/validationtesting/src/main/res/layout/fragment_c2c_plate_registration.xml"
+    },
+    {
+        "merged": "/Users/adb_salam/Dev/TopSecret/Android/validationunit/validationtesting/build/intermediates/res/merged/debug/layout_fragment_c2c_entry_time.xml.flat",
+        "source": "/Users/adb_salam/Dev/TopSecret/Android/validationunit/validationtesting/src/main/res/layout/fragment_c2c_entry_time.xml"
+    },
+    {
+        "merged": "/Users/adb_salam/Dev/TopSecret/Android/validationunit/validationtesting/build/intermediates/res/merged/debug/drawable_c2c_logo.png.flat",
+        "source": "/Users/adb_salam/Dev/TopSecret/Android/validationunit/validationtesting/src/main/res/drawable/c2c_logo.png"
+    },
+    {
+        "merged": "/Users/adb_salam/Dev/TopSecret/Android/validationunit/validationtesting/build/intermediates/res/merged/debug/layout_registration_toolbar.xml.flat",
+        "source": "/Users/adb_salam/Dev/TopSecret/Android/validationunit/validationtesting/src/main/res/layout/registration_toolbar.xml"
+    },
+    {
+        "merged": "/Users/adb_salam/Dev/TopSecret/Android/validationunit/validationtesting/build/intermediates/res/merged/debug/layout_fragment_ga_enter_date_to.xml.flat",
+        "source": "/Users/adb_salam/Dev/TopSecret/Android/validationunit/validationtesting/src/main/res/layout/fragment_ga_enter_date_to.xml"
+    },
+    {
+        "merged": "/Users/adb_salam/Dev/TopSecret/Android/validationunit/validationtesting/build/intermediates/res/merged/debug/mipmap-xxxhdpi_ic_launcher_round.png.flat",
+        "source": "/Users/adb_salam/Dev/TopSecret/Android/validationunit/validationtesting/src/main/res/mipmap-xxxhdpi/ic_launcher_round.png"
+    },
+    {
+        "merged": "/Users/adb_salam/Dev/TopSecret/Android/validationunit/validationtesting/build/intermediates/res/merged/debug/mipmap-xxhdpi_ic_launcher_round.png.flat",
+        "source": "/Users/adb_salam/Dev/TopSecret/Android/validationunit/validationtesting/src/main/res/mipmap-xxhdpi/ic_launcher_round.png"
+    },
+    {
+        "merged": "/Users/adb_salam/Dev/TopSecret/Android/validationunit/validationtesting/build/intermediates/res/merged/debug/layout_fragment_login_registration.xml.flat",
+        "source": "/Users/adb_salam/Dev/TopSecret/Android/validationunit/validationtesting/src/main/res/layout/fragment_login_registration.xml"
+    },
+    {
+        "merged": "/Users/adb_salam/Dev/TopSecret/Android/validationunit/validationtesting/build/intermediates/res/merged/debug/mipmap-xhdpi_ic_launcher_round.png.flat",
+        "source": "/Users/adb_salam/Dev/TopSecret/Android/validationunit/validationtesting/src/main/res/mipmap-xhdpi/ic_launcher_round.png"
+    },
+    {
+        "merged": "/Users/adb_salam/Dev/TopSecret/Android/validationunit/validationtesting/build/intermediates/res/merged/debug/layout_fragment_horizon_hotel.xml.flat",
+        "source": "/Users/adb_salam/Dev/TopSecret/Android/validationunit/validationtesting/src/main/res/layout/fragment_horizon_hotel.xml"
+    },
+    {
+        "merged": "/Users/adb_salam/Dev/TopSecret/Android/validationunit/validationtesting/build/intermediates/res/merged/debug/mipmap-hdpi_ic_launcher_round.png.flat",
+        "source": "/Users/adb_salam/Dev/TopSecret/Android/validationunit/validationtesting/src/main/res/mipmap-hdpi/ic_launcher_round.png"
+    },
+    {
+        "merged": "/Users/adb_salam/Dev/TopSecret/Android/validationunit/validationtesting/build/intermediates/res/merged/debug/drawable_toolbar_gradient.xml.flat",
+        "source": "/Users/adb_salam/Dev/TopSecret/Android/validationunit/validationtesting/src/main/res/drawable/toolbar_gradient.xml"
+    },
+    {
+        "merged": "/Users/adb_salam/Dev/TopSecret/Android/validationunit/validationtesting/build/intermediates/res/merged/debug/layout_fragment_c2c_hotel.xml.flat",
+        "source": "/Users/adb_salam/Dev/TopSecret/Android/validationunit/validationtesting/src/main/res/layout/fragment_c2c_hotel.xml"
+    },
+    {
+        "merged": "/Users/adb_salam/Dev/TopSecret/Android/validationunit/validationtesting/build/intermediates/res/merged/debug/layout_layout_date_to_fixed_hotel_item.xml.flat",
+        "source": "/Users/adb_salam/Dev/TopSecret/Android/validationunit/validationtesting/src/main/res/layout/layout_date_to_fixed_hotel_item.xml"
+    },
+    {
+        "merged": "/Users/adb_salam/Dev/TopSecret/Android/validationunit/validationtesting/build/intermediates/res/merged/debug/anim_slide_out_to_left.xml.flat",
+        "source": "/Users/adb_salam/Dev/TopSecret/Android/validationunit/validationtesting/src/main/res/anim/slide_out_to_left.xml"
+    },
+    {
+        "merged": "/Users/adb_salam/Dev/TopSecret/Android/validationunit/validationtesting/build/intermediates/res/merged/debug/drawable_ic_launcher_background.xml.flat",
+        "source": "/Users/adb_salam/Dev/TopSecret/Android/validationunit/validationtesting/src/main/res/drawable/ic_launcher_background.xml"
+    },
+    {
+        "merged": "/Users/adb_salam/Dev/TopSecret/Android/validationunit/validationtesting/build/intermediates/res/merged/debug/layout_dialog_warning.xml.flat",
+        "source": "/Users/adb_salam/Dev/TopSecret/Android/validationunit/validationtesting/src/main/res/layout/dialog_warning.xml"
+    },
+    {
+        "merged": "/Users/adb_salam/Dev/TopSecret/Android/validationunit/validationtesting/build/intermediates/res/merged/debug/layout_layout_vouchers_item.xml.flat",
+        "source": "/Users/adb_salam/Dev/TopSecret/Android/validationunit/validationtesting/src/main/res/layout/layout_vouchers_item.xml"
+    },
+    {
+        "merged": "/Users/adb_salam/Dev/TopSecret/Android/validationunit/validationtesting/build/intermediates/res/merged/debug/layout_fragment_c2c_voucher.xml.flat",
+        "source": "/Users/adb_salam/Dev/TopSecret/Android/validationunit/validationtesting/src/main/res/layout/fragment_c2c_voucher.xml"
+    },
+    {
+        "merged": "/Users/adb_salam/Dev/TopSecret/Android/validationunit/validationtesting/build/intermediates/res/merged/debug/anim_slide_in_from_left.xml.flat",
+        "source": "/Users/adb_salam/Dev/TopSecret/Android/validationunit/validationtesting/src/main/res/anim/slide_in_from_left.xml"
+    },
+    {
+        "merged": "/Users/adb_salam/Dev/TopSecret/Android/validationunit/validationtesting/build/intermediates/res/merged/debug/drawable-v24_sagoss_logo.png.flat",
+        "source": "/Users/adb_salam/Dev/TopSecret/Android/validationunit/validationtesting/src/main/res/drawable-v24/sagoss_logo.png"
+    },
+    {
+        "merged": "/Users/adb_salam/Dev/TopSecret/Android/validationunit/validationtesting/build/intermediates/res/merged/debug/drawable-anydpi-v24_ic_launcher_foreground.xml.flat",
+        "source": "/Users/adb_salam/Dev/TopSecret/Android/validationunit/validationtesting/build/generated/res/pngs/debug/drawable-anydpi-v24/ic_launcher_foreground.xml"
+    },
+    {
+        "merged": "/Users/adb_salam/Dev/TopSecret/Android/validationunit/validationtesting/build/intermediates/res/merged/debug/layout_activity_main.xml.flat",
+        "source": "/Users/adb_salam/Dev/TopSecret/Android/validationunit/validationtesting/src/main/res/layout/activity_main.xml"
+    },
+    {
+        "merged": "/Users/adb_salam/Dev/TopSecret/Android/validationunit/validationtesting/build/intermediates/res/merged/debug/mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "/Users/adb_salam/Dev/TopSecret/Android/validationunit/validationtesting/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml"
+    },
+    {
+        "merged": "/Users/adb_salam/Dev/TopSecret/Android/validationunit/validationtesting/build/intermediates/res/merged/debug/mipmap-xxhdpi_ic_launcher.png.flat",
+        "source": "/Users/adb_salam/Dev/TopSecret/Android/validationunit/validationtesting/src/main/res/mipmap-xxhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "/Users/adb_salam/Dev/TopSecret/Android/validationunit/validationtesting/build/intermediates/res/merged/debug/layout_fragment_horizon_validation_results.xml.flat",
+        "source": "/Users/adb_salam/Dev/TopSecret/Android/validationunit/validationtesting/src/main/res/layout/fragment_horizon_validation_results.xml"
+    },
+    {
+        "merged": "/Users/adb_salam/Dev/TopSecret/Android/validationunit/validationtesting/build/intermediates/res/merged/debug/layout_fragment_ga_greetings.xml.flat",
+        "source": "/Users/adb_salam/Dev/TopSecret/Android/validationunit/validationtesting/src/main/res/layout/fragment_ga_greetings.xml"
+    },
+    {
+        "merged": "/Users/adb_salam/Dev/TopSecret/Android/validationunit/validationtesting/build/intermediates/res/merged/debug/layout_fragment_ga_hotel.xml.flat",
+        "source": "/Users/adb_salam/Dev/TopSecret/Android/validationunit/validationtesting/src/main/res/layout/fragment_ga_hotel.xml"
+    },
+    {
+        "merged": "/Users/adb_salam/Dev/TopSecret/Android/validationunit/validationtesting/build/intermediates/res/merged/debug/layout_fragment_c2c_greetings.xml.flat",
+        "source": "/Users/adb_salam/Dev/TopSecret/Android/validationunit/validationtesting/src/main/res/layout/fragment_c2c_greetings.xml"
+    },
+    {
+        "merged": "/Users/adb_salam/Dev/TopSecret/Android/validationunit/validationtesting/build/intermediates/res/merged/debug/layout_fragment_horizon_plate_registration.xml.flat",
+        "source": "/Users/adb_salam/Dev/TopSecret/Android/validationunit/validationtesting/src/main/res/layout/fragment_horizon_plate_registration.xml"
+    },
+    {
+        "merged": "/Users/adb_salam/Dev/TopSecret/Android/validationunit/validationtesting/build/intermediates/res/merged/debug/anim_wait_anime.xml.flat",
+        "source": "/Users/adb_salam/Dev/TopSecret/Android/validationunit/validationtesting/src/main/res/anim/wait_anime.xml"
+    },
+    {
+        "merged": "/Users/adb_salam/Dev/TopSecret/Android/validationunit/validationtesting/build/intermediates/res/merged/debug/drawable_horizon_logo.png.flat",
+        "source": "/Users/adb_salam/Dev/TopSecret/Android/validationunit/validationtesting/src/main/res/drawable/horizon_logo.png"
+    },
+    {
+        "merged": "/Users/adb_salam/Dev/TopSecret/Android/validationunit/validationtesting/build/intermediates/res/merged/debug/layout_fragment_horizon_entry_time.xml.flat",
+        "source": "/Users/adb_salam/Dev/TopSecret/Android/validationunit/validationtesting/src/main/res/layout/fragment_horizon_entry_time.xml"
+    },
+    {
+        "merged": "/Users/adb_salam/Dev/TopSecret/Android/validationunit/validationtesting/build/intermediates/res/merged/debug/drawable_ic_twotone_wifi_off_24.xml.flat",
+        "source": "/Users/adb_salam/Dev/TopSecret/Android/validationunit/validationtesting/src/main/res/drawable/ic_twotone_wifi_off_24.xml"
+    },
+    {
+        "merged": "/Users/adb_salam/Dev/TopSecret/Android/validationunit/validationtesting/build/intermediates/res/merged/debug/layout_fragment_login_checker.xml.flat",
+        "source": "/Users/adb_salam/Dev/TopSecret/Android/validationunit/validationtesting/src/main/res/layout/fragment_login_checker.xml"
+    },
+    {
+        "merged": "/Users/adb_salam/Dev/TopSecret/Android/validationunit/validationtesting/build/intermediates/res/merged/debug/mipmap-xhdpi_ic_launcher.png.flat",
+        "source": "/Users/adb_salam/Dev/TopSecret/Android/validationunit/validationtesting/src/main/res/mipmap-xhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "/Users/adb_salam/Dev/TopSecret/Android/validationunit/validationtesting/build/intermediates/res/merged/debug/mipmap-mdpi_ic_launcher_round.png.flat",
+        "source": "/Users/adb_salam/Dev/TopSecret/Android/validationunit/validationtesting/src/main/res/mipmap-mdpi/ic_launcher_round.png"
+    },
+    {
+        "merged": "/Users/adb_salam/Dev/TopSecret/Android/validationunit/validationtesting/build/intermediates/res/merged/debug/layout_fragment_c2c_validation_complete.xml.flat",
+        "source": "/Users/adb_salam/Dev/TopSecret/Android/validationunit/validationtesting/src/main/res/layout/fragment_c2c_validation_complete.xml"
+    },
+    {
+        "merged": "/Users/adb_salam/Dev/TopSecret/Android/validationunit/validationtesting/build/intermediates/res/merged/debug/layout_fragment_c2c_no_config.xml.flat",
+        "source": "/Users/adb_salam/Dev/TopSecret/Android/validationunit/validationtesting/src/main/res/layout/fragment_c2c_no_config.xml"
+    },
+    {
+        "merged": "/Users/adb_salam/Dev/TopSecret/Android/validationunit/validationtesting/build/intermediates/res/merged/debug/mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "/Users/adb_salam/Dev/TopSecret/Android/validationunit/validationtesting/src/main/res/mipmap-anydpi-v26/ic_launcher.xml"
+    },
+    {
+        "merged": "/Users/adb_salam/Dev/TopSecret/Android/validationunit/validationtesting/build/intermediates/res/merged/debug/layout_fragment_ga_no_config.xml.flat",
+        "source": "/Users/adb_salam/Dev/TopSecret/Android/validationunit/validationtesting/src/main/res/layout/fragment_ga_no_config.xml"
+    }
+]

@@ -1,0 +1,42 @@
+package com.sagoss.validationtesting.ui.fragments.companyviews.horizon;
+
+import java.lang.System;
+
+@kotlin.Metadata(mv = {1, 5, 1}, k = 1, d1 = {"\u00000\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0002\b\u0002\n\u0002\u0018\u0002\n\u0000\n\u0002\u0018\u0002\n\u0000\n\u0002\u0018\u0002\n\u0000\n\u0002\u0010\b\n\u0000\n\u0002\u0018\u0002\n\u0002\b\u0002\b\u0007\u0018\u00002\b\u0012\u0004\u0012\u00020\u00020\u0001B\u0005\u00a2\u0006\u0002\u0010\u0003J\b\u0010\u0004\u001a\u00020\u0005H\u0014J\u0010\u0010\u0006\u001a\u00020\u00072\u0006\u0010\b\u001a\u00020\tH\u0014J\b\u0010\n\u001a\u00020\u000bH\u0014J\b\u0010\f\u001a\u00020\rH\u0014J\b\u0010\u000e\u001a\u00020\u0002H\u0014\u00a8\u0006\u000f"}, d2 = {"Lcom/sagoss/validationtesting/ui/fragments/companyviews/horizon/VoucherFragmentHorizon;", "Lcom/sagoss/validationtesting/ui/fragments/basefragments/VouchersListBaseFragment;", "Lcom/sagoss/validationtesting/databinding/FragmentHorizonVoucherBinding;", "()V", "getRecycler", "Landroidx/recyclerview/widget/RecyclerView;", "getRecyclerDirection", "Landroidx/navigation/NavDirections;", "voucher", "Lcom/sagoss/validationtesting/database/models/Voucher;", "getRecyclerItemColor", "", "getToolbar", "Lcom/google/android/material/appbar/MaterialToolbar;", "getViewBinding", "validationtesting_debug"})
+@dagger.hilt.android.AndroidEntryPoint()
+public final class VoucherFragmentHorizon extends com.sagoss.validationtesting.ui.fragments.basefragments.VouchersListBaseFragment<com.sagoss.validationtesting.databinding.FragmentHorizonVoucherBinding> {
+    
+    public VoucherFragmentHorizon() {
+        super();
+    }
+    
+    @org.jetbrains.annotations.NotNull()
+    @java.lang.Override()
+    protected com.sagoss.validationtesting.databinding.FragmentHorizonVoucherBinding getViewBinding() {
+        return null;
+    }
+    
+    @org.jetbrains.annotations.NotNull()
+    @java.lang.Override()
+    protected androidx.recyclerview.widget.RecyclerView getRecycler() {
+        return null;
+    }
+    
+    @java.lang.Override()
+    protected int getRecyclerItemColor() {
+        return 0;
+    }
+    
+    @org.jetbrains.annotations.NotNull()
+    @java.lang.Override()
+    protected com.google.android.material.appbar.MaterialToolbar getToolbar() {
+        return null;
+    }
+    
+    @org.jetbrains.annotations.NotNull()
+    @java.lang.Override()
+    protected androidx.navigation.NavDirections getRecyclerDirection(@org.jetbrains.annotations.NotNull()
+    com.sagoss.validationtesting.database.models.Voucher voucher) {
+        return null;
+    }
+}
