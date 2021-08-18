@@ -248,8 +248,8 @@
             android:name="date_from"
             app:argType="string" />
         <action
-            android:id="@+id/action_fragment_validation_complete_to_fragment_no_config_c2c"
-            app:destination="@id/fragment_no_config_c2c"
+            android:id="@+id/action_fragment_validation_complete_to_fragment_greetings_c2c"
+            app:destination="@id/fragment_greetings_c2c"
             app:enterAnim="@anim/slide_in_from_right"
             app:exitAnim="@anim/slide_out_to_left"
             app:popEnterAnim="@anim/slide_in_from_left"

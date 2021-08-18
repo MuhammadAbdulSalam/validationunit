@@ -28,5 +28,5 @@ class ValidationResultsC2cFragment : ValidationResultsBaseFragment<FragmentC2cVa
     override fun progressbar()              = binding.layoutProgressbar
     override fun btnDone()                  = binding.btnDone
     override fun enterHomeFrag()            = ValidationResultsC2cFragmentDirections
-                                            .actionFragmentValidationCompleteToFragmentNoConfigC2c()
+                                            .actionFragmentValidationCompleteToFragmentGreetingsC2c()
 }

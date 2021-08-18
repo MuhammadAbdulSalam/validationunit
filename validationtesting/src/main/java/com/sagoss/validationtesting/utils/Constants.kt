@@ -25,7 +25,7 @@ object Constants {
     const val DATE_FROM                         = "date_from"
     const val DATE_TO                           = "date_to"
 
-    const val PREFS_NAME                        = "prefs"
+    const val PREFS_NAME                        = "test_prefs"
     const val ACCESS_TOKEN                      = "access_token"
     const val EXPIRY_DATE                       = "expiry_date"
     const val REFRESH_TOKEN                     = "refresh_token"
@@ -73,6 +73,8 @@ object Constants {
     const val MATCH_REDEEMED                    = "1"
     const val NOT_APPLICABLE                    = "2"
     const val CONFIG                            = "config"
+    const val CHOSEN_DATE                       = "chosen_date"
+
     const val REQUEST_WORKER_TAG                = "com.sagoss.requestWorker"
     const val CONFIG_WORKER_TAG                 = "com.sagoss.configWorker"
 

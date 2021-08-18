@@ -34,7 +34,7 @@ abstract class EnterDateToBaseFragment<VBinding : ViewBinding> : Fragment() {
     protected lateinit var binding                  : VBinding
     private lateinit var prefs                      : Prefs
     private var dateToUnit                          = ""
-    private var chosenDateAndTime                   = ""
+    var chosenDateAndTime                           = ""
     private val calendar                            = Calendar.getInstance()
     private var incrementUnit                       = Calendar.DATE
     private var incrementUnitName                   = "DAY"
@@ -115,6 +115,7 @@ abstract class EnterDateToBaseFragment<VBinding : ViewBinding> : Fragment() {
         }
 
         btnConfirm().setOnClickListener{
+            prefs.chosenDate = chosenDateAndTime
             findNavController().navigate(enterValidationFrag(
                 chosenDateAndTime,
                 prefs.date_from.toString())

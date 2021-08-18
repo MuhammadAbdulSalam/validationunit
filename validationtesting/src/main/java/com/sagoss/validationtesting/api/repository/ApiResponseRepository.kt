@@ -10,6 +10,7 @@
 package com.sagoss.validationtesting.api.repository
 
 import android.content.Context
+import android.util.Log
 import com.google.gson.Gson
 import com.sagoss.validationtesting.api.apiInterface.ApiHelper
 import com.sagoss.validationtesting.api.models.config.Config
@@ -38,6 +39,7 @@ class ApiResponseRepository @Inject constructor(private val apiInterface: ApiHel
         prefs.refreshToken = registrationResponse.refresh_token
         prefs.expiryDate = registrationResponse.expiry_date
         prefs.companyId = registrationResponse.company_id
+
         return registrationResponse
     }
 

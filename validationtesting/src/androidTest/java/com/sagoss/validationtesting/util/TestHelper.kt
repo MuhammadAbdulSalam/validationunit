@@ -9,26 +9,28 @@
 
 package com.sagoss.validationtesting.util
 
+import android.os.Bundle
 import com.sagoss.validationtesting.database.models.Voucher
 
 object TestHelper {
-    fun dateToVoucher(): Voucher {
-        return Voucher(
-            voucherName = "Academy User",
-            voucherId = 0,
-            voucherServerID = 0,
-            key = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ2b3VjaGVyX2lkIjowLCJ2b3VjaGVyX3N" +
-                    "lcnZlcl9pZCI6MCwibm9fdm91Y2hlciI6MSwicHJvZHVjdF9pZCI6IjI0OTgiLCJwcm9kdWN0" +
-                    "X3NlcnZlcl9pZCI6IjEiLCJwYXltZW50X3R5cGUiOjEwLCJkZXZpY2VfaWQiOiI1NjA0IiwiZG" +
-                    "V2aWNlX3NlcnZlcl9pZCI6IjEiLCJpYXQiOjE2MjkxMjg3MDEsImV4cCI6MTk0NDY2MTUwMX0" +
-                    ".qkpu14p8FahywS9BUYUTUrcdKL6LgpX9OiLRUI2imeQ",
-            dateFrom = false,
-            dateTo = true,
-            dateToUnit = "DAILY",
-            dateToFixed = null,
-            dateToLimit = 0,
-            workOffline = false
-        )
+    fun getValidationFragmentArgs(voucher: Voucher, plate: String, dateTo: String, dateFrom: String): Bundle {
+        val validationFragmentArg = Bundle()
+        validationFragmentArg.putSerializable(Constants.VOUCHER_ARG, voucher)
+        validationFragmentArg.putString(Constants.PLATE_ARG, plate)
+        validationFragmentArg.putString(Constants.DATE_TO_ARG, dateTo)
+        validationFragmentArg.putString(Constants.DATE_FROM_ARG, dateFrom)
+        return validationFragmentArg
     }
 
+    fun getDateToArgs(voucher: Voucher, plate: String): Bundle {
+        val dateToArgs = Bundle()
+        dateToArgs.putSerializable(Constants.VOUCHER_ARG, voucher)
+        dateToArgs.putString(Constants.PLATE_ARG, plate)
+        return dateToArgs
+    }
+    fun getPlateRegistrationArgs(voucher: Voucher): Bundle {
+        val plateRegArgs = Bundle()
+        plateRegArgs.putSerializable(Constants.VOUCHER_ARG, voucher)
+        return plateRegArgs
+    }
 }

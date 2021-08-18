@@ -12,6 +12,7 @@ package com.sagoss.validationtesting.utils
 import android.content.Context
 import android.content.SharedPreferences
 import com.sagoss.validationtesting.utils.Constants.ACCESS_TOKEN
+import com.sagoss.validationtesting.utils.Constants.CHOSEN_DATE
 import com.sagoss.validationtesting.utils.Constants.COMPANY_ID
 import com.sagoss.validationtesting.utils.Constants.CONFIG
 import com.sagoss.validationtesting.utils.Constants.DATE_FROM
@@ -62,4 +63,8 @@ class Prefs @Inject constructor(context: Context) {
     var config : Boolean
         get() = prefs.getBoolean(CONFIG, false)
         set(value) = prefs.edit().putBoolean(CONFIG, value).apply()
+
+    var chosenDate : String?
+        get() = prefs.getString(CHOSEN_DATE, "")
+        set(value) = prefs.edit().putString(CHOSEN_DATE, value).apply()
 }
