@@ -35,6 +35,7 @@
         <entry key="validationtesting/src/main/res/layout/fragment_c2c_enter_date_to.xml" value="0.37007389162561577" />
         <entry key="validationtesting/src/main/res/layout/fragment_ga_enter_date_to.xml" value="0.40548029556650245" />
         <entry key="validationtesting/src/main/res/layout/fragment_ga_plate_registration.xml" value="0.40548029556650245" />
+        <entry key="validationtesting/src/main/res/layout/fragment_ga_voucher.xml" value="0.40548029556650245" />
         <entry key="validationtesting/src/main/res/layout/fragment_horizon_enter_date_to.xml" value="0.40548029556650245" />
         <entry key="validationtesting/src/main/res/layout/fragment_horizon_plate_registration.xml" value="0.40548029556650245" />
       </map>

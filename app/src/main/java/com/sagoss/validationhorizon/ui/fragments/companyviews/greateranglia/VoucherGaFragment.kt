@@ -25,6 +25,6 @@ class VoucherGaFragment : VouchersListBaseFragment<FragmentGaVoucherBinding>() {
     override fun getToolbar()               = binding.toolbar
 
     override fun getRecyclerDirection(
-        voucher: Voucher)                   = VoucherFragmentHorizonDirections
-                                            .actionFragmentVouchersHorisonToFragmentPlateRegistrationHorizon(voucher)
+        voucher: Voucher)                   = VoucherGaFragmentDirections
+                                            .actionFragmentVouchersGaToFragmentPlateRegistrationGa(voucher)
 }

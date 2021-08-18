@@ -490,6 +490,9 @@
         android:name="com.sagoss.validationhorizon.ui.fragments.companyviews.greateranglia.VoucherGaFragment"
         android:label="Enter Reg Number"
         tools:layout="@layout/fragment_ga_voucher">
+        <action
+            android:id="@+id/action_fragment_vouchers_ga_to_fragment_plate_registration_ga"
+            app:destination="@id/fragment_plate_registration_ga" />
     </fragment>
 
     <fragment
