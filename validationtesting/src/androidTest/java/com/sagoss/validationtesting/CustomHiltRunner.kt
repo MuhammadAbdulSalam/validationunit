@@ -14,6 +14,9 @@ import android.content.Context
 import androidx.test.runner.AndroidJUnitRunner
 import dagger.hilt.android.testing.HiltTestApplication
 
+/**
+ * Custom Hilt Test runner to run on Tesdt Activity
+ */
 class CustomHiltTestRunner: AndroidJUnitRunner() {
     override fun newApplication(
         cl: ClassLoader?,

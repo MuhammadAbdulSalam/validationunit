@@ -13,6 +13,7 @@ import android.os.Bundle
 import com.sagoss.validationtesting.database.models.Voucher
 
 object TestHelper {
+
     fun getValidationFragmentArgs(voucher: Voucher, plate: String, dateTo: String, dateFrom: String): Bundle {
         val validationFragmentArg = Bundle()
         validationFragmentArg.putSerializable(Constants.VOUCHER_ARG, voucher)

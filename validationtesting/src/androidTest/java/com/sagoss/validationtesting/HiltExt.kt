@@ -22,7 +22,10 @@ import androidx.test.core.app.ApplicationProvider
 import androidx.test.espresso.core.internal.deps.dagger.internal.Preconditions
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 
-
+/**
+ * Hilt Fragment launcher to enable launching fragments in Hilt Container
+ * Using Test Main Activity
+ */
 @ExperimentalCoroutinesApi
 inline fun <reified T : Fragment> launchFragmentInHiltContainer(
     fragmentArgs: Bundle? = null,

@@ -9,7 +9,6 @@
 
 package com.sagoss.validationtesting.dbconfigtest.ui
 
-import android.content.Context
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.test.espresso.Espresso.onView
@@ -21,7 +20,6 @@ import androidx.test.espresso.contrib.RecyclerViewActions
 import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.filters.MediumTest
-import androidx.test.platform.app.InstrumentationRegistry
 import com.sagoss.validationtesting.R
 import com.sagoss.validationtesting.database.models.Voucher
 import com.sagoss.validationtesting.database.repository.DBRepository
@@ -50,24 +48,25 @@ import javax.inject.Inject
 @ExperimentalCoroutinesApi
 class VoucherJourney {
 
-    @get:Rule
-    var hiltRule = HiltAndroidRule(this)
+    @Inject lateinit var dbRepository       : DBRepository
 
-    @Inject
-    lateinit var dbRepository: DBRepository
+    @get:Rule var hiltRule                  = HiltAndroidRule(this)
+    var prefs: Prefs?                       = null
+    private val NUMBER_PLATE                = "ABC123"
+    private val navController               = mock(NavController::class.java)
 
-    private lateinit var testContext: Context
-    var prefs: Prefs? = null
-
-    private val NUMBER_PLATE = "ABC123"
-    val navController: NavController = mock(NavController::class.java)
-
+    /**
+     * setup hilt rule inject
+     */
     @Before
     fun setup() {
         hiltRule.inject()
-        testContext = InstrumentationRegistry.getInstrumentation().context
     }
 
+    /**
+     * Update voucher in Database
+     * Delete existing Vouchers and update new vouchers for use
+     */
     @Test
     fun updateDatabaseVouchers() {
         var success = true
@@ -90,6 +89,11 @@ class VoucherJourney {
         assert(success)
     }
 
+    /**
+     * Run Navigation Test for success vouchers on Horizon UI
+     *
+     * Result will be success only if a whole journey is complete
+     */
     @Test
     fun voucherOneHorizonTest() {
 
@@ -141,6 +145,11 @@ class VoucherJourney {
         )
     }
 
+    /**
+     * Run Navigation Test for success vouchers on C2C UI
+     *
+     * Result will be success only if a whole journey is complete
+     */
     @Test
     fun voucherOneC2cTest() {
         var academyVoucher: Voucher?
@@ -191,6 +200,11 @@ class VoucherJourney {
         )
     }
 
+    /**
+     * Run Navigation Test for success vouchers on GA UI
+     *
+     * Result will be success only if a whole journey is complete
+     */
     @Test
     fun voucherOneGaTest() {
         var academyVoucher: Voucher?
@@ -242,6 +256,11 @@ class VoucherJourney {
     }
 
 
+    /**
+     * Generic function to run Greetings Fragments for All UI clients
+     *
+     * Performs basic function of clicking on greetings Textview
+     */
     private inline fun <reified T : Fragment> runGreetingsFrag() {
         launchFragmentInHiltContainer<T>(
             navHostController = navController
@@ -253,6 +272,11 @@ class VoucherJourney {
 
     }
 
+    /**
+     * Generic Function to run Voucher Fragment for all UI clients
+     *
+     * Once vouchers list is open, Select Item from reccyler at x position
+     */
     private inline fun <reified T : Fragment> runVouchersListFragment() {
         launchFragmentInHiltContainer<T>(navHostController = navController) {}
         Thread.sleep(1000)
@@ -264,6 +288,13 @@ class VoucherJourney {
         )
     }
 
+    /**
+     * @param voucher Voucher selected from recycler if Voucher list fragment
+     *
+     * Generic function to run plate registration Fragment
+     * Enter dummy number plate
+     * click on validate button
+     */
     private inline fun <reified T : Fragment> runPlateRegFragment(voucher: Voucher) {
         val args = TestHelper.getPlateRegistrationArgs(voucher)
         launchFragmentInHiltContainer<T>(
@@ -275,9 +306,17 @@ class VoucherJourney {
             .perform(TypeTextAction(NUMBER_PLATE)).perform(closeSoftKeyboard())
         Thread.sleep(250)
         onView(withId(R.id.btn_validate)).perform(click())
-        Thread.sleep(2000)
+        Thread.sleep(1000)
     }
 
+    /**
+     * @param voucher Voucher as passed from plate reg fragment
+     * @param plate plate number as passed from plate reg fragment
+     *
+     * Generic function to run Date To Fragment
+     * once date to frag reached, Add date twice
+     * Click confirm
+     */
     private inline fun <reified T : Fragment> runDateToFragment(voucher: Voucher, plate:String) {
         val dateToArgs = TestHelper.getDateToArgs(voucher, plate)
         launchFragmentInHiltContainer<T>(
@@ -290,6 +329,14 @@ class VoucherJourney {
         onView(withId(R.id.btnConfirm)).perform(click())
     }
 
+    /**
+     * @param voucher Voucher as passed from plate reg fragment
+     * @param plate plate number as passed from plate reg fragment
+     *
+     * Generic function to run validation fragment
+     * check if success message is shown
+     * Click done once message appears
+     */
     private inline fun <reified T : Fragment> runValidation(voucher: Voucher, plate:String) {
         val validationFragmentArg = TestHelper.getValidationFragmentArgs(
             voucher,
@@ -305,8 +352,4 @@ class VoucherJourney {
         onView(withId(R.id.btn_done)).check(matches(isDisplayed()))
         onView(withId(R.id.btn_done)).perform(click())
     }
-
-
-
-
 }
