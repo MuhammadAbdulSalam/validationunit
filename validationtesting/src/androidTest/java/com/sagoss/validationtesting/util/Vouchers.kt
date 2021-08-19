@@ -48,7 +48,7 @@ object Vouchers {
      */
     fun staffVoucher(): Voucher {
         return Voucher(
-            voucherName = "Staff",
+            voucherName = Constants.STAFF_VOUCHER_NAME,
             voucherId = 1,
             voucherServerID = 0,
             key = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ2b3VjaGVyX2lkIjowLCJ2b3VjaGVyX3Nlc" +

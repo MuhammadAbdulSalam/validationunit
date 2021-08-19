@@ -66,6 +66,7 @@ abstract class HotelBaseFragment<VBinding : ViewBinding> : Fragment() {
      */
     fun onRecyclerItemSelected(dateToFixed: DateToFixed){
         val dateTo = HelperUtil.getDateTo(dateToFixed.unit, prefs.date_from!!)
+        prefs.chosenDate = dateTo
         findNavController().navigate(validateFrag(dateTo = dateTo, dateFrom = prefs.date_from!!))
     }
 

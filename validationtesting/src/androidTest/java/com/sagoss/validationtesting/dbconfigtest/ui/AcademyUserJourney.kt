@@ -9,6 +9,7 @@
 
 package com.sagoss.validationtesting.dbconfigtest.ui
 
+import android.util.Log
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.test.espresso.Espresso.onView
@@ -20,6 +21,7 @@ import androidx.test.espresso.contrib.RecyclerViewActions
 import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.filters.MediumTest
+import com.sagoss.validationtesting.ExampleInstrumentedTest
 import com.sagoss.validationtesting.R
 import com.sagoss.validationtesting.database.models.Voucher
 import com.sagoss.validationtesting.database.repository.DBRepository
@@ -29,16 +31,25 @@ import com.sagoss.validationtesting.ui.fragments.companyviews.greateranglia.*
 import com.sagoss.validationtesting.ui.fragments.companyviews.horizon.*
 import com.sagoss.validationtesting.ui.recycleradapter.VoucherRecyclerAdapter
 import com.sagoss.validationtesting.util.Constants
+import com.sagoss.validationtesting.util.Constants.ACADEMY_USER_POS
 import com.sagoss.validationtesting.util.TestHelper
+import com.sagoss.validationtesting.util.TestHelper.runDateToFragment
+import com.sagoss.validationtesting.util.TestHelper.runGreetingsFrag
+import com.sagoss.validationtesting.util.TestHelper.runPlateRegFragment
+import com.sagoss.validationtesting.util.TestHelper.runValidation
+import com.sagoss.validationtesting.util.TestHelper.runVouchersListFragment
 import com.sagoss.validationtesting.util.Vouchers
 import com.sagoss.validationtesting.utils.Prefs
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
+import junit.framework.TestSuite
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
 import org.junit.Before
+import org.junit.FixMethodOrder
 import org.junit.Rule
 import org.junit.Test
+import org.junit.runners.MethodSorters
 import org.mockito.Mockito.mock
 import org.mockito.Mockito.verify
 import javax.inject.Inject
@@ -46,7 +57,8 @@ import javax.inject.Inject
 @MediumTest
 @HiltAndroidTest
 @ExperimentalCoroutinesApi
-class VoucherJourney {
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
+class AcademyUserJourney {
 
     @Inject lateinit var dbRepository       : DBRepository
 
@@ -54,6 +66,7 @@ class VoucherJourney {
     var prefs: Prefs?                       = null
     private val NUMBER_PLATE                = "ABC123"
     private val navController               = mock(NavController::class.java)
+    var academyVoucher: Voucher?            = null
 
     /**
      * setup hilt rule inject
@@ -68,7 +81,7 @@ class VoucherJourney {
      * Delete existing Vouchers and update new vouchers for use
      */
     @Test
-    fun updateDatabaseVouchers() {
+    fun aDatabaseVouchers() {
         var success = true
         try {
             runBlocking { dbRepository.deleteAllVouchers() }
@@ -95,29 +108,30 @@ class VoucherJourney {
      * Result will be success only if a whole journey is complete
      */
     @Test
-    fun voucherOneHorizonTest() {
-
-        var academyVoucher: Voucher?
-
-        runBlocking { academyVoucher = dbRepository.getVoucher(Constants.ACADEMY_VOUCHER_NAME) }
+    fun voucherAcademyUserHorizonTest() {
+        runBlocking { academyVoucher = dbRepository.getVoucher(Constants.ACADEMY_VOUCHER_NAME)}
         assert(academyVoucher != null)
 
         //Greetings Fragment
-        runGreetingsFrag<GreetingsHorizonFragmentGreetings>()
+        prefs = runGreetingsFrag<GreetingsHorizonFragmentGreetings>(navController)
         verify(navController).navigate(
             GreetingsHorizonFragmentGreetingsDirections
                 .actionFragmentGreetingsHorizonToFragmentVouchersHorizon()
         )
 
         //Voucher Fragment
-        runVouchersListFragment<VoucherFragmentHorizon>()
+        runVouchersListFragment<VoucherFragmentHorizon>(navController, ACADEMY_USER_POS)
         verify(navController).navigate(
             VoucherFragmentHorizonDirections
                 .actionFragmentVouchersHorisonToFragmentPlateRegistrationHorizon(academyVoucher!!)
         )
 
         //Plate Registration Fragment
-        runPlateRegFragment<PlateRegistrationHorizonFragment>(academyVoucher!!)
+        runPlateRegFragment<PlateRegistrationHorizonFragment>(
+            voucher = academyVoucher!!,
+            navController = navController,
+            plate = NUMBER_PLATE
+        )
         verify(navController).navigate(
             PlateRegistrationHorizonFragmentDirections
                 .actionFragmentPlateRegistrationHorizonToFragmentEnterDateToHorizon(
@@ -126,7 +140,7 @@ class VoucherJourney {
         )
 
         //Date To Fragment
-        runDateToFragment<EnterDateToHorizonFragment>(academyVoucher!!, NUMBER_PLATE)
+        runDateToFragment<EnterDateToHorizonFragment>(navController,academyVoucher!!, NUMBER_PLATE)
         verify(navController).navigate(
             EnterDateToHorizonFragmentDirections
                 .actionFragmentEnterDateToHorizonToFragmentHorizonValidation(
@@ -138,7 +152,11 @@ class VoucherJourney {
         )
 
         //Validate Plate Fragment
-       runValidation<ValidationResultsHorizonFragment>(academyVoucher!!, NUMBER_PLATE)
+       runValidation<ValidationResultsHorizonFragment>(
+           navController =  navController,
+           voucher = academyVoucher!!,
+           plate = NUMBER_PLATE,
+           prefs = prefs!!)
         verify(navController).navigate(
             ValidationResultsHorizonFragmentDirections
                 .actionFragmentHorizonValidationToFragmentGreetingsHorizon()
@@ -151,28 +169,26 @@ class VoucherJourney {
      * Result will be success only if a whole journey is complete
      */
     @Test
-    fun voucherOneC2cTest() {
-        var academyVoucher: Voucher?
-
-        runBlocking { academyVoucher = dbRepository.getVoucher(Constants.ACADEMY_VOUCHER_NAME) }
+    fun voucherAcademyUserC2cTest() {
+        runBlocking { academyVoucher = dbRepository.getVoucher(Constants.ACADEMY_VOUCHER_NAME)}
         assert(academyVoucher != null)
 
         //Greetings Fragment
-        runGreetingsFrag<GreetingsC2cFragment>()
+        prefs = runGreetingsFrag<GreetingsC2cFragment>(navController)
         verify(navController).navigate(
             GreetingsC2cFragmentDirections
                 .actionFragmentGreetingsC2cToFragmentVouchersC2c()
         )
 
         //Voucher Fragment
-        runVouchersListFragment<VoucherC2cFragment>()
+        runVouchersListFragment<VoucherC2cFragment>(navController, ACADEMY_USER_POS)
         verify(navController).navigate(
             VoucherC2cFragmentDirections
                 .actionFragmentVouchersC2cToFragmentPlateRegistrationC2c(academyVoucher!!)
         )
 
         //Plate Registration Fragment
-        runPlateRegFragment<PlateRegistrationC2cFragment>(academyVoucher!!)
+        runPlateRegFragment<PlateRegistrationC2cFragment>(academyVoucher!!, navController, NUMBER_PLATE)
         verify(navController).navigate(
             PlateRegistrationC2cFragmentDirections
                 .actionFragmentPlateRegistrationC2cToFragmentDateToC2c(
@@ -181,7 +197,7 @@ class VoucherJourney {
         )
 
         //Date To Fragment
-        runDateToFragment<EnterDateToC2cFragment>(academyVoucher!!, NUMBER_PLATE)
+        runDateToFragment<EnterDateToC2cFragment>(navController,academyVoucher!!, NUMBER_PLATE)
         verify(navController).navigate(
             EnterDateToC2cFragmentDirections
                 .actionFragmentDateToC2cToFragmentValidationComplete(
@@ -193,7 +209,11 @@ class VoucherJourney {
         )
 
         //Validate Plate Fragment
-        runValidation<ValidationResultsC2cFragment>(academyVoucher!!, NUMBER_PLATE)
+        runValidation<ValidationResultsC2cFragment>(
+            navController =  navController,
+            voucher = academyVoucher!!,
+            plate = NUMBER_PLATE,
+            prefs = prefs!!)
         verify(navController).navigate(
             ValidationResultsC2cFragmentDirections
                 .actionFragmentValidationCompleteToFragmentGreetingsC2c()
@@ -206,28 +226,26 @@ class VoucherJourney {
      * Result will be success only if a whole journey is complete
      */
     @Test
-    fun voucherOneGaTest() {
-        var academyVoucher: Voucher?
-
-        runBlocking { academyVoucher = dbRepository.getVoucher(Constants.ACADEMY_VOUCHER_NAME) }
+    fun voucherAcademyUserGaTest() {
+        runBlocking { academyVoucher = dbRepository.getVoucher(Constants.ACADEMY_VOUCHER_NAME)}
         assert(academyVoucher != null)
 
         //Greetings Fragment
-        runGreetingsFrag<GreetingsGaFragment>()
+        prefs = runGreetingsFrag<GreetingsGaFragment>(navController)
         verify(navController).navigate(
             GreetingsGaFragmentDirections
                 .actionFragmentGreetingsGaToFragmentVouchersGa()
         )
 
         //Voucher Fragment
-        runVouchersListFragment<VoucherGaFragment>()
+        runVouchersListFragment<VoucherGaFragment>(navController, ACADEMY_USER_POS)
         verify(navController).navigate(
             VoucherGaFragmentDirections
                 .actionFragmentVouchersGaToFragmentPlateRegistrationGa(academyVoucher!!)
         )
 
         //Plate Registration Fragment
-        runPlateRegFragment<PlateRegistrationGaFragment>(academyVoucher!!)
+        runPlateRegFragment<PlateRegistrationGaFragment>(academyVoucher!!, navController, NUMBER_PLATE)
         verify(navController).navigate(
             PlateRegistrationGaFragmentDirections
                 .actionFragmentPlateRegistrationGaToFragmentDateToGa(
@@ -236,7 +254,7 @@ class VoucherJourney {
         )
 
         //Date To Fragment
-        runDateToFragment<EnterDateToGaFragment>(academyVoucher!!, NUMBER_PLATE)
+        runDateToFragment<EnterDateToGaFragment>(navController,academyVoucher!!, NUMBER_PLATE)
         verify(navController).navigate(
             EnterDateToGaFragmentDirections
                 .actionFragmentDateToGaToFragmentValidationGa(
@@ -248,108 +266,15 @@ class VoucherJourney {
         )
 
         //Validate Plate Fragment
-        runValidation<ValidationResultsGaFragment>(academyVoucher!!, NUMBER_PLATE)
+        runValidation<ValidationResultsGaFragment>(
+            navController =  navController,
+            voucher = academyVoucher!!,
+            plate = NUMBER_PLATE,
+            prefs = prefs!!)
         verify(navController).navigate(
             ValidationResultsGaFragmentDirections
                 .actionFragmentValidationGaToFragmentGreetingsGa()
         )
     }
 
-
-    /**
-     * Generic function to run Greetings Fragments for All UI clients
-     *
-     * Performs basic function of clicking on greetings Textview
-     */
-    private inline fun <reified T : Fragment> runGreetingsFrag() {
-        launchFragmentInHiltContainer<T>(
-            navHostController = navController
-        ) {
-            Prefs(this.requireContext()).locationName = "Android Test Location"
-        }
-        Thread.sleep(1000)
-        onView(withId(R.id.tv_welcome_msg)).perform(click())
-
-    }
-
-    /**
-     * Generic Function to run Voucher Fragment for all UI clients
-     *
-     * Once vouchers list is open, Select Item from reccyler at x position
-     */
-    private inline fun <reified T : Fragment> runVouchersListFragment() {
-        launchFragmentInHiltContainer<T>(navHostController = navController) {}
-        Thread.sleep(1000)
-        onView(withId(R.id.recycler_voucher)).perform(
-            RecyclerViewActions.actionOnItemAtPosition<VoucherRecyclerAdapter.VoucherViewHolder>(
-                Constants.ACADEMY_USER_POS,
-                click()
-            )
-        )
-    }
-
-    /**
-     * @param voucher Voucher selected from recycler if Voucher list fragment
-     *
-     * Generic function to run plate registration Fragment
-     * Enter dummy number plate
-     * click on validate button
-     */
-    private inline fun <reified T : Fragment> runPlateRegFragment(voucher: Voucher) {
-        val args = TestHelper.getPlateRegistrationArgs(voucher)
-        launchFragmentInHiltContainer<T>(
-            fragmentArgs = args,
-            navHostController = navController
-        ) {}
-        Thread.sleep(1000)
-        onView(withId(R.id.tv_plate_no))
-            .perform(TypeTextAction(NUMBER_PLATE)).perform(closeSoftKeyboard())
-        Thread.sleep(250)
-        onView(withId(R.id.btn_validate)).perform(click())
-        Thread.sleep(1000)
-    }
-
-    /**
-     * @param voucher Voucher as passed from plate reg fragment
-     * @param plate plate number as passed from plate reg fragment
-     *
-     * Generic function to run Date To Fragment
-     * once date to frag reached, Add date twice
-     * Click confirm
-     */
-    private inline fun <reified T : Fragment> runDateToFragment(voucher: Voucher, plate:String) {
-        val dateToArgs = TestHelper.getDateToArgs(voucher, plate)
-        launchFragmentInHiltContainer<T>(
-            fragmentArgs = dateToArgs,
-            navHostController = navController
-        ) { prefs = Prefs(this.requireContext()) }
-        Thread.sleep(1000)
-        onView(withId(R.id.btn_add)).perform(click())
-        onView(withId(R.id.btn_add)).perform(click())
-        onView(withId(R.id.btnConfirm)).perform(click())
-    }
-
-    /**
-     * @param voucher Voucher as passed from plate reg fragment
-     * @param plate plate number as passed from plate reg fragment
-     *
-     * Generic function to run validation fragment
-     * check if success message is shown
-     * Click done once message appears
-     */
-    private inline fun <reified T : Fragment> runValidation(voucher: Voucher, plate:String) {
-        val validationFragmentArg = TestHelper.getValidationFragmentArgs(
-            voucher,
-            plate,
-            prefs?.chosenDate.toString(),
-            prefs?.date_from.toString()
-        )
-        launchFragmentInHiltContainer<T>(
-            fragmentArgs = validationFragmentArg,
-            navHostController = navController
-        ) {}
-        Thread.sleep(1000)
-        onView(withId(R.id.btn_done)).check(matches(isDisplayed()))
-        onView(withId(R.id.btn_done)).perform(click())
-    }
 }
