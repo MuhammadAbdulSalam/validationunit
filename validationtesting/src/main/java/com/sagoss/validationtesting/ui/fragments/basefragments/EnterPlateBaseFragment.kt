@@ -116,12 +116,15 @@ abstract class EnterPlateBaseFragment<VBinding : ViewBinding> : Fragment() {
                     else if (currentVoucher().dateToFixed!!.size == 1) {
                     val dateFixed = currentVoucher().dateToFixed?.get(0)
                         val dateTo = HelperUtil.getDateTo(dateFixed?.unit!!, prefs.date_from.toString())
+                        prefs.chosenDate = dateTo
                         findNavController().navigate(enterValidationFrag(dateTo, dateFrom))
                     }
             } else if (!currentVoucher().dateToUnit.isNullOrEmpty()) {
                 findNavController().navigate(enterDateToFrag()) }
         }
-        else { findNavController().navigate(enterValidationFrag("", dateFrom)) }
+        else {
+            prefs.chosenDate = ""
+            findNavController().navigate(enterValidationFrag("", dateFrom)) }
     }
 
 }

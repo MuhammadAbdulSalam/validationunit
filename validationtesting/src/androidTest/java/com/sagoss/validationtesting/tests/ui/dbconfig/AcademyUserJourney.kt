@@ -7,42 +7,26 @@
  * modify, replicate or distribute this code.
  */
 
-package com.sagoss.validationtesting.dbconfigtest.ui
+package com.sagoss.validationtesting.tests.ui.dbconfig
 
-import android.util.Log
-import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
-import androidx.test.espresso.Espresso.onView
-import androidx.test.espresso.action.TypeTextAction
-import androidx.test.espresso.action.ViewActions.click
-import androidx.test.espresso.action.ViewActions.closeSoftKeyboard
-import androidx.test.espresso.assertion.ViewAssertions.matches
-import androidx.test.espresso.contrib.RecyclerViewActions
-import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
-import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.filters.MediumTest
-import com.sagoss.validationtesting.ExampleInstrumentedTest
-import com.sagoss.validationtesting.R
 import com.sagoss.validationtesting.database.models.Voucher
 import com.sagoss.validationtesting.database.repository.DBRepository
-import com.sagoss.validationtesting.launchFragmentInHiltContainer
 import com.sagoss.validationtesting.ui.fragments.companyviews.c2c.*
 import com.sagoss.validationtesting.ui.fragments.companyviews.greateranglia.*
 import com.sagoss.validationtesting.ui.fragments.companyviews.horizon.*
-import com.sagoss.validationtesting.ui.recycleradapter.VoucherRecyclerAdapter
-import com.sagoss.validationtesting.util.Constants
-import com.sagoss.validationtesting.util.Constants.ACADEMY_USER_POS
-import com.sagoss.validationtesting.util.TestHelper
-import com.sagoss.validationtesting.util.TestHelper.runDateToFragment
-import com.sagoss.validationtesting.util.TestHelper.runGreetingsFrag
-import com.sagoss.validationtesting.util.TestHelper.runPlateRegFragment
-import com.sagoss.validationtesting.util.TestHelper.runValidation
-import com.sagoss.validationtesting.util.TestHelper.runVouchersListFragment
-import com.sagoss.validationtesting.util.Vouchers
+import com.sagoss.validationtesting.tests.utils.Constants
+import com.sagoss.validationtesting.tests.utils.Constants.ACADEMY_USER_POS
+import com.sagoss.validationtesting.tests.utils.TestHelper.runDateToFragment
+import com.sagoss.validationtesting.tests.utils.TestHelper.runGreetingsFrag
+import com.sagoss.validationtesting.tests.utils.TestHelper.runPlateRegFragment
+import com.sagoss.validationtesting.tests.utils.TestHelper.runValidation
+import com.sagoss.validationtesting.tests.utils.TestHelper.runVouchersListFragment
+import com.sagoss.validationtesting.tests.utils.Vouchers
 import com.sagoss.validationtesting.utils.Prefs
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
-import junit.framework.TestSuite
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
 import org.junit.Before

@@ -7,10 +7,11 @@
  * modify, replicate or distribute this code.
  */
 
-package com.sagoss.validationtesting.util
+package com.sagoss.validationtesting.tests.utils
 
 import com.sagoss.validationtesting.api.models.config.DateToFixed
 import com.sagoss.validationtesting.database.models.Voucher
+import com.sagoss.validationtesting.tests.utils.Constants.CONTRACTOR_VOUCHER_NAME
 
 object Vouchers {
 
@@ -62,9 +63,9 @@ object Vouchers {
             dateToLimit = 0,
             workOffline = true,
             dateToFixed = listOf(
-                DateToFixed("First Duration", 61910),
-                DateToFixed("Second Duration", 112070),
-                DateToFixed("Third Duration", 571770),)
+                DateToFixed("X Duration", 61910),
+                DateToFixed("Y Duration", 112070),
+                DateToFixed("Z Duration", 571770),)
         )
     }
 
@@ -76,7 +77,7 @@ object Vouchers {
      */
     fun contractorVoucher(): Voucher {
         return Voucher(
-            voucherName = "Contractor",
+            voucherName = CONTRACTOR_VOUCHER_NAME,
             voucherId = 2,
             voucherServerID = 0,
             key = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ2b3VjaGVyX2lkIjowLCJ2b3VjaGVyX3NlcnZl" +

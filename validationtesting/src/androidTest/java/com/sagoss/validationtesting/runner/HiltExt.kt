@@ -7,7 +7,7 @@
  * modify, replicate or distribute this code.
  */
 
-package com.sagoss.validationtesting
+package com.sagoss.validationtesting.runner
 
 import android.content.ComponentName
 import android.content.Intent
@@ -20,6 +20,8 @@ import androidx.navigation.Navigation
 import androidx.test.core.app.ActivityScenario
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.espresso.core.internal.deps.dagger.internal.Preconditions
+import com.sagoss.validationtesting.HiltTestActivity
+import com.sagoss.validationtesting.R
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 
 /**

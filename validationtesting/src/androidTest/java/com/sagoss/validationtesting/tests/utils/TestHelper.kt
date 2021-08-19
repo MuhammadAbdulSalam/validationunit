@@ -7,7 +7,7 @@
  * modify, replicate or distribute this code.
  */
 
-package com.sagoss.validationtesting.util
+package com.sagoss.validationtesting.tests.utils
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -20,7 +20,7 @@ import androidx.test.espresso.contrib.RecyclerViewActions
 import androidx.test.espresso.matcher.ViewMatchers
 import com.sagoss.validationtesting.R
 import com.sagoss.validationtesting.database.models.Voucher
-import com.sagoss.validationtesting.launchFragmentInHiltContainer
+import com.sagoss.validationtesting.runner.launchFragmentInHiltContainer
 import com.sagoss.validationtesting.ui.recycleradapter.VoucherRecyclerAdapter
 import com.sagoss.validationtesting.utils.Prefs
 
@@ -127,7 +127,7 @@ object TestHelper {
      * Click confirm
      */
     inline fun <reified T : Fragment> runDateToFragment(navController: NavController, voucher: Voucher, plate:String){
-        val dateToArgs = TestHelper.getDateToArgs(voucher, plate)
+        val dateToArgs = getDateToArgs(voucher, plate)
         launchFragmentInHiltContainer<T>(
             fragmentArgs = dateToArgs,
             navHostController = navController

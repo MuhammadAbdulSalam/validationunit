@@ -7,9 +7,8 @@
  * modify, replicate or distribute this code.
  */
 
-package com.sagoss.validationtesting.dbconfigtest.ui
+package com.sagoss.validationtesting.tests.ui.dbconfig
 
-import android.util.Log
 import androidx.navigation.NavController
 import androidx.test.filters.MediumTest
 import com.sagoss.validationtesting.database.models.Voucher
@@ -17,14 +16,13 @@ import com.sagoss.validationtesting.database.repository.DBRepository
 import com.sagoss.validationtesting.ui.fragments.companyviews.c2c.*
 import com.sagoss.validationtesting.ui.fragments.companyviews.greateranglia.*
 import com.sagoss.validationtesting.ui.fragments.companyviews.horizon.*
-import com.sagoss.validationtesting.util.Constants
-import com.sagoss.validationtesting.util.Constants.STAFF_POS
-import com.sagoss.validationtesting.util.TestHelper
-import com.sagoss.validationtesting.util.TestHelper.runGreetingsFrag
-import com.sagoss.validationtesting.util.TestHelper.runHotelFragment
-import com.sagoss.validationtesting.util.TestHelper.runPlateRegFragment
-import com.sagoss.validationtesting.util.TestHelper.runValidation
-import com.sagoss.validationtesting.util.TestHelper.runVouchersListFragment
+import com.sagoss.validationtesting.tests.utils.Constants
+import com.sagoss.validationtesting.tests.utils.Constants.STAFF_POS
+import com.sagoss.validationtesting.tests.utils.TestHelper.runGreetingsFrag
+import com.sagoss.validationtesting.tests.utils.TestHelper.runHotelFragment
+import com.sagoss.validationtesting.tests.utils.TestHelper.runPlateRegFragment
+import com.sagoss.validationtesting.tests.utils.TestHelper.runValidation
+import com.sagoss.validationtesting.tests.utils.TestHelper.runVouchersListFragment
 import com.sagoss.validationtesting.utils.Prefs
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
