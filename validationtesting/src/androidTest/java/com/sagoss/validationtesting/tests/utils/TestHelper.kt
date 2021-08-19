@@ -167,7 +167,7 @@ object TestHelper {
      * @param voucher Voucher as passed from plate reg fragment
      * @param plate plate number as passed from plate reg fragment
      *
-     * Generic function to run validation fragment
+     * Generic function to run Hotel fragment
      * check if success message is shown
      * Click done once message appears
      */
@@ -184,6 +184,23 @@ object TestHelper {
                 ViewActions.click()
             )
         )
+    }
+
+    /**
+     * @param voucher Voucher as passed
+     * @param plate plate number as passed
+     *
+     * Generic function to run DateFrom/EntryTime fragment
+     * check if success message is shown
+     * Click done once message appears
+     */
+    inline fun <reified T : Fragment> runDateFrom(navController: NavController, voucher: Voucher, plate:String) {
+        val hotelFragArgs = getDateToArgs(voucher, plate,)
+        launchFragmentInHiltContainer<T>(
+            fragmentArgs = hotelFragArgs,
+            navHostController = navController
+        ) {}
+        Espresso.onView(ViewMatchers.withId(R.id.btn_validate)).perform(ViewActions.click())
     }
 
 

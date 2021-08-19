@@ -13,17 +13,16 @@ import androidx.navigation.NavController
 import androidx.test.filters.MediumTest
 import com.sagoss.validationtesting.database.models.Voucher
 import com.sagoss.validationtesting.database.repository.DBRepository
-import com.sagoss.validationtesting.ui.fragments.companyviews.c2c.*
-import com.sagoss.validationtesting.ui.fragments.companyviews.greateranglia.*
-import com.sagoss.validationtesting.ui.fragments.companyviews.horizon.*
 import com.sagoss.validationtesting.tests.utils.Constants
-import com.sagoss.validationtesting.tests.utils.Constants.STAFF_POS
+import com.sagoss.validationtesting.tests.utils.TestHelper.runDateFrom
 import com.sagoss.validationtesting.tests.utils.TestHelper.runGreetingsFrag
-import com.sagoss.validationtesting.tests.utils.TestHelper.runHotelFragment
 import com.sagoss.validationtesting.tests.utils.TestHelper.runPlateRegFragment
 import com.sagoss.validationtesting.tests.utils.TestHelper.runValidation
 import com.sagoss.validationtesting.tests.utils.TestHelper.runVouchersListFragment
 import com.sagoss.validationtesting.tests.utils.Vouchers
+import com.sagoss.validationtesting.ui.fragments.companyviews.c2c.*
+import com.sagoss.validationtesting.ui.fragments.companyviews.greateranglia.*
+import com.sagoss.validationtesting.ui.fragments.companyviews.horizon.*
 import com.sagoss.validationtesting.utils.Prefs
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
@@ -42,14 +41,14 @@ import javax.inject.Inject
 @HiltAndroidTest
 @ExperimentalCoroutinesApi
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-class StaffVoucherJourney {
+class DisabledVoucherJourney {
 
-    @Inject lateinit var dbRepository       : DBRepository
-    @get:Rule var hiltRule                  = HiltAndroidRule(this)
-    private var prefs                       = null as Prefs?
-    private var staffVoucher                = null as Voucher?
-    private val navController               = Mockito.mock(NavController::class.java)
-    private val NUMBER_PLATE                = "ABC123"
+    @Inject lateinit var dbRepository           : DBRepository
+    @get:Rule var hiltRule                      = HiltAndroidRule(this)
+    private var prefs                           = null as Prefs?
+    private var disabledVoucher                 = null as Voucher?
+    private val navController                   = Mockito.mock(NavController::class.java)
+    private val NUMBER_PLATE                    = "ABC123"
 
     /**
      * setup hilt rule inject
@@ -85,13 +84,15 @@ class StaffVoucherJourney {
         assert(success)
     }
 
-
+    /**
+     * Run Navigation Test for success vouchers on Horizon UI
+     *
+     * Result will be success only if a whole journey is complete
+     */
     @Test
-    fun voucherStaffHorizon(){
-        runBlocking {
-            staffVoucher = dbRepository.getVoucher(Constants.STAFF_VOUCHER_NAME)
-            assert(staffVoucher != null)
-        }
+    fun voucherDisabledHorizonTest() {
+        runBlocking { disabledVoucher = dbRepository.getVoucher(Constants.DISABLED_VOUCHER_NAME)}
+        assert(disabledVoucher != null)
 
         //Greetings Fragment
         prefs = runGreetingsFrag<GreetingsHorizonFragmentGreetings>(navController)
@@ -101,34 +102,36 @@ class StaffVoucherJourney {
         )
 
         //Voucher Fragment
-        runVouchersListFragment<VoucherFragmentHorizon>(navController, STAFF_POS)
+        runVouchersListFragment<VoucherFragmentHorizon>(
+            navController,
+            Constants.DISABLED_POS
+        )
         verify(navController).navigate(
             VoucherFragmentHorizonDirections
-                .actionFragmentVouchersHorisonToFragmentPlateRegistrationHorizon(staffVoucher!!)
+                .actionFragmentVouchersHorisonToFragmentPlateRegistrationHorizon(disabledVoucher!!)
         )
 
         //Plate Registration Fragment
         runPlateRegFragment<PlateRegistrationHorizonFragment>(
-            voucher = staffVoucher!!,
+            voucher = disabledVoucher!!,
             navController = navController,
             plate = NUMBER_PLATE
         )
         verify(navController).navigate(
             PlateRegistrationHorizonFragmentDirections
-                .actionFragmentPlateRegistrationHorizonToFragmentHorizonHotel(
-                    voucher = staffVoucher!!, plateNumber = NUMBER_PLATE
+                .actionFragmentPlateRegistrationHorizonToFragmentEntryTimeHorizon(
+                    voucher = disabledVoucher!!, plateNumber = NUMBER_PLATE
                 )
         )
 
         //Date To Fragment
-        runHotelFragment<HotelHorizonFragment>(
-            navController, staffVoucher!!, NUMBER_PLATE)
+        runDateFrom<EntryTimeHorizonFragment>(navController, disabledVoucher!!, NUMBER_PLATE)
         verify(navController).navigate(
-            HotelHorizonFragmentDirections
-                .actionFragmentHorizonHotelToFragmentHorizonValidation(
+            EntryTimeHorizonFragmentDirections
+                .actionFragmentEntryTimeHorizonToFragmentHorizonValidation(
                     dateFrom = prefs?.date_from.toString(),
                     dateTo = prefs?.chosenDate.toString(),
-                    voucher = staffVoucher!!,
+                    voucher = disabledVoucher!!,
                     plateNumber = NUMBER_PLATE
                 )
         )
@@ -136,7 +139,7 @@ class StaffVoucherJourney {
         //Validate Plate Fragment
         runValidation<ValidationResultsHorizonFragment>(
             navController = navController,
-            voucher = staffVoucher!!,
+            voucher = disabledVoucher!!,
             plate = NUMBER_PLATE,
             prefs = prefs!!
         )
@@ -147,49 +150,50 @@ class StaffVoucherJourney {
     }
 
 
+    /**
+     * Run Navigation Test for success vouchers on C2C UI
+     *
+     * Result will be success only if a whole journey is complete
+     */
     @Test
-    fun voucherStaffC2c(){
-        runBlocking {
-            staffVoucher = dbRepository.getVoucher(Constants.STAFF_VOUCHER_NAME)
-            assert(staffVoucher != null)
-        }
+    fun voucherDisabledC2cTest() {
+        runBlocking { disabledVoucher = dbRepository.getVoucher(Constants.DISABLED_VOUCHER_NAME)}
+        assert(disabledVoucher != null)
 
         //Greetings Fragment
         prefs = runGreetingsFrag<GreetingsC2cFragment>(navController)
         verify(navController).navigate(
-            GreetingsC2cFragmentDirections
-                .actionFragmentGreetingsC2cToFragmentVouchersC2c()
+            GreetingsC2cFragmentDirections.actionFragmentGreetingsC2cToFragmentVouchersC2c()
         )
 
         //Voucher Fragment
-        runVouchersListFragment<VoucherC2cFragment>(navController, STAFF_POS)
+        runVouchersListFragment<VoucherC2cFragment>(navController, Constants.DISABLED_POS)
         verify(navController).navigate(
             VoucherC2cFragmentDirections
-                .actionFragmentVouchersC2cToFragmentPlateRegistrationC2c(staffVoucher!!)
+                .actionFragmentVouchersC2cToFragmentPlateRegistrationC2c(disabledVoucher!!)
         )
 
         //Plate Registration Fragment
         runPlateRegFragment<PlateRegistrationC2cFragment>(
-            voucher = staffVoucher!!,
+            voucher = disabledVoucher!!,
             navController = navController,
             plate = NUMBER_PLATE
         )
         verify(navController).navigate(
             PlateRegistrationC2cFragmentDirections
-                .actionFragmentPlateRegistrationC2cToFragmentHotelC2c(
-                    voucher = staffVoucher!!, plateNumber = NUMBER_PLATE
+                .actionFragmentPlateRegistrationC2cToFragmentDateFromC2c(
+                    voucher = disabledVoucher!!, plateNumber = NUMBER_PLATE
                 )
         )
 
         //Date To Fragment
-        runHotelFragment<HotelC2cFragment>(
-            navController, staffVoucher!!, NUMBER_PLATE)
+        runDateFrom<EntryTimeC2cFragment>(navController, disabledVoucher!!, NUMBER_PLATE)
         verify(navController).navigate(
-            HotelC2cFragmentDirections
-                .actionFragmentHotelC2cToFragmentValidationComplete(
+            EntryTimeC2cFragmentDirections
+                .actionFragmentDateFromC2cToFragmentValidationComplete(
                     dateFrom = prefs?.date_from.toString(),
                     dateTo = prefs?.chosenDate.toString(),
-                    voucher = staffVoucher!!,
+                    voucher = disabledVoucher!!,
                     plateNumber = NUMBER_PLATE
                 )
         )
@@ -197,7 +201,7 @@ class StaffVoucherJourney {
         //Validate Plate Fragment
         runValidation<ValidationResultsC2cFragment>(
             navController = navController,
-            voucher = staffVoucher!!,
+            voucher = disabledVoucher!!,
             plate = NUMBER_PLATE,
             prefs = prefs!!
         )
@@ -207,49 +211,50 @@ class StaffVoucherJourney {
         )
     }
 
+    /**
+     * Run Navigation Test for success vouchers on C2C UI
+     *
+     * Result will be success only if a whole journey is complete
+     */
     @Test
-    fun voucherStaffGa(){
-        runBlocking {
-            staffVoucher = dbRepository.getVoucher(Constants.STAFF_VOUCHER_NAME)
-            assert(staffVoucher != null)
-        }
+    fun voucherDisabledGaTest() {
+        runBlocking { disabledVoucher = dbRepository.getVoucher(Constants.DISABLED_VOUCHER_NAME)}
+        assert(disabledVoucher != null)
 
         //Greetings Fragment
         prefs = runGreetingsFrag<GreetingsGaFragment>(navController)
         verify(navController).navigate(
-            GreetingsGaFragmentDirections
-                .actionFragmentGreetingsGaToFragmentVouchersGa()
+            GreetingsGaFragmentDirections.actionFragmentGreetingsGaToFragmentVouchersGa()
         )
 
         //Voucher Fragment
-        runVouchersListFragment<VoucherGaFragment>(navController, STAFF_POS)
+        runVouchersListFragment<VoucherGaFragment>(navController, Constants.DISABLED_POS)
         verify(navController).navigate(
             VoucherGaFragmentDirections
-                .actionFragmentVouchersGaToFragmentPlateRegistrationGa(staffVoucher!!)
+                .actionFragmentVouchersGaToFragmentPlateRegistrationGa(disabledVoucher!!)
         )
 
         //Plate Registration Fragment
         runPlateRegFragment<PlateRegistrationGaFragment>(
-            voucher = staffVoucher!!,
+            voucher = disabledVoucher!!,
             navController = navController,
             plate = NUMBER_PLATE
         )
         verify(navController).navigate(
             PlateRegistrationGaFragmentDirections
-                .actionFragmentPlateRegistrationGaToFragmentHotelGa(
-                    voucher = staffVoucher!!, plateNumber = NUMBER_PLATE
+                .actionFragmentPlateRegistrationGaToFragmentDateFromGa(
+                    voucher = disabledVoucher!!, plateNumber = NUMBER_PLATE
                 )
         )
 
         //Date To Fragment
-        runHotelFragment<HotelGaFragment>(
-            navController, staffVoucher!!, NUMBER_PLATE)
+        runDateFrom<EnterTimeGaFragment>(navController, disabledVoucher!!, NUMBER_PLATE)
         verify(navController).navigate(
-            HotelGaFragmentDirections
-                .actionFragmentHotelGaToFragmentValidationGa(
+            EnterTimeGaFragmentDirections
+                .actionFragmentDateFromGaToFragmentValidationGa(
                     dateFrom = prefs?.date_from.toString(),
                     dateTo = prefs?.chosenDate.toString(),
-                    voucher = staffVoucher!!,
+                    voucher = disabledVoucher!!,
                     plateNumber = NUMBER_PLATE
                 )
         )
@@ -257,7 +262,7 @@ class StaffVoucherJourney {
         //Validate Plate Fragment
         runValidation<ValidationResultsGaFragment>(
             navController = navController,
-            voucher = staffVoucher!!,
+            voucher = disabledVoucher!!,
             plate = NUMBER_PLATE,
             prefs = prefs!!
         )

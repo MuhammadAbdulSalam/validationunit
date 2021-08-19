@@ -45,12 +45,11 @@ import javax.inject.Inject
 class AcademyUserJourney {
 
     @Inject lateinit var dbRepository       : DBRepository
-
     @get:Rule var hiltRule                  = HiltAndroidRule(this)
-    var prefs: Prefs?                       = null
-    private val NUMBER_PLATE                = "ABC123"
+    private var prefs                       = null as Prefs?
+    private var academyVoucher              = null as Voucher?
     private val navController               = mock(NavController::class.java)
-    var academyVoucher: Voucher?            = null
+    private val NUMBER_PLATE                = "ABC123"
 
     /**
      * setup hilt rule inject

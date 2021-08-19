@@ -11,6 +11,7 @@ package com.sagoss.validationtesting.testsuite
 
 import com.sagoss.validationtesting.tests.ui.dbconfig.AcademyUserJourney
 import com.sagoss.validationtesting.tests.ui.dbconfig.ContractorVoucherJourney
+import com.sagoss.validationtesting.tests.ui.dbconfig.DisabledVoucherJourney
 import com.sagoss.validationtesting.tests.ui.dbconfig.StaffVoucherJourney
 import org.junit.runner.RunWith
 import org.junit.runners.Suite
@@ -20,5 +21,6 @@ import org.junit.runners.Suite
 @Suite.SuiteClasses(
     AcademyUserJourney::class,
     StaffVoucherJourney::class,
-    ContractorVoucherJourney::class)
+    ContractorVoucherJourney::class,
+    DisabledVoucherJourney::class)
 class VoucherJourneySuite

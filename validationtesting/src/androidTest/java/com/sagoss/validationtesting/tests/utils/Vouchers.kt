@@ -12,6 +12,7 @@ package com.sagoss.validationtesting.tests.utils
 import com.sagoss.validationtesting.api.models.config.DateToFixed
 import com.sagoss.validationtesting.database.models.Voucher
 import com.sagoss.validationtesting.tests.utils.Constants.CONTRACTOR_VOUCHER_NAME
+import com.sagoss.validationtesting.tests.utils.Constants.DISABLED_VOUCHER_NAME
 
 object Vouchers {
 
@@ -102,7 +103,7 @@ object Vouchers {
      */
     fun disabledVoucher(): Voucher {
         return Voucher(
-            voucherName = "Disabled",
+            voucherName = DISABLED_VOUCHER_NAME,
             voucherId = 3,
             voucherServerID = 0,
             key = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ2b3VjaGVyX2lkIjowLCJ2b3VjaGVyX3NlcnZ" +
@@ -110,7 +111,7 @@ object Vouchers {
                     "Zlcl9pZCI6IjEiLCJwYXltZW50X3R5cGUiOjEwLCJkZXZpY2VfaWQiOiI1NjA0IiwiZGV2aWNlX" +
                     "3NlcnZlcl9pZCI6IjEiLCJpYXQiOjE2MjkyODAyMTcsImV4cCI6MTk0NDgxMzAxN30.y37iDL_1D" +
                     "FA8EfJ39VSCkz5sraIBBeSS8vVqMi8GreY",
-            dateFrom = false,
+            dateFrom = true,
             dateTo = true,
             dateToUnit = null,
             dateToLimit = 0,

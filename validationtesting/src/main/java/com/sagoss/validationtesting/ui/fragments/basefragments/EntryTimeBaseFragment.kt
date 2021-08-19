@@ -94,6 +94,7 @@ abstract class EntryTimeBaseFragment<VBinding : ViewBinding> : Fragment() {
                     val dateTo = HelperUtil.getDateTo(
                         dateFixed?.unit!!,
                         prefs.date_from.toString())
+                    prefs.chosenDate = dateTo
                     findNavController().navigate(enterValidationFrag(
                         dateTo,
                         prefs.date_from.toString()))
@@ -105,6 +106,7 @@ abstract class EntryTimeBaseFragment<VBinding : ViewBinding> : Fragment() {
             }
         }
         else {
+            prefs.chosenDate = ""
             findNavController().navigate(enterValidationFrag("", prefs.date_from.toString()))
         }
     }
