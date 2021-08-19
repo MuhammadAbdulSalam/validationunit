@@ -18,11 +18,13 @@ import com.sagoss.validationtesting.ui.fragments.companyviews.greateranglia.*
 import com.sagoss.validationtesting.ui.fragments.companyviews.horizon.*
 import com.sagoss.validationtesting.tests.utils.Constants
 import com.sagoss.validationtesting.tests.utils.Constants.ACADEMY_USER_POS
+import com.sagoss.validationtesting.tests.utils.TestHelper
 import com.sagoss.validationtesting.tests.utils.TestHelper.runDateToFragment
 import com.sagoss.validationtesting.tests.utils.TestHelper.runGreetingsFrag
 import com.sagoss.validationtesting.tests.utils.TestHelper.runPlateRegFragment
 import com.sagoss.validationtesting.tests.utils.TestHelper.runValidation
 import com.sagoss.validationtesting.tests.utils.TestHelper.runVouchersListFragment
+import com.sagoss.validationtesting.tests.utils.TestHelper.updateDb
 import com.sagoss.validationtesting.tests.utils.Vouchers
 import com.sagoss.validationtesting.utils.Prefs
 import dagger.hilt.android.testing.HiltAndroidRule
@@ -65,24 +67,7 @@ class AcademyUserJourney {
      */
     @Test
     fun aDatabaseVouchers() {
-        var success = true
-        try {
-            runBlocking { dbRepository.deleteAllVouchers() }
-            runBlocking {
-                dbRepository.insertAllVouchers(
-                    listOf(
-                        Vouchers.academyUserVoucher(),
-                        Vouchers.contractorVoucher(),
-                        Vouchers.staffVoucher(),
-                        Vouchers.disabledVoucher()
-                    )
-                )
-            }
-        } catch (e: Exception) {
-            success = false
-            e.printStackTrace()
-        }
-        assert(success)
+        assert(updateDb(dbRepository))
     }
 
     /**

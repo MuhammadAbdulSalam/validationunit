@@ -20,6 +20,7 @@ import com.sagoss.validationtesting.tests.utils.TestHelper.runGreetingsFrag
 import com.sagoss.validationtesting.tests.utils.TestHelper.runPlateRegFragment
 import com.sagoss.validationtesting.tests.utils.TestHelper.runValidation
 import com.sagoss.validationtesting.tests.utils.TestHelper.runVouchersListFragment
+import com.sagoss.validationtesting.tests.utils.TestHelper.updateDb
 import com.sagoss.validationtesting.tests.utils.Vouchers
 import com.sagoss.validationtesting.ui.fragments.companyviews.c2c.*
 import com.sagoss.validationtesting.ui.fragments.companyviews.greateranglia.*
@@ -66,26 +67,8 @@ class ContractorVoucherJourney {
      */
     @Test
     fun aDatabaseVouchers() {
-        var success = true
-        try {
-            runBlocking { dbRepository.deleteAllVouchers() }
-            runBlocking {
-                dbRepository.insertAllVouchers(
-                    listOf(
-                        Vouchers.academyUserVoucher(),
-                        Vouchers.contractorVoucher(),
-                        Vouchers.staffVoucher(),
-                        Vouchers.disabledVoucher()
-                    )
-                )
-            }
-        } catch (e: Exception) {
-            success = false
-            e.printStackTrace()
-        }
-        assert(success)
+      assert(updateDb(dbRepository))
     }
-
 
     @Test
     fun contractorVoucherHorizon(){

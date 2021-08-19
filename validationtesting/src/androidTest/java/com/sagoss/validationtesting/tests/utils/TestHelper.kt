@@ -20,9 +20,11 @@ import androidx.test.espresso.contrib.RecyclerViewActions
 import androidx.test.espresso.matcher.ViewMatchers
 import com.sagoss.validationtesting.R
 import com.sagoss.validationtesting.database.models.Voucher
+import com.sagoss.validationtesting.database.repository.DBRepository
 import com.sagoss.validationtesting.runner.launchFragmentInHiltContainer
 import com.sagoss.validationtesting.ui.recycleradapter.VoucherRecyclerAdapter
 import com.sagoss.validationtesting.utils.Prefs
+import kotlinx.coroutines.runBlocking
 
 object TestHelper {
 
@@ -53,6 +55,26 @@ object TestHelper {
         val plateRegArgs = Bundle()
         plateRegArgs.putSerializable(Constants.VOUCHER_ARG, voucher)
         return plateRegArgs
+    }
+
+    fun updateDb(dbRepository: DBRepository): Boolean{
+        try {
+            runBlocking { dbRepository.deleteAllVouchers() }
+            runBlocking {
+                dbRepository.insertAllVouchers(
+                    listOf(
+                        Vouchers.academyUserVoucher(),
+                        Vouchers.contractorVoucher(),
+                        Vouchers.staffVoucher(),
+                        Vouchers.disabledVoucher()
+                    )
+                )
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+            return false
+        }
+        return true
     }
 
 
