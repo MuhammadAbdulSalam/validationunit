@@ -41,6 +41,8 @@
         <entry key="validationtesting/src/main/res/layout/fragment_horizon_entry_time.xml" value="0.39316502463054187" />
         <entry key="validationtesting/src/main/res/layout/fragment_horizon_hotel.xml" value="0.3392857142857143" />
         <entry key="validationtesting/src/main/res/layout/fragment_horizon_plate_registration.xml" value="0.40548029556650245" />
+        <entry key="validationtesting/src/main/res/layout/fragment_login_checker.xml" value="0.3910098522167488" />
+        <entry key="validationtesting/src/main/res/layout/fragment_login_registration.xml" value="0.20581484315225707" />
       </map>
     </option>
   </component>

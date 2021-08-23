@@ -16,7 +16,7 @@ import com.sagoss.validationtesting.tests.ui.dbconfig.StaffVoucherJourney
 import org.junit.runner.RunWith
 import org.junit.runners.Suite
 
-// Runs all unit tests.
+// Runs all tests.
 @RunWith(Suite::class)
 @Suite.SuiteClasses(
     AcademyUserJourney::class,

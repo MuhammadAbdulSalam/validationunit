@@ -26,4 +26,10 @@ object Constants {
     const val DATE_TO_ARG                           = "date_to"
     const val DATE_FROM_ARG                         = "date_from"
 
+    const val HORIZON_USERNAME                   = "validation.register"
+    const val HORIZON_PASSWORD                   = "valr3g02!"
+    const val C2C_USERNAME                          = "register.c2c"
+    const val C2C_PASSWORD                          = "password1!"
+    const val GA_USERNAME                           = "ga.val.register"
+    const val GA_PASSWORD                           = "password1!"
 }

@@ -37,7 +37,6 @@
                     android:id="@+id/registrationUsernameEditText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="validation.regi22ster"
                     android:inputType="text"/>
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -52,7 +51,6 @@
                     android:id="@+id/registrationPasswordEditText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="valr3g02!"
                     android:inputType="textPassword" />
             </com.google.android.material.textfield.TextInputLayout>
 

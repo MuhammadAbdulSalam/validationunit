@@ -9,7 +9,13 @@
 
 package com.sagoss.validationtesting.tests.utils
 
+import android.content.Context
+import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
+import android.view.View
+import android.widget.ImageView
+import androidx.annotation.DrawableRes
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.test.espresso.Espresso
@@ -25,6 +31,9 @@ import com.sagoss.validationtesting.runner.launchFragmentInHiltContainer
 import com.sagoss.validationtesting.ui.recycleradapter.VoucherRecyclerAdapter
 import com.sagoss.validationtesting.utils.Prefs
 import kotlinx.coroutines.runBlocking
+import org.hamcrest.Description
+import org.hamcrest.Matcher
+import org.hamcrest.TypeSafeMatcher
 
 object TestHelper {
 
@@ -78,6 +87,16 @@ object TestHelper {
     }
 
 
+    /**
+     * Generic function to run Fragments with 0 params for All UI clients
+     */
+    inline fun <reified T : Fragment> runFragment(navController: NavController): Context? {
+        var context: Context? = null
+        launchFragmentInHiltContainer<T>(
+            navHostController = navController
+        ) { context = this.requireContext() }
+        return context
+    }
 
     /**
      * Generic function to run Greetings Fragments for All UI clients
