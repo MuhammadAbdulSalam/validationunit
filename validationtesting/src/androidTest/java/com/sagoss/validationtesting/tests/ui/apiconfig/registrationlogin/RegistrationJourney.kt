@@ -11,20 +11,15 @@ package com.sagoss.validationtesting.tests.ui.apiconfig.registrationlogin
 
 import android.content.Context
 import androidx.navigation.NavController
-import androidx.test.espresso.Espresso.onView
-import androidx.test.espresso.action.TypeTextAction
-import androidx.test.espresso.action.ViewActions.click
-import androidx.test.espresso.action.ViewActions.closeSoftKeyboard
-import androidx.test.espresso.matcher.ViewMatchers.withId
+import androidx.test.core.app.ApplicationProvider
 import androidx.test.filters.MediumTest
-import com.sagoss.validationtesting.R
-import com.sagoss.validationtesting.database.repository.DBRepository
 import com.sagoss.validationtesting.tests.utils.Constants.C2C_PASSWORD
 import com.sagoss.validationtesting.tests.utils.Constants.C2C_USERNAME
 import com.sagoss.validationtesting.tests.utils.Constants.GA_PASSWORD
 import com.sagoss.validationtesting.tests.utils.Constants.GA_USERNAME
 import com.sagoss.validationtesting.tests.utils.Constants.HORIZON_PASSWORD
 import com.sagoss.validationtesting.tests.utils.Constants.HORIZON_USERNAME
+import com.sagoss.validationtesting.tests.utils.TestHelper.registrationTest
 import com.sagoss.validationtesting.tests.utils.TestHelper.runFragment
 import com.sagoss.validationtesting.tests.utils.TestHelper.runGreetingsFrag
 import com.sagoss.validationtesting.ui.fragments.companyviews.c2c.GreetingsC2cFragment
@@ -34,11 +29,11 @@ import com.sagoss.validationtesting.ui.fragments.companyviews.greateranglia.NoCo
 import com.sagoss.validationtesting.ui.fragments.companyviews.horizon.GreetingsHorizonFragmentGreetings
 import com.sagoss.validationtesting.ui.fragments.loginviews.LoginCheckerFragment
 import com.sagoss.validationtesting.ui.fragments.loginviews.LoginCheckerFragmentDirections
-import com.sagoss.validationtesting.ui.fragments.loginviews.LoginRegistrationFragment
 import com.sagoss.validationtesting.utils.HelperUtil
 import com.sagoss.validationtesting.utils.Prefs
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
+import dagger.hilt.android.testing.HiltTestApplication
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.junit.Before
 import org.junit.FixMethodOrder
@@ -46,7 +41,6 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.runners.MethodSorters
 import org.mockito.Mockito
-import javax.inject.Inject
 
 @MediumTest
 @HiltAndroidTest
@@ -54,13 +48,12 @@ import javax.inject.Inject
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 class RegistrationJourney {
 
-    @Inject lateinit var dbRepository       : DBRepository
     @get:Rule var hiltRule                  = HiltAndroidRule(this)
     private var prefs                       = null as Prefs?
     private val navController               = Mockito.mock(NavController::class.java)
-    private var requireContext              = null as Context?
     private var networkConnected            = false
-
+    private val requireContext              = ApplicationProvider
+                                                .getApplicationContext<HiltTestApplication>()
     /**
      * setup hilt rule inject
      */
@@ -69,9 +62,13 @@ class RegistrationJourney {
         hiltRule.inject()
     }
 
+    /**
+     * Clear data from preferences to delete previous registration
+     *
+     * check if networks is connected
+     */
     @Test
     fun a_resetRegistrationData(){
-        requireContext = runFragment<LoginCheckerFragment>(navController = navController)
         prefs = Prefs(requireContext!!)
         prefs?.accessToken = ""
         prefs?.companyId= "default"
@@ -82,30 +79,33 @@ class RegistrationJourney {
     }
 
     /**
+     * Start Login checker and enter Horizon username password
      *
+     * Once registration is success Move back to login checker
+     * Test if no config or Greetings Screen directions work fine
      */
     @Test
     fun registrationHorizonTest() {
-        assert(networkConnected)
 
-        registrationTest(HORIZON_USERNAME, HORIZON_PASSWORD)
+        registrationTest(HORIZON_USERNAME, HORIZON_PASSWORD, navController)
         runFragment<LoginCheckerFragment>(navController = navController)
+        prefs = Prefs(requireContext!!)
         Thread.sleep(1000)
         if(!prefs?.config!!)
         {
             Thread.sleep(1000)
             Mockito.verify(navController).navigate(
-                LoginCheckerFragmentDirections
-                    .actionFragmentLoginCheckerToFragmentNoConfigHorizon())
+                LoginCheckerFragmentDirections.actionFragmentLoginCheckerToFragmentNoConfigHorizon()
+            )
         }
         else
         {
             Thread.sleep(1000)
             Mockito.verify(navController).navigate(
-                LoginCheckerFragmentDirections
-                    .actionFragmentLoginCheckerToFragmentGreetingsHorizon())
+                LoginCheckerFragmentDirections.actionFragmentLoginCheckerToFragmentGreetingsHorizon()
+            )
             runGreetingsFrag<GreetingsHorizonFragmentGreetings>(navController = navController)
-            Thread.sleep(2000)
+            Thread.sleep(500)
         }
 
         prefs?.accessToken = ""
@@ -114,19 +114,25 @@ class RegistrationJourney {
 
     }
 
+    /**
+     * Start Login checker and enter C2c username password
+     *
+     * Once registration is success Move back to login checker
+     * Test if no config or Greetings Screen directions work fine
+     */
     @Test
     fun registrationC2CTest() {
-        assert(networkConnected)
 
-        registrationTest(C2C_USERNAME,C2C_PASSWORD)
+        registrationTest(C2C_USERNAME,C2C_PASSWORD, navController)
         runFragment<LoginCheckerFragment>(navController = navController)
+        prefs = Prefs(requireContext!!)
         Thread.sleep(1000)
         if(!prefs?.config!!)
         {
             Thread.sleep(1000)
             Mockito.verify(navController).navigate(
-                LoginCheckerFragmentDirections
-                    .actionFragmentLoginCheckerToFragmentNoConfigC2c())
+                LoginCheckerFragmentDirections.actionFragmentLoginCheckerToFragmentNoConfigC2c()
+            )
             runFragment<NoConfigC2cFragment>(navController = navController)
             Thread.sleep(1000)
         }
@@ -134,77 +140,51 @@ class RegistrationJourney {
         {
             Thread.sleep(1000)
             Mockito.verify(navController).navigate(
-                LoginCheckerFragmentDirections
-                    .actionFragmentLoginCheckerToFragmentGreetingsC2c())
+                LoginCheckerFragmentDirections.actionFragmentLoginCheckerToFragmentGreetingsC2c()
+            )
             runGreetingsFrag<GreetingsC2cFragment>(navController = navController)
-            Thread.sleep(2000)
+            Thread.sleep(500)
         }
         prefs?.accessToken = ""
         prefs?.companyId= "default"
         prefs?.config = false
     }
 
+    /**
+     * Start Login checker and enter Ga username password
+     *
+     * Once registration is success Move back to login checker
+     * Test if no config or Greetings Screen directions work fine
+     */
     @Test
     fun registrationGaTest() {
-        assert(networkConnected)
 
-        registrationTest(GA_USERNAME, GA_PASSWORD )
+        registrationTest(GA_USERNAME, GA_PASSWORD, navController )
         runFragment<LoginCheckerFragment>(navController = navController)
+        prefs = Prefs(requireContext!!)
         Thread.sleep(1000)
         if(!prefs?.config!!)
         {
-            Thread.sleep(2000)
+            Thread.sleep(1000)
             Mockito.verify(navController).navigate(
-                LoginCheckerFragmentDirections
-                    .actionFragmentLoginCheckerToFragmentNoConfigGa())
+                LoginCheckerFragmentDirections.actionFragmentLoginCheckerToFragmentNoConfigGa()
+            )
             runFragment<NoConfigGaFragment>(navController = navController)
             Thread.sleep(2000)
         }
         else
         {
-            Thread.sleep(2000)
+            Thread.sleep(1000)
             Mockito.verify(navController).navigate(
-                LoginCheckerFragmentDirections
-                    .actionFragmentLoginCheckerToFragmentGreetingsGa())
+                LoginCheckerFragmentDirections.actionFragmentLoginCheckerToFragmentGreetingsGa()
+            )
             runGreetingsFrag<GreetingsGaFragment>(navController = navController)
-            Thread.sleep(2000)
+            Thread.sleep(500)
         }
 
         prefs?.accessToken = ""
         prefs?.companyId= "default"
         prefs?.config = false
-    }
-
-    private fun registrationTest(username: String, password: String) {
-        requireContext = runFragment<LoginCheckerFragment>(navController = navController)
-        Thread.sleep(1000)
-
-        prefs = Prefs(requireContext!!)
-        Mockito.verify(navController).navigate(
-            LoginCheckerFragmentDirections
-                .actionLoginCheckerToFragmentRegistration()
-        )
-
-        prefs?.accessToken = ""
-        prefs?.companyId= "default"
-        prefs?.config = false
-
-        runFragment<LoginRegistrationFragment>(navController = navController)
-        onView(withId(R.id.registrationUsernameEditText))
-            .perform(TypeTextAction(username))
-            .perform(closeSoftKeyboard())
-        Thread.sleep(250)
-
-        onView(withId(R.id.registrationPasswordEditText))
-            .perform(TypeTextAction(password))
-            .perform(closeSoftKeyboard())
-        Thread.sleep(250)
-
-        onView(withId(R.id.registerButton)).perform(click())
-        Thread.sleep(4000)
-        val registered = prefs?.accessToken.toString().isNotEmpty()
-
-        assert(registered)
     }
 
 }

@@ -51,7 +51,7 @@ class StaffVoucherJourney {
     private var prefs                       = null as Prefs?
     private var staffVoucher                = null as Voucher?
     private val navController               = Mockito.mock(NavController::class.java)
-    private val NUMBER_PLATE                = "ABC123"
+    private val numberPlate                 = "ABC123"
 
     /**
      * setup hilt rule inject
@@ -96,25 +96,25 @@ class StaffVoucherJourney {
         runPlateRegFragment<PlateRegistrationHorizonFragment>(
             voucher = staffVoucher!!,
             navController = navController,
-            plate = NUMBER_PLATE
+            plate = numberPlate
         )
         verify(navController).navigate(
             PlateRegistrationHorizonFragmentDirections
                 .actionFragmentPlateRegistrationHorizonToFragmentHorizonHotel(
-                    voucher = staffVoucher!!, plateNumber = NUMBER_PLATE
+                    voucher = staffVoucher!!, plateNumber = numberPlate
                 )
         )
 
         //Date To Fragment
         runHotelFragment<HotelHorizonFragment>(
-            navController, staffVoucher!!, NUMBER_PLATE)
+            navController, staffVoucher!!, numberPlate)
         verify(navController).navigate(
             HotelHorizonFragmentDirections
                 .actionFragmentHorizonHotelToFragmentHorizonValidation(
                     dateFrom = prefs?.date_from.toString(),
                     dateTo = prefs?.chosenDate.toString(),
                     voucher = staffVoucher!!,
-                    plateNumber = NUMBER_PLATE
+                    plateNumber = numberPlate
                 )
         )
 
@@ -122,7 +122,7 @@ class StaffVoucherJourney {
         runValidation<ValidationResultsHorizonFragment>(
             navController = navController,
             voucher = staffVoucher!!,
-            plate = NUMBER_PLATE,
+            plate = numberPlate,
             prefs = prefs!!
         )
         verify(navController).navigate(
@@ -157,25 +157,25 @@ class StaffVoucherJourney {
         runPlateRegFragment<PlateRegistrationC2cFragment>(
             voucher = staffVoucher!!,
             navController = navController,
-            plate = NUMBER_PLATE
+            plate = numberPlate
         )
         verify(navController).navigate(
             PlateRegistrationC2cFragmentDirections
                 .actionFragmentPlateRegistrationC2cToFragmentHotelC2c(
-                    voucher = staffVoucher!!, plateNumber = NUMBER_PLATE
+                    voucher = staffVoucher!!, plateNumber = numberPlate
                 )
         )
 
         //Date To Fragment
         runHotelFragment<HotelC2cFragment>(
-            navController, staffVoucher!!, NUMBER_PLATE)
+            navController, staffVoucher!!, numberPlate)
         verify(navController).navigate(
             HotelC2cFragmentDirections
                 .actionFragmentHotelC2cToFragmentValidationComplete(
                     dateFrom = prefs?.date_from.toString(),
                     dateTo = prefs?.chosenDate.toString(),
                     voucher = staffVoucher!!,
-                    plateNumber = NUMBER_PLATE
+                    plateNumber = numberPlate
                 )
         )
 
@@ -183,7 +183,7 @@ class StaffVoucherJourney {
         runValidation<ValidationResultsC2cFragment>(
             navController = navController,
             voucher = staffVoucher!!,
-            plate = NUMBER_PLATE,
+            plate = numberPlate,
             prefs = prefs!!
         )
         verify(navController).navigate(
@@ -217,25 +217,25 @@ class StaffVoucherJourney {
         runPlateRegFragment<PlateRegistrationGaFragment>(
             voucher = staffVoucher!!,
             navController = navController,
-            plate = NUMBER_PLATE
+            plate = numberPlate
         )
         verify(navController).navigate(
             PlateRegistrationGaFragmentDirections
                 .actionFragmentPlateRegistrationGaToFragmentHotelGa(
-                    voucher = staffVoucher!!, plateNumber = NUMBER_PLATE
+                    voucher = staffVoucher!!, plateNumber = numberPlate
                 )
         )
 
         //Date To Fragment
         runHotelFragment<HotelGaFragment>(
-            navController, staffVoucher!!, NUMBER_PLATE)
+            navController, staffVoucher!!, numberPlate)
         verify(navController).navigate(
             HotelGaFragmentDirections
                 .actionFragmentHotelGaToFragmentValidationGa(
                     dateFrom = prefs?.date_from.toString(),
                     dateTo = prefs?.chosenDate.toString(),
                     voucher = staffVoucher!!,
-                    plateNumber = NUMBER_PLATE
+                    plateNumber = numberPlate
                 )
         )
 
@@ -243,7 +243,7 @@ class StaffVoucherJourney {
         runValidation<ValidationResultsGaFragment>(
             navController = navController,
             voucher = staffVoucher!!,
-            plate = NUMBER_PLATE,
+            plate = numberPlate,
             prefs = prefs!!
         )
         verify(navController).navigate(

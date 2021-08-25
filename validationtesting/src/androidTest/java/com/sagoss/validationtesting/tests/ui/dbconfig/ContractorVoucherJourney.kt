@@ -9,19 +9,16 @@
 
 package com.sagoss.validationtesting.tests.ui.dbconfig
 
-import android.util.Log
 import androidx.navigation.NavController
 import androidx.test.filters.MediumTest
 import com.sagoss.validationtesting.database.models.Voucher
 import com.sagoss.validationtesting.database.repository.DBRepository
 import com.sagoss.validationtesting.tests.utils.Constants
-import com.sagoss.validationtesting.tests.utils.TestHelper
 import com.sagoss.validationtesting.tests.utils.TestHelper.runGreetingsFrag
 import com.sagoss.validationtesting.tests.utils.TestHelper.runPlateRegFragment
 import com.sagoss.validationtesting.tests.utils.TestHelper.runValidation
 import com.sagoss.validationtesting.tests.utils.TestHelper.runVouchersListFragment
 import com.sagoss.validationtesting.tests.utils.TestHelper.updateDb
-import com.sagoss.validationtesting.tests.utils.Vouchers
 import com.sagoss.validationtesting.ui.fragments.companyviews.c2c.*
 import com.sagoss.validationtesting.ui.fragments.companyviews.greateranglia.*
 import com.sagoss.validationtesting.ui.fragments.companyviews.horizon.*
@@ -51,7 +48,7 @@ class ContractorVoucherJourney {
     private var prefs                       = null as Prefs?
     private var contractorVoucher           = null as Voucher?
     private val navController               = Mockito.mock(NavController::class.java)
-    private val NUMBER_PLATE                = "ABC123"
+    private val numberPlate                 = "ABC123"
 
     /**
      * setup hilt rule inject
@@ -98,13 +95,13 @@ class ContractorVoucherJourney {
         runPlateRegFragment<PlateRegistrationHorizonFragment>(
             voucher = contractorVoucher!!,
             navController = navController,
-            plate = NUMBER_PLATE
+            plate = numberPlate
         )
         verify(navController).navigate(
             PlateRegistrationHorizonFragmentDirections
                 .actionFragmentPlateRegistrationHorizonToFragmentHorizonValidation(
                     voucher = contractorVoucher!!,
-                    plateNumber = NUMBER_PLATE,
+                    plateNumber = numberPlate,
                     dateTo = prefs?.chosenDate.toString(),
                     dateFrom = prefs?.date_from.toString()
                 )
@@ -114,7 +111,7 @@ class ContractorVoucherJourney {
         runValidation<ValidationResultsHorizonFragment>(
             navController = navController,
             voucher = contractorVoucher!!,
-            plate = NUMBER_PLATE,
+            plate = numberPlate,
             prefs = prefs!!
         )
         verify(navController).navigate(
@@ -151,13 +148,13 @@ class ContractorVoucherJourney {
         runPlateRegFragment<PlateRegistrationC2cFragment>(
             voucher = contractorVoucher!!,
             navController = navController,
-            plate = NUMBER_PLATE
+            plate = numberPlate
         )
         verify(navController).navigate(
             PlateRegistrationC2cFragmentDirections
                 .actionFragmentPlateRegistrationC2cToFragmentValidationComplete(
                     voucher = contractorVoucher!!,
-                    plateNumber = NUMBER_PLATE,
+                    plateNumber = numberPlate,
                     dateTo = prefs?.chosenDate.toString(),
                     dateFrom = prefs?.date_from.toString()
                 )
@@ -167,7 +164,7 @@ class ContractorVoucherJourney {
         runValidation<ValidationResultsC2cFragment>(
             navController = navController,
             voucher = contractorVoucher!!,
-            plate = NUMBER_PLATE,
+            plate = numberPlate,
             prefs = prefs!!
         )
         verify(navController).navigate(
@@ -205,13 +202,13 @@ class ContractorVoucherJourney {
         runPlateRegFragment<PlateRegistrationGaFragment>(
             voucher = contractorVoucher!!,
             navController = navController,
-            plate = NUMBER_PLATE
+            plate = numberPlate
         )
         verify(navController).navigate(
             PlateRegistrationGaFragmentDirections
                 .actionFragmentPlateRegistrationGaToFragmentValidationGa(
                     voucher = contractorVoucher!!,
-                    plateNumber = NUMBER_PLATE,
+                    plateNumber = numberPlate,
                     dateTo = prefs?.chosenDate.toString(),
                     dateFrom = prefs?.date_from.toString()
                 )
@@ -221,7 +218,7 @@ class ContractorVoucherJourney {
         runValidation<ValidationResultsGaFragment>(
             navController = navController,
             voucher = contractorVoucher!!,
-            plate = NUMBER_PLATE,
+            plate = numberPlate,
             prefs = prefs!!
         )
         verify(navController).navigate(

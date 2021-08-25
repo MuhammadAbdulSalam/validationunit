@@ -11,6 +11,7 @@ package com.sagoss.validationhorizon.ui.fragments.companyviews.horizon
 
 import android.view.View
 import androidx.navigation.fragment.findNavController
+import com.sagoss.validationhorizon.database.models.Voucher
 import com.sagoss.validationhorizon.databinding.FragmentHorizonGreetingsBinding
 import com.sagoss.validationhorizon.ui.fragments.basefragments.GreetingsBaseFragment
 import dagger.hilt.android.AndroidEntryPoint
@@ -22,10 +23,20 @@ class GreetingsHorizonFragmentGreetings : GreetingsBaseFragment<FragmentHorizonG
     override fun tvGreetingsMsg()                = binding.tvWelcomeMsg
     override fun tvVersionInfo()                 = binding.tvAppVersion
 
-    override fun tvGreetingsMsgClickListener()   = View.OnClickListener {
-                                                    findNavController().navigate(
-                                                        GreetingsHorizonFragmentGreetingsDirections
-                                                            .actionFragmentGreetingsHorizonToFragmentVouchersHorizon())
-                                                    }
+    override fun tvGreetingsMsgClickListener(voucherToSend: Voucher?) = View.OnClickListener {
+        if(voucherToSend == null)
+        {
+            findNavController().navigate(
+                GreetingsHorizonFragmentGreetingsDirections
+                    .actionFragmentGreetingsHorizonToFragmentVouchersHorizon()
+            )
+        }
+        else
+        {
+            findNavController().navigate(
+                GreetingsHorizonFragmentGreetingsDirections
+                    .actionFragmentGreetingsHorizonToFragmentPlateRegistrationHorizon(voucherToSend))
+        }
+    }
 
 }

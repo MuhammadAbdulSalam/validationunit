@@ -29,7 +29,7 @@ object ThemeUtil {
             Constants.COMPANY_GREATER_ANGLIA -> LoginCheckerFragmentDirections
                 .actionFragmentLoginCheckerToFragmentNoConfigGa()
             Constants.COMPANY_C2C -> LoginCheckerFragmentDirections
-                .actionFragmentLoginCheckerToFragmentNoConfigHorizon()
+                .actionFragmentLoginCheckerToFragmentNoConfigC2c()
             else -> LoginCheckerFragmentDirections
                 .actionFragmentLoginCheckerToFragmentNoConfigHorizon()
 

@@ -13,19 +13,17 @@ import androidx.navigation.NavController
 import androidx.test.filters.MediumTest
 import com.sagoss.validationtesting.database.models.Voucher
 import com.sagoss.validationtesting.database.repository.DBRepository
-import com.sagoss.validationtesting.ui.fragments.companyviews.c2c.*
-import com.sagoss.validationtesting.ui.fragments.companyviews.greateranglia.*
-import com.sagoss.validationtesting.ui.fragments.companyviews.horizon.*
 import com.sagoss.validationtesting.tests.utils.Constants
 import com.sagoss.validationtesting.tests.utils.Constants.ACADEMY_USER_POS
-import com.sagoss.validationtesting.tests.utils.TestHelper
 import com.sagoss.validationtesting.tests.utils.TestHelper.runDateToFragment
 import com.sagoss.validationtesting.tests.utils.TestHelper.runGreetingsFrag
 import com.sagoss.validationtesting.tests.utils.TestHelper.runPlateRegFragment
 import com.sagoss.validationtesting.tests.utils.TestHelper.runValidation
 import com.sagoss.validationtesting.tests.utils.TestHelper.runVouchersListFragment
 import com.sagoss.validationtesting.tests.utils.TestHelper.updateDb
-import com.sagoss.validationtesting.tests.utils.Vouchers
+import com.sagoss.validationtesting.ui.fragments.companyviews.c2c.*
+import com.sagoss.validationtesting.ui.fragments.companyviews.greateranglia.*
+import com.sagoss.validationtesting.ui.fragments.companyviews.horizon.*
 import com.sagoss.validationtesting.utils.Prefs
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
@@ -51,7 +49,7 @@ class AcademyUserJourney {
     private var prefs                       = null as Prefs?
     private var academyVoucher              = null as Voucher?
     private val navController               = mock(NavController::class.java)
-    private val NUMBER_PLATE                = "ABC123"
+    private val numberPlate                 = "ABC123"
 
     /**
      * setup hilt rule inject
@@ -98,24 +96,24 @@ class AcademyUserJourney {
         runPlateRegFragment<PlateRegistrationHorizonFragment>(
             voucher = academyVoucher!!,
             navController = navController,
-            plate = NUMBER_PLATE
+            plate = numberPlate
         )
         verify(navController).navigate(
             PlateRegistrationHorizonFragmentDirections
                 .actionFragmentPlateRegistrationHorizonToFragmentEnterDateToHorizon(
-                    voucher = academyVoucher!!, plateNumber = NUMBER_PLATE
+                    voucher = academyVoucher!!, plateNumber = numberPlate
                 )
         )
 
         //Date To Fragment
-        runDateToFragment<EnterDateToHorizonFragment>(navController,academyVoucher!!, NUMBER_PLATE)
+        runDateToFragment<EnterDateToHorizonFragment>(navController,academyVoucher!!, numberPlate)
         verify(navController).navigate(
             EnterDateToHorizonFragmentDirections
                 .actionFragmentEnterDateToHorizonToFragmentHorizonValidation(
                     dateFrom = prefs?.date_from.toString(),
                     dateTo = prefs?.chosenDate.toString(),
                     voucher = academyVoucher!!,
-                    plateNumber = NUMBER_PLATE
+                    plateNumber = numberPlate
                 )
         )
 
@@ -123,7 +121,7 @@ class AcademyUserJourney {
        runValidation<ValidationResultsHorizonFragment>(
            navController =  navController,
            voucher = academyVoucher!!,
-           plate = NUMBER_PLATE,
+           plate = numberPlate,
            prefs = prefs!!)
         verify(navController).navigate(
             ValidationResultsHorizonFragmentDirections
@@ -156,23 +154,23 @@ class AcademyUserJourney {
         )
 
         //Plate Registration Fragment
-        runPlateRegFragment<PlateRegistrationC2cFragment>(academyVoucher!!, navController, NUMBER_PLATE)
+        runPlateRegFragment<PlateRegistrationC2cFragment>(academyVoucher!!, navController, numberPlate)
         verify(navController).navigate(
             PlateRegistrationC2cFragmentDirections
                 .actionFragmentPlateRegistrationC2cToFragmentDateToC2c(
-                    voucher = academyVoucher!!, plateNumber = NUMBER_PLATE
+                    voucher = academyVoucher!!, plateNumber = numberPlate
                 )
         )
 
         //Date To Fragment
-        runDateToFragment<EnterDateToC2cFragment>(navController,academyVoucher!!, NUMBER_PLATE)
+        runDateToFragment<EnterDateToC2cFragment>(navController,academyVoucher!!, numberPlate)
         verify(navController).navigate(
             EnterDateToC2cFragmentDirections
                 .actionFragmentDateToC2cToFragmentValidationComplete(
                     dateFrom = prefs?.date_from.toString(),
                     dateTo = prefs?.chosenDate.toString(),
                     voucher = academyVoucher!!,
-                    plateNumber = NUMBER_PLATE
+                    plateNumber = numberPlate
                 )
         )
 
@@ -180,7 +178,7 @@ class AcademyUserJourney {
         runValidation<ValidationResultsC2cFragment>(
             navController =  navController,
             voucher = academyVoucher!!,
-            plate = NUMBER_PLATE,
+            plate = numberPlate,
             prefs = prefs!!)
         verify(navController).navigate(
             ValidationResultsC2cFragmentDirections
@@ -213,23 +211,23 @@ class AcademyUserJourney {
         )
 
         //Plate Registration Fragment
-        runPlateRegFragment<PlateRegistrationGaFragment>(academyVoucher!!, navController, NUMBER_PLATE)
+        runPlateRegFragment<PlateRegistrationGaFragment>(academyVoucher!!, navController, numberPlate)
         verify(navController).navigate(
             PlateRegistrationGaFragmentDirections
                 .actionFragmentPlateRegistrationGaToFragmentDateToGa(
-                    voucher = academyVoucher!!, plateNumber = NUMBER_PLATE
+                    voucher = academyVoucher!!, plateNumber = numberPlate
                 )
         )
 
         //Date To Fragment
-        runDateToFragment<EnterDateToGaFragment>(navController,academyVoucher!!, NUMBER_PLATE)
+        runDateToFragment<EnterDateToGaFragment>(navController,academyVoucher!!, numberPlate)
         verify(navController).navigate(
             EnterDateToGaFragmentDirections
                 .actionFragmentDateToGaToFragmentValidationGa(
                     dateFrom = prefs?.date_from.toString(),
                     dateTo = prefs?.chosenDate.toString(),
                     voucher = academyVoucher!!,
-                    plateNumber = NUMBER_PLATE
+                    plateNumber = numberPlate
                 )
         )
 
@@ -237,7 +235,7 @@ class AcademyUserJourney {
         runValidation<ValidationResultsGaFragment>(
             navController =  navController,
             voucher = academyVoucher!!,
-            plate = NUMBER_PLATE,
+            plate = numberPlate,
             prefs = prefs!!)
         verify(navController).navigate(
             ValidationResultsGaFragmentDirections

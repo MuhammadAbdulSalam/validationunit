@@ -10,12 +10,7 @@
 package com.sagoss.validationtesting.tests.utils
 
 import android.content.Context
-import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
-import android.view.View
-import android.widget.ImageView
-import androidx.annotation.DrawableRes
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.test.espresso.Espresso
@@ -28,14 +23,20 @@ import com.sagoss.validationtesting.R
 import com.sagoss.validationtesting.database.models.Voucher
 import com.sagoss.validationtesting.database.repository.DBRepository
 import com.sagoss.validationtesting.runner.launchFragmentInHiltContainer
+import com.sagoss.validationtesting.ui.fragments.loginviews.LoginCheckerFragment
+import com.sagoss.validationtesting.ui.fragments.loginviews.LoginCheckerFragmentDirections
+import com.sagoss.validationtesting.ui.fragments.loginviews.LoginRegistrationFragment
 import com.sagoss.validationtesting.ui.recycleradapter.VoucherRecyclerAdapter
+import com.sagoss.validationtesting.utils.HelperUtil
 import com.sagoss.validationtesting.utils.Prefs
 import kotlinx.coroutines.runBlocking
-import org.hamcrest.Description
-import org.hamcrest.Matcher
-import org.hamcrest.TypeSafeMatcher
+import org.mockito.Mockito
 
 object TestHelper {
+
+    enum class Direction {
+        DATE_TO, DATE_FROM, HOTEL, VALIDATE_DATE_TO, VALIDATE
+    }
 
     fun getValidationFragmentArgs(voucher: Voucher, plate: String, dateTo: String, dateFrom: String): Bundle {
         val validationFragmentArg = Bundle()
@@ -85,6 +86,22 @@ object TestHelper {
         }
         return true
     }
+
+
+    fun resetConfigRegistration(dbRepository: DBRepository, context:Context): Boolean{
+        return try{
+            runBlocking { dbRepository.deleteAllVouchers() }
+            val prefs = Prefs(context)
+            prefs.accessToken = ""
+            prefs.companyId = "default"
+            prefs.config = false
+            assert(HelperUtil.isNetworkAvailable(context))
+            true
+        } catch (e: Exception){
+            false
+        }
+    }
+
 
 
     /**
@@ -140,21 +157,23 @@ object TestHelper {
      * Enter dummy number plate
      * click on validate button
      */
-    inline fun <reified T : Fragment> runPlateRegFragment(
-        voucher: Voucher,
-        navController: NavController,
-        plate: String) {
+    inline fun <reified T : Fragment> runPlateRegFragment(voucher: Voucher, navController: NavController, plate: String) : Context? {
+
         val args = getPlateRegistrationArgs(voucher)
+        var context: Context? = null
+
         launchFragmentInHiltContainer<T>(
-            fragmentArgs = args,
-            navHostController = navController
-        ) {}
+            fragmentArgs = args, navHostController = navController
+        ) { context = this.requireContext() }
+
         Thread.sleep(1000)
         Espresso.onView(ViewMatchers.withId(R.id.tv_plate_no))
             .perform(TypeTextAction(plate)).perform(ViewActions.closeSoftKeyboard())
         Thread.sleep(250)
         Espresso.onView(ViewMatchers.withId(R.id.btn_validate)).perform(ViewActions.click())
         Thread.sleep(1000)
+
+        return context
     }
 
 
@@ -167,16 +186,18 @@ object TestHelper {
      * once date to frag reached, Add date twice
      * Click confirm
      */
-    inline fun <reified T : Fragment> runDateToFragment(navController: NavController, voucher: Voucher, plate:String){
+    inline fun <reified T : Fragment> runDateToFragment(navController: NavController, voucher: Voucher, plate:String) : Context? {
+        var context = null as Context?
         val dateToArgs = getDateToArgs(voucher, plate)
         launchFragmentInHiltContainer<T>(
-            fragmentArgs = dateToArgs,
-            navHostController = navController
-        ) {  }
+            fragmentArgs = dateToArgs, navHostController = navController
+        ) {context = this.requireContext() }
         Thread.sleep(1000)
         Espresso.onView(ViewMatchers.withId(R.id.btn_add)).perform(ViewActions.click())
         Espresso.onView(ViewMatchers.withId(R.id.btn_add)).perform(ViewActions.click())
         Espresso.onView(ViewMatchers.withId(R.id.btnConfirm)).perform(ViewActions.click())
+
+        return context
     }
 
     /**
@@ -187,7 +208,8 @@ object TestHelper {
      * check if success message is shown
      * Click done once message appears
      */
-    inline fun <reified T : Fragment> runValidation(navController: NavController, voucher: Voucher, plate:String, prefs: Prefs?) {
+    inline fun <reified T : Fragment> runValidation(navController: NavController, voucher: Voucher, plate:String, prefs: Prefs?): Context? {
+        var context = null as Context?
         val validationFragmentArg = getValidationFragmentArgs(
             voucher,
             plate,
@@ -197,11 +219,12 @@ object TestHelper {
         launchFragmentInHiltContainer<T>(
             fragmentArgs = validationFragmentArg,
             navHostController = navController
-        ) {}
+        ) {context = this.requireContext()}
         Thread.sleep(1000)
         Espresso.onView(ViewMatchers.withId(R.id.btn_done))
             .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
         Espresso.onView(ViewMatchers.withId(R.id.btn_done)).perform(ViewActions.click())
+        return context
     }
 
     /**
@@ -212,12 +235,14 @@ object TestHelper {
      * check if success message is shown
      * Click done once message appears
      */
-    inline fun <reified T : Fragment> runHotelFragment(navController: NavController, voucher: Voucher, plate:String) {
+    inline fun <reified T : Fragment> runHotelFragment(navController: NavController, voucher: Voucher, plate:String): Context? {
         val hotelFragArgs = getHotelFragArgs(voucher, plate,)
+        var context = null as Context?
+
         launchFragmentInHiltContainer<T>(
             fragmentArgs = hotelFragArgs,
             navHostController = navController
-        ) {}
+        ) {context = this.requireContext()}
         Thread.sleep(1000)
         Espresso.onView(ViewMatchers.withId(R.id.recycler)).perform(
             RecyclerViewActions.actionOnItemAtPosition<VoucherRecyclerAdapter.VoucherViewHolder>(
@@ -225,6 +250,7 @@ object TestHelper {
                 ViewActions.click()
             )
         )
+        return context
     }
 
     /**
@@ -244,6 +270,67 @@ object TestHelper {
         Espresso.onView(ViewMatchers.withId(R.id.btn_validate)).perform(ViewActions.click())
     }
 
+
+    /**
+     * @param username username for registration
+     * @param password password for registration
+     *
+     * Once registration is success Move back to login checker
+     * Test if no config or Greetings Screen directions work fine
+     */
+    fun registrationTest(username: String, password: String, navController: NavController) {
+        val requireContext = runFragment<LoginCheckerFragment>(navController = navController)
+        Thread.sleep(1000)
+
+        val prefs = Prefs(requireContext!!)
+        Mockito.verify(navController).navigate(
+            LoginCheckerFragmentDirections.actionLoginCheckerToFragmentRegistration()
+        )
+
+        prefs.accessToken = ""
+        prefs.companyId = "default"
+        prefs.config = false
+
+        runFragment<LoginRegistrationFragment>(navController = navController)
+        Espresso.onView(ViewMatchers.withId(R.id.registrationUsernameEditText))
+            .perform(TypeTextAction(username))
+            .perform(ViewActions.closeSoftKeyboard())
+        Thread.sleep(250)
+
+        Espresso.onView(ViewMatchers.withId(R.id.registrationPasswordEditText))
+            .perform(TypeTextAction(password))
+            .perform(ViewActions.closeSoftKeyboard())
+        Thread.sleep(250)
+
+        Espresso.onView(ViewMatchers.withId(R.id.registerButton)).perform(ViewActions.click())
+        Thread.sleep(2000)
+        val registered = prefs?.accessToken.toString().isNotEmpty()
+
+        assert(registered)
+    }
+
+
+
+    /**
+     * Check if dates needs to be entered manually
+     * Navigate according to date_to and date_from requirements
+     */
+    fun voucherDirection(voucher: Voucher): Direction {
+        if (voucher.dateTo) {
+            if (!voucher.dateToFixed.isNullOrEmpty()) {
+                if (voucher.dateToFixed!!.size > 1) {
+                    return Direction.HOTEL
+                } else if (voucher.dateToFixed!!.size == 1) {
+                    return Direction.VALIDATE_DATE_TO
+                }
+            } else if (!voucher.dateToUnit.isNullOrEmpty()) {
+                return Direction.DATE_TO
+            }
+        } else {
+            return Direction.VALIDATE
+        }
+        return Direction.DATE_FROM
+    }
 
 
 }
