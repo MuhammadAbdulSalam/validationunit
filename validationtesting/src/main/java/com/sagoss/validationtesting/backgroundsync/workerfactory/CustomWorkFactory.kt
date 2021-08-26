@@ -26,9 +26,11 @@ class CustomWorkFactory @Inject constructor(
     val apiResponseRepository: ApiResponseRepository
 ) : WorkerFactory() {
 
+    /**
+     * @return Request or Config workers as asked
+     */
     override fun createWorker(appContext: Context, workerClassName: String,
-                              workerParameters: WorkerParameters
-    ): ListenableWorker? {
+                              workerParameters: WorkerParameters): ListenableWorker? {
         return when (workerClassName) {
             RequestsWorker::class.java.name ->
                 RequestsWorker(appContext, workerParameters, dbRepo, apiTwoResponseRepository)

@@ -33,16 +33,18 @@ abstract class EnterDateToBaseFragment<VBinding : ViewBinding> : Fragment() {
 
     protected lateinit var binding                  : VBinding
     private lateinit var prefs                      : Prefs
-    private var dateToUnit                          = ""
-    var chosenDateAndTime                           = ""
     private val calendar                            = Calendar.getInstance()
     private var incrementUnit                       = Calendar.DATE
-    private var incrementUnitName                   = "DAY"
+
     private var incrementAmount                     = 1
     private var initialAmount                       = 1
     private var minutesPerIncrement                 = 1
     private var limit                               = 0
+
     private var plate                               = ""
+    private var incrementUnitName                   = "DAY"
+    private var dateToUnit                          = ""
+    private var chosenDateAndTime                   = ""
 
     protected abstract fun getViewBinding()         : VBinding
     protected abstract fun getToolbar()             : MaterialToolbar
@@ -53,6 +55,7 @@ abstract class EnterDateToBaseFragment<VBinding : ViewBinding> : Fragment() {
     protected abstract fun expiryTextView()         : TextView
     protected abstract fun currentVoucher()         : Voucher
     protected abstract fun plate()                  : String
+
     protected abstract fun enterValidationFrag(
         dateTo: String,
         dateFrom: String)                           : NavDirections

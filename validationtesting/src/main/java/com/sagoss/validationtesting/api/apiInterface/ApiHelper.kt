@@ -19,6 +19,11 @@ import javax.inject.Singleton
 @Singleton
 class ApiHelper @Inject constructor(private val apiService: ApiOneRetrofitBuilder) {
 
+    /**
+     * @param registrationRequest registration request body
+     *
+     * @return get Registration response body
+     */
     suspend fun getRegistrationResponse(registrationRequest: RegistrationRequest) =
         apiService.registration(
             registrationRequest.username,
@@ -28,15 +33,25 @@ class ApiHelper @Inject constructor(private val apiService: ApiOneRetrofitBuilde
             registrationRequest.version
         )
 
-    suspend fun getRefreshTokenResponse(
-        authToken: String,
-        refreshTokenRequest: RefreshTokenRequest
-    ): RefreshTokenResponse
-    = apiService.refreshToken(
+    /**
+     * @param authToken authentication token for api header
+     * @param refreshTokenRequest Refresh token request body
+     *
+     * break down body to fields as this request runs as query
+     * @return refresh token response body
+     */
+    suspend fun getRefreshTokenResponse(authToken: String, refreshTokenRequest: RefreshTokenRequest
+    ): RefreshTokenResponse =
+        apiService.refreshToken(
         authToken,
         refreshTokenRequest.refresh_token,
         refreshTokenRequest.company_id
     )
 
+    /**
+     * @param authToken authentication token for api header
+     *
+     * @return config response body
+     */
     suspend fun getConfig(authToken: String) = apiService.getConfig(authToken)
 }

@@ -32,7 +32,7 @@ import com.sagoss.validationtesting.viewmodel.MainViewModel
 
 abstract class EnterPlateBaseFragment<VBinding : ViewBinding> : Fragment() {
 
-    protected val viewModel                         : MainViewModel by viewModels()
+    private val viewModel                           : MainViewModel by viewModels()
     private lateinit var prefs                      : Prefs
     protected lateinit var binding                  : VBinding
 

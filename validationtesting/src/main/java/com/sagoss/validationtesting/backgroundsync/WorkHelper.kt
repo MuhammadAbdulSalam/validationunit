@@ -18,7 +18,6 @@ import java.util.concurrent.TimeUnit
 
 object WorkHelper {
 
-
     /**
      * initialise both workers
      */

@@ -35,7 +35,7 @@ import com.sagoss.validationhorizon.viewmodel.MainViewModel
 
 abstract class NoConfigBaseFragment<VBinding : ViewBinding> : Fragment(), InternetConnectionInterface {
 
-    protected val viewModel                     : MainViewModel by viewModels()
+    private val viewModel                       : MainViewModel by viewModels()
 
     protected lateinit var binding              : VBinding
     private lateinit var runnable               : Runnable

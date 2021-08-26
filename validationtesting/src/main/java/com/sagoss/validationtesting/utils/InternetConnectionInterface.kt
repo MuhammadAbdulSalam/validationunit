@@ -10,8 +10,6 @@
 package com.sagoss.validationtesting.utils
 
 interface InternetConnectionInterface {
-
     fun onConnected(){}
     fun onDisconnected(){}
-
 }

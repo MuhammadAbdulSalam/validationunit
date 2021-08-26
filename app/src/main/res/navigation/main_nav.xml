@@ -26,13 +26,25 @@
 
         <action
             android:id="@+id/action_login_checker_to_fragment_registration"
-            app:destination="@id/fragment_registration" />
+            app:destination="@id/fragment_registration"
+            app:enterAnim="@anim/slide_in_from_right"
+            app:exitAnim="@anim/slide_out_to_left"
+            app:popEnterAnim="@anim/slide_in_from_left"
+            app:popExitAnim="@anim/slide_out_to_right" />
         <action
             android:id="@+id/action_fragment_login_checker_to_fragment_greetings_c2c"
-            app:destination="@id/fragment_greetings_c2c" />
+            app:destination="@id/fragment_greetings_c2c"
+            app:enterAnim="@anim/slide_in_from_right"
+            app:exitAnim="@anim/slide_out_to_left"
+            app:popEnterAnim="@anim/slide_in_from_left"
+            app:popExitAnim="@anim/slide_out_to_right" />
         <action
             android:id="@+id/action_fragment_login_checker_to_fragment_greetings_ga"
-            app:destination="@id/fragment_greetings_ga" />
+            app:destination="@id/fragment_greetings_ga"
+            app:enterAnim="@anim/slide_in_from_right"
+            app:exitAnim="@anim/slide_out_to_left"
+            app:popEnterAnim="@anim/slide_in_from_left"
+            app:popExitAnim="@anim/slide_out_to_right" />
         <action
             android:id="@+id/action_fragment_login_checker_to_fragment_no_config_horizon"
             app:destination="@id/fragment_no_config_horizon" />
@@ -45,10 +57,18 @@
             app:popExitAnim="@anim/slide_out_to_right" />
         <action
             android:id="@+id/action_fragment_login_checker_to_fragment_no_config_ga"
-            app:destination="@id/fragment_no_config_ga" />
+            app:destination="@id/fragment_no_config_ga"
+            app:enterAnim="@anim/slide_in_from_right"
+            app:exitAnim="@anim/slide_out_to_left"
+            app:popEnterAnim="@anim/slide_in_from_left"
+            app:popExitAnim="@anim/slide_out_to_right" />
         <action
             android:id="@+id/action_fragment_login_checker_to_fragment_no_config_c2c"
-            app:destination="@id/fragment_no_config_c2c" />
+            app:destination="@id/fragment_no_config_c2c"
+            app:enterAnim="@anim/slide_in_from_right"
+            app:exitAnim="@anim/slide_out_to_left"
+            app:popEnterAnim="@anim/slide_in_from_left"
+            app:popExitAnim="@anim/slide_out_to_right" />
 
     </fragment>
 
@@ -492,7 +512,11 @@
         tools:layout="@layout/fragment_ga_voucher">
         <action
             android:id="@+id/action_fragment_vouchers_ga_to_fragment_plate_registration_ga"
-            app:destination="@id/fragment_plate_registration_ga" />
+            app:destination="@id/fragment_plate_registration_ga"
+            app:enterAnim="@anim/slide_in_from_right"
+            app:exitAnim="@anim/slide_out_to_left"
+            app:popEnterAnim="@anim/slide_in_from_left"
+            app:popExitAnim="@anim/slide_out_to_right" />
     </fragment>
 
     <fragment

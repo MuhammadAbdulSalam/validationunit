@@ -33,16 +33,18 @@ abstract class EnterDateToBaseFragment<VBinding : ViewBinding> : Fragment() {
 
     protected lateinit var binding                  : VBinding
     private lateinit var prefs                      : Prefs
-    private var dateToUnit                          = ""
-    private var chosenDateAndTime                   = ""
     private val calendar                            = Calendar.getInstance()
     private var incrementUnit                       = Calendar.DATE
-    private var incrementUnitName                   = "DAY"
+
     private var incrementAmount                     = 1
     private var initialAmount                       = 1
     private var minutesPerIncrement                 = 1
     private var limit                               = 0
+
     private var plate                               = ""
+    private var incrementUnitName                   = "DAY"
+    private var dateToUnit                          = ""
+    private var chosenDateAndTime                   = ""
 
     protected abstract fun getViewBinding()         : VBinding
     protected abstract fun getToolbar()             : MaterialToolbar

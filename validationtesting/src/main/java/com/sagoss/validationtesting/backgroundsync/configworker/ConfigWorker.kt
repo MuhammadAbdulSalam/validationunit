@@ -24,8 +24,8 @@ import dagger.assisted.AssistedInject
 class ConfigWorker @AssistedInject constructor(
     @Assisted appContext: Context,
     @Assisted workerParams: WorkerParameters,
-    private val apiOneResponseRepository: ApiResponseRepository
-) : CoroutineWorker(appContext, workerParams) {
+    private val apiOneResponseRepository: ApiResponseRepository)
+    : CoroutineWorker(appContext, workerParams) {
 
     /**
      * Start worker to validate offline stored requests

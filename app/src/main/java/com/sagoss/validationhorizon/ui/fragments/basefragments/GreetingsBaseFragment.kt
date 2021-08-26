@@ -28,7 +28,7 @@ import com.sagoss.validationhorizon.viewmodel.MainViewModel
 
 abstract class GreetingsBaseFragment<VBinding : ViewBinding> : Fragment() {
 
-    protected val viewModel                                 : MainViewModel by viewModels()
+    private val viewModel                                   : MainViewModel by viewModels()
     protected lateinit var binding                          : VBinding
     protected abstract fun getViewBinding()                 : VBinding
     protected abstract fun tvGreetingsMsg()                 : TextView
@@ -51,9 +51,9 @@ abstract class GreetingsBaseFragment<VBinding : ViewBinding> : Fragment() {
         tvGreetingsMsg().text =
             "Welcome to\n ${Prefs(requireContext()).locationName}\n Press here to begin"
 
-        tvGreetingsMsg().setOnClickListener(tvGreetingsMsgClickListener())
-
         "Version: ${BuildConfig.VERSION_NAME}".also { tvVersionInfo().text = it }
+
+        setupVouchersObserver()
     }
 
     /**

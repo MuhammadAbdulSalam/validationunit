@@ -29,7 +29,7 @@ import com.sagoss.validationhorizon.viewmodel.MainViewModel
 
 abstract class VouchersListBaseFragment<VBinding : ViewBinding> : Fragment() {
 
-    protected val viewModel                                         : MainViewModel by viewModels()
+    private val viewModel                                           : MainViewModel by viewModels()
     protected lateinit var binding                                  : VBinding
     private lateinit var recyclerView                               : RecyclerView
     private lateinit var adapter                                    : VoucherRecyclerAdapter

@@ -35,7 +35,7 @@ import kotlin.concurrent.schedule
 
 abstract class ValidationResultsBaseFragment<VBinding : ViewBinding> : Fragment() {
 
-    protected val viewModel                                 : MainViewModel by viewModels()
+    private val viewModel                                   : MainViewModel by viewModels()
     protected lateinit var binding                          : VBinding
     protected abstract fun getViewBinding()                 : VBinding
     protected abstract fun currentVoucher()                 : Voucher

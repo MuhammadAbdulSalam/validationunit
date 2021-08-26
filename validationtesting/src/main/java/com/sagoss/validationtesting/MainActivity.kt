@@ -27,6 +27,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     lateinit var noInternetButton           : ExtendedFloatingActionButton
+
     companion object{
         var connectionListener              : InternetConnectionInterface? = null
         var isDisconnected                  = false
@@ -36,7 +37,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         noInternetButton = findViewById(R.id.no_internet_button)
-        if(HelperUtil.isNetworkAvailable(this)) noInternetButton.visibility = View.INVISIBLE else noInternetButton.visibility = View.VISIBLE
+        if(HelperUtil.isNetworkAvailable(this)) noInternetButton.visibility = View.INVISIBLE
+        else noInternetButton.visibility = View.VISIBLE
     }
 
     /**
@@ -48,9 +50,11 @@ class MainActivity : AppCompatActivity() {
         override fun onReceive(context: Context?, intent: Intent?) {
             isDisconnected =
                 intent!!.getBooleanExtra(ConnectivityManager.EXTRA_NO_CONNECTIVITY, false)
-            if(isDisconnected) noInternetButton.visibility = View.VISIBLE else noInternetButton.visibility = View.INVISIBLE
+            if(isDisconnected) noInternetButton.visibility = View.VISIBLE
+            else noInternetButton.visibility = View.INVISIBLE
             if (connectionListener != null) {
-                if (isDisconnected) connectionListener!!.onDisconnected() else connectionListener!!.onConnected()
+                if (isDisconnected) connectionListener!!.onDisconnected()
+                else connectionListener!!.onConnected()
             }
         }
     }

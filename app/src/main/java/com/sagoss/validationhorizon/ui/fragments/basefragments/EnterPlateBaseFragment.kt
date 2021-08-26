@@ -32,7 +32,7 @@ import com.sagoss.validationhorizon.viewmodel.MainViewModel
 
 abstract class EnterPlateBaseFragment<VBinding : ViewBinding> : Fragment() {
 
-    protected val viewModel                         : MainViewModel by viewModels()
+    private val viewModel                         : MainViewModel by viewModels()
     private lateinit var prefs                      : Prefs
     protected lateinit var binding                  : VBinding
 
@@ -93,7 +93,8 @@ abstract class EnterPlateBaseFragment<VBinding : ViewBinding> : Fragment() {
                     Status.ERROR -> {
                         progressbar().visibility = View.INVISIBLE
                         validateButton().visibility = View.VISIBLE
-                        //TODO show error
+                        HelperUtil.getErrorDialog(this.requireContext(), "Error",
+                        "Validation failed, Please try again", true)
                     }
                     Status.LOADING -> { }
                 }

@@ -26,8 +26,8 @@ class RequestsWorker @AssistedInject constructor(
     @Assisted appContext: Context,
     @Assisted workerParams: WorkerParameters,
     private val dbRepository: DBRepository,
-    private val apiTwoResponseRepository: ApiTwoResponseRepository
-) : CoroutineWorker(appContext, workerParams) {
+    private val apiTwoResponseRepository: ApiTwoResponseRepository)
+    : CoroutineWorker(appContext, workerParams) {
 
     /**
      * Start worker to validate offline stored requests

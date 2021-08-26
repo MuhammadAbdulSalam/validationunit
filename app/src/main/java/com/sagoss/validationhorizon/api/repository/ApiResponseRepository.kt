@@ -26,9 +26,13 @@ import javax.inject.Singleton
 @Singleton
 class ApiResponseRepository @Inject constructor(private val apiInterface: ApiHelper, private val dbRepository: DBRepository) {
 
-    suspend fun getRegistrationResponse(
-        registrationRequest: RegistrationRequest,
-        context: Context
+    /**
+     * @param registrationRequest registration request body
+     * @param context Context for Prefs initialisation
+     *
+     * @return get registration response and update prefs
+     */
+    suspend fun getRegistrationResponse(registrationRequest: RegistrationRequest, context: Context
     ): RegistrationResponse {
 
         val registrationResponse = apiInterface.getRegistrationResponse(registrationRequest)
@@ -38,14 +42,23 @@ class ApiResponseRepository @Inject constructor(private val apiInterface: ApiHel
         prefs.refreshToken = registrationResponse.refresh_token
         prefs.expiryDate = registrationResponse.expiry_date
         prefs.companyId = registrationResponse.company_id
+
         return registrationResponse
     }
 
+    /**
+     * @param authToken Authentication Token for api header
+     * @param refreshTokenRequest Refresh Token request body
+     * @param context Context to initialise prefs
+     *
+     * @return refresh token response body and update prefs
+     *
+     */
     suspend fun getRefreshTokenResponse(
         authToken: String,
         refreshTokenRequest: RefreshTokenRequest,
-        context: Context
-    ): RefreshTokenResponse {
+        context: Context): RefreshTokenResponse {
+
         val prefs = Prefs(context)
         val config = apiInterface.getRefreshTokenResponse(authToken, refreshTokenRequest)
         prefs.accessToken = config.access_token
@@ -55,14 +68,21 @@ class ApiResponseRepository @Inject constructor(private val apiInterface: ApiHel
         return config
     }
 
+    /**
+     * @param authToken authentication token for api header
+     * @param context Context to initialise prefs
+     *
+     * @return get config response body and update preds
+     */
     suspend fun getConfig(authToken: String, context: Context): Config {
+
         val prefs = Prefs(context)
         val config = apiInterface.getConfig(authToken)
         prefs.siteId =config.site_id
         prefs.status =config.status
         prefs.locationName = config.location_name
 
-        val vouchers = Gson().fromJson(config.vouchers?.toString(), Array<Voucher>::class.java).toList()
+        val vouchers = Gson().fromJson(config.vouchers.toString(), Array<Voucher>::class.java).toList()
         dbRepository.insertAllVouchers(vouchers)
 
         return config

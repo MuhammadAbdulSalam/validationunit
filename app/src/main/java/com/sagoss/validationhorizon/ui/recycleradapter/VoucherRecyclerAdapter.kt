@@ -44,8 +44,12 @@ class VoucherRecyclerAdapter(private val backgroundColor: Int, private val fragm
     ) : RecyclerView.ViewHolder(binding.root) {
 
         init {
-            binding.itemCardView.setCardBackgroundColor(ContextCompat.getColor(fragment.requireContext(), backgroundColor))
-            binding.setClickListener { (fragment as VouchersListBaseFragment<*>).onRecyclerClick(binding.model!!) }
+            binding.itemCardView.setCardBackgroundColor(
+                ContextCompat.getColor(fragment.requireContext(), backgroundColor)
+            )
+            binding.setClickListener {
+                (fragment as VouchersListBaseFragment<*>).onRecyclerClick(binding.model!!)
+            }
         }
 
         fun bind(item: Voucher) {

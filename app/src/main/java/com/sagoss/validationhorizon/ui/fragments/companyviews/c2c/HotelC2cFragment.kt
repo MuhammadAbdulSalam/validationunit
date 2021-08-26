@@ -17,6 +17,7 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class HotelC2cFragment : HotelBaseFragment<FragmentC2cHotelBinding>() {
+
     private val args                        : HotelC2cFragmentArgs by navArgs()
     override fun getViewBinding()           = FragmentC2cHotelBinding.inflate(layoutInflater)
     override fun recycler()                 = binding.recycler
