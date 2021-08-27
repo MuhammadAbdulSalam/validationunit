@@ -70,7 +70,7 @@ abstract class NoConfigBaseFragment<VBinding : ViewBinding> : Fragment(), Intern
 
         runnable = Runnable {
             isRunning = true
-            setupGetConfigObserver("Bearer ${prefs.accessToken.toString()}")
+            setupGetConfigObserver("Bearer ${prefs.accessToken}")
             handler.postDelayed(runnable, 60000)
         }
 

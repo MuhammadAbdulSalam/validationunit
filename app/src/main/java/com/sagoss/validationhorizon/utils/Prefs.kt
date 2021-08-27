@@ -25,6 +25,7 @@ import javax.inject.Inject
 
 
 class Prefs @Inject constructor(context: Context) {
+
     private val prefs: SharedPreferences = context.getSharedPreferences(PREFS_NAME, 0)
 
     var accessToken: String

@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="../../../../../../layout/custom_preview.xml" value="0.5057291666666667" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="app/src/main/res/layout/dialog_warning.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_c2c_enter_date_to.xml" value="0.522265625" />
@@ -35,6 +36,7 @@
         <entry key="validationtesting/src/main/res/layout/dialog_warning.xml" value="0.37007389162561577" />
         <entry key="validationtesting/src/main/res/layout/fragment_c2c_enter_date_to.xml" value="0.37007389162561577" />
         <entry key="validationtesting/src/main/res/layout/fragment_c2c_entry_time.xml" value="0.39316502463054187" />
+        <entry key="validationtesting/src/main/res/layout/fragment_c2c_plate_registration.xml" value="0.36796875" />
         <entry key="validationtesting/src/main/res/layout/fragment_ga_enter_date_to.xml" value="0.40548029556650245" />
         <entry key="validationtesting/src/main/res/layout/fragment_ga_plate_registration.xml" value="0.40548029556650245" />
         <entry key="validationtesting/src/main/res/layout/fragment_ga_voucher.xml" value="0.40548029556650245" />

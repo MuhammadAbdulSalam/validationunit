@@ -9,6 +9,7 @@
 
 package com.sagoss.validationhorizon.ui.fragments.basefragments
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -46,6 +47,7 @@ abstract class HotelBaseFragment<VBinding : ViewBinding> : Fragment() {
         return binding.root
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         getToolbar().setNavigationOnClickListener { findNavController().navigateUp() }

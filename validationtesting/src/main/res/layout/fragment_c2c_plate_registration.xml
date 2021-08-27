@@ -77,6 +77,8 @@
                 android:textCursorDrawable="@color/c2c_primary"
                 android:inputType="textCapCharacters"
                 android:textAlignment="center"
+                android:singleLine="true"
+                android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890"
                 android:maxLines="1"
                 />
         </com.google.android.material.textfield.TextInputLayout>

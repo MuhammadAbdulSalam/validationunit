@@ -171,7 +171,7 @@ object TestHelper {
             .perform(TypeTextAction(plate)).perform(ViewActions.closeSoftKeyboard())
         Thread.sleep(250)
         Espresso.onView(ViewMatchers.withId(R.id.btn_validate)).perform(ViewActions.click())
-        Thread.sleep(1000)
+        Thread.sleep(2000)
 
         return context
     }
@@ -220,7 +220,7 @@ object TestHelper {
             fragmentArgs = validationFragmentArg,
             navHostController = navController
         ) {context = this.requireContext()}
-        Thread.sleep(1000)
+        Thread.sleep(3000)
         Espresso.onView(ViewMatchers.withId(R.id.btn_done))
             .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
         Espresso.onView(ViewMatchers.withId(R.id.btn_done)).perform(ViewActions.click())

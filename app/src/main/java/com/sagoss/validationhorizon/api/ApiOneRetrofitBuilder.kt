@@ -44,15 +44,9 @@ interface ApiOneRetrofitBuilder {
 
 
     /**
-     * Registration Request for endpoint mobile/
+     * Refresh token Request for endpoint /mobile/
      *
-     * @param username username
-     * @param password password
-     * @param app_id app ID, will always be validation
-     * @param mobile_id unique device ID
-     * @param version app version
-     *
-     * @return Registration response dataclass as response body
+     * @return Refresh Token response dataclass as response body
      */
     @FormUrlEncoded
     @PUT(Constants.ENDPOINT_MOBILE)

@@ -72,7 +72,7 @@ class ApiResponseRepository @Inject constructor(private val apiInterface: ApiHel
      * @param authToken authentication token for api header
      * @param context Context to initialise prefs
      *
-     * @return get config response body and update preds
+     * @return get config response body and update prefs
      */
     suspend fun getConfig(authToken: String, context: Context): Config {
 

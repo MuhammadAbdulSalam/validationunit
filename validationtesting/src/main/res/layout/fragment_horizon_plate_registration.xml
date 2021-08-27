@@ -76,6 +76,8 @@
                 android:textColor="@color/horizon_primary"
                 android:textCursorDrawable="@color/horizon_primary"
                 android:inputType="textCapCharacters"
+                android:singleLine="true"
+                android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890"
                 android:textAlignment="center"
                 android:maxLines="1"
                 />

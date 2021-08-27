@@ -13,7 +13,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
+import android.widget.EditText
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -37,7 +37,7 @@ abstract class EnterPlateBaseFragment<VBinding : ViewBinding> : Fragment() {
     protected lateinit var binding                  : VBinding
 
     protected abstract fun getViewBinding()         : VBinding
-    protected abstract fun tvPlateTextView()        : TextView
+    protected abstract fun tvPlateTextView()        : EditText
     protected abstract fun getToolbar()             : MaterialToolbar
     protected abstract fun validateButton()         : MaterialButton
     protected abstract fun currentVoucher()         : Voucher
@@ -63,13 +63,22 @@ abstract class EnterPlateBaseFragment<VBinding : ViewBinding> : Fragment() {
         progressbar().setIndicatorColor(ContextCompat.getColor(requireContext(), defaultColor()))
 
         validateButton().setOnClickListener {
-            progressbar().visibility = View.VISIBLE
-            validateButton().visibility = View.INVISIBLE
-            if(HelperUtil.isNetworkAvailable(requireContext())) { validateNumberPlate() }
+            if(tvPlateTextView().text.isEmpty())
+            {
+               HelperUtil.getErrorDialog(this.requireContext(), "Enter Plate Number",
+               "Please insert a valid number plate.",
+               true).show()
+            }
             else
             {
-                if (currentVoucher().dateFrom) findNavController().navigate(enterEntryDateFrag())
-                else askForDateTo()
+                progressbar().visibility = View.VISIBLE
+                validateButton().visibility = View.INVISIBLE
+                if(HelperUtil.isNetworkAvailable(requireContext())) { validateNumberPlate() }
+                else
+                {
+                    if (currentVoucher().dateFrom) findNavController().navigate(enterEntryDateFrag())
+                    else askForDateTo()
+                }
             }
         }
     }
@@ -94,7 +103,7 @@ abstract class EnterPlateBaseFragment<VBinding : ViewBinding> : Fragment() {
                         progressbar().visibility = View.INVISIBLE
                         validateButton().visibility = View.VISIBLE
                         HelperUtil.getErrorDialog(this.requireContext(), "Error",
-                        "Validation failed, Please try again", true)
+                        "Validation failed, Please try again", true).show()
                     }
                     Status.LOADING -> { }
                 }

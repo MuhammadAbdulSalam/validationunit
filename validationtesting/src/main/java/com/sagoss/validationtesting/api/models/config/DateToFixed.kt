@@ -9,7 +9,9 @@
 
 package com.sagoss.validationtesting.api.models.config
 
+import java.io.Serializable
+
 data class DateToFixed(
         var name : String = "",
         var unit : Int = 0
-)
+): Serializable

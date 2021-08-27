@@ -90,7 +90,7 @@ class RegistrationJourney {
         registrationTest(HORIZON_USERNAME, HORIZON_PASSWORD, navController)
         runFragment<LoginCheckerFragment>(navController = navController)
         prefs = Prefs(requireContext!!)
-        Thread.sleep(1000)
+        Thread.sleep(2000)
         if(!prefs?.config!!)
         {
             Thread.sleep(1000)
@@ -126,7 +126,7 @@ class RegistrationJourney {
         registrationTest(C2C_USERNAME,C2C_PASSWORD, navController)
         runFragment<LoginCheckerFragment>(navController = navController)
         prefs = Prefs(requireContext!!)
-        Thread.sleep(1000)
+        Thread.sleep(2000)
         if(!prefs?.config!!)
         {
             Thread.sleep(1000)
@@ -162,7 +162,7 @@ class RegistrationJourney {
         registrationTest(GA_USERNAME, GA_PASSWORD, navController )
         runFragment<LoginCheckerFragment>(navController = navController)
         prefs = Prefs(requireContext!!)
-        Thread.sleep(1000)
+        Thread.sleep(2000)
         if(!prefs?.config!!)
         {
             Thread.sleep(1000)
