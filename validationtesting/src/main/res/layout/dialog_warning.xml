@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2021. Author Muhammad Abdul Salam.
+  ~ Property of Sagoss Group
+  ~
+  ~ It is against law to modify, replicate or distribute this code
+  ~ Permission of owner (Sagoss Group) is needed in order to
+  ~ modify, replicate or distribute this code.
+  -->
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="20dp">
+        <ImageView
+            android:id="@+id/iv_logo_warning"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@android:drawable/stat_sys_warning"/>
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/iv_logo_warning"
+            android:layout_marginStart="10dp"
+            android:text="@string/no_internet_connection"
+            android:textStyle="bold"/>
+        <TextView
+            android:id="@+id/tv_msg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/iv_logo_warning"
+            android:textColor="@android:color/darker_gray"
+            android:text="@string/internet_msg"
+            android:layout_marginTop="10dp"/>
+
+    </RelativeLayout>
+
+</layout>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2021. Author Muhammad Abdul Salam. 
+  ~ Property of Sagoss Group
+  ~
+  ~ It is against law to modify, replicate or distribute this code
+  ~ Permission of owner (Sagoss Group) is needed in order to 
+  ~ modify, replicate or distribute this code. 
+  -->
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appbar"
+            style="@style/Theme.horizon.appbar"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/toolbar"
+                style="@style/Theme.ga.toolbar"
+                android:background="@color/c2c_primary"
+                app:title="@string/c2c_app"
+                app:navigationIcon="@drawable/ic_outline_arrow_back_ios_new_24"
+                app:titleTextColor="@color/white" />
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <ImageView
+            android:id="@+id/app_logo"
+            style="@style/Theme.c2c.image_logo"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/appbar" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_title"
+            style="@style/Theme.horizon.cardview"
+            android:backgroundTint="@color/c2c_primary"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/app_logo">
+            <TextView
+                style="@style/TitleText"
+                android:text="@string/stay_label"
+                />
+        </androidx.cardview.widget.CardView>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_voucher"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/card_title" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</layout>

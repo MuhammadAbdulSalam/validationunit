@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2021. Author Muhammad Abdul Salam.
+  ~ Property of Sagoss Group
+  ~
+  ~ It is against law to modify, replicate or distribute this code
+  ~ Permission of owner (Sagoss Group) is needed in order to
+  ~ modify, replicate or distribute this code.
+  -->
+
+<resources>
+
+
+    <style name="Theme.horizon.appbar" parent="ThemeOverlay.MaterialComponents.Dark.ActionBar">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">?attr/actionBarSize</item>
+        <item name="android:fitsSystemWindows">true</item>
+        <item name="backgroundColor">@color/horizon_primary</item>
+    </style>
+
+    <style name="Theme.horizon.toolbar" parent="Widget.MaterialComponents.Toolbar">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">?attr/actionBarSize</item>
+        <item name="backgroundColor">@color/horizon_primary</item>
+    </style>
+
+    <style name="Theme.ga.toolbar" parent="Widget.MaterialComponents.Toolbar">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">?attr/actionBarSize</item>
+        <item name="backgroundColor">@color/horizon_primary</item>
+    </style>
+
+    <style name="Theme.c2c.toolbar" parent="Widget.MaterialComponents.Toolbar">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">?attr/actionBarSize</item>
+        <item name="backgroundColor">@color/c2c_primary</item>
+    </style>
+
+    <style name="Theme.horizon.image_logo" parent="Base.CardView">
+        <item name="android:layout_width">150dp</item>
+        <item name="android:layout_height">60dp</item>
+        <item name="android:src">@drawable/horizon_logo</item>
+        <item name="android:scaleType">fitXY</item>
+        <item name="android:layout_marginTop">20dp</item>
+    </style>
+
+    <style name="Theme.ga.image_logo" parent="Base.CardView">
+        <item name="android:layout_width">150dp</item>
+        <item name="android:layout_height">40dp</item>
+        <item name="android:src">@drawable/ga_logo</item>
+        <item name="android:scaleType">centerInside</item>
+        <item name="android:layout_marginTop">20dp</item>
+    </style>
+
+    <style name="Theme.c2c.image_logo" parent="Base.CardView">
+        <item name="android:layout_width">150dp</item>
+        <item name="android:layout_height">40dp</item>
+        <item name="android:src">@drawable/c2c_logo</item>
+        <item name="android:scaleType">centerInside</item>
+        <item name="android:layout_marginTop">20dp</item>
+    </style>
+
+    <style name="Version.info.textview" parent="Widget.MaterialComponents.TextView">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="layout_constraintBottom_toBottomOf">parent</item>
+        <item name="layout_constraintEnd_toEndOf">parent</item>
+        <item name="android:padding">20dp</item>
+x        <item name="android:text">Version: 1.2.1</item>
+    </style>
+    <style name="TextLabel" parent="TextAppearance.Design.Hint">
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="LabelTextDuration" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">30sp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textAlignment">center</item>
+    </style>
+
+    <style name="CustomDatePicker">
+        <item name="android:textSize">30sp</item>
+        <item name="android:textColorPrimary">@color/white</item>
+        <item name="colorControlNormal">@android:color/holo_blue_bright</item>
+    </style>
+
+    <style name="Theme.horizon.cardview" parent="CardView">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="cardElevation">10dp</item>
+        <item name="cardCornerRadius">5dp</item>
+    </style>
+
+    <style name="TitleText">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:padding">20dp</item>
+        <item name="android:textSize">30sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textAlignment">center</item>
+    </style>
+
+    <style name="DurationLabel">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">20dp</item>
+        <item name="android:background">@color/white</item>
+        <item name="android:ems">10</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">32sp</item>
+    </style>
+
+    <style name="DurationButtons" parent="Widget.MaterialComponents.Button">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:padding">10dp</item>
+        <item name="android:textSize">50sp</item>
+    </style>
+
+</resources>

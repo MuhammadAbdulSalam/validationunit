@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2021. Author Muhammad Abdul Salam.
+  ~ Property of Sagoss Group
+  ~
+  ~ It is against law to modify, replicate or distribute this code
+  ~ Permission of owner (Sagoss Group) is needed in order to
+  ~ modify, replicate or distribute this code.
+  -->
+
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appbar"
+            style="@style/Theme.horizon.appbar"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/toolbar"
+                style="@style/Theme.ga.toolbar"
+                android:background="@color/ga_primary"
+                app:title="@string/ga_app"
+                app:navigationIcon="@drawable/ic_outline_arrow_back_ios_new_24"
+                app:titleTextColor="@color/white" />
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <ImageView
+            android:id="@+id/app_logo"
+            style="@style/Theme.ga.image_logo"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/appbar" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_title"
+            style="@style/Theme.horizon.cardview"
+            android:backgroundTint="@color/ga_primary"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/app_logo">
+            <TextView
+                style="@style/TitleText"
+                android:text="Please enter Plate Number Below"
+                />
+        </androidx.cardview.widget.CardView>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_plate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/appbar"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:paddingHorizontal="40dp"
+            app:endIconMode="clear_text"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            app:boxStrokeWidth="5dp"
+            app:boxStrokeWidthFocused="3dp"
+            app:boxCornerRadiusTopStart="10dp"
+            app:boxCornerRadiusBottomEnd="10dp"
+            app:hintTextColor="@color/ga_primary"
+            app:boxStrokeColor="@color/ga_primary"
+            app:hintTextAppearance="@style/TextLabel"
+            android:hint="REG NO."
+            tools:targetApi="p">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/tv_plate_no"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="40sp"
+                android:textColor="@color/ga_primary"
+                android:textCursorDrawable="@color/ga_primary"
+                android:inputType="textCapCharacters"
+                android:singleLine="true"
+                android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890"
+                android:textAlignment="center"
+                android:maxLines="1"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_validate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Validate"
+            app:layout_constraintTop_toBottomOf="@id/til_plate"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_marginEnd="40dp"
+            android:textSize="24sp"
+            android:padding="20dp"
+            android:backgroundTint="@color/ga_primary"
+            android:layout_marginTop="30dp"/>
+
+        <com.google.android.material.progressindicator.CircularProgressIndicator
+            android:id="@+id/progressbar_validate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:indeterminate="true"
+            app:layout_constraintTop_toBottomOf="@id/til_plate"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_marginEnd="40dp"
+            android:visibility="invisible"
+            app:layout_constraintLeft_toLeftOf="@id/btn_validate"
+            android:layout_marginTop="30dp"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

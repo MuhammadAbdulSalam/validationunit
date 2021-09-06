@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2021. Author Muhammad Abdul Salam.
+  ~ Property of Sagoss Group
+  ~
+  ~ It is against law to modify, replicate or distribute this code
+  ~ Permission of owner (Sagoss Group) is needed in order to
+  ~ modify, replicate or distribute this code.
+  -->
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="clickListener"
+            type="android.view.View.OnClickListener" />
+
+        <variable
+            name="model"
+            type="com.sagoss.validationhorizon.api.models.config.DateToFixed" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="20dp">
+        <androidx.cardview.widget.CardView
+            android:id="@+id/item_card_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minWidth="250dp"
+            app:cardCornerRadius="5dp"
+            app:cardElevation="10dp">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="@{clickListener}"
+                android:padding="20dp"
+                android:text="@{model.name}"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="30sp" />
+        </androidx.cardview.widget.CardView>
+    </RelativeLayout>
+
+</layout>

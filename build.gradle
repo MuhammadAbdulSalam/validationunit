@@ -1,24 +1,43 @@
+/*
+ * Copyright (c) 2021. Author Muhammad Abdul Salam.
+ * Property of Sagoss Group
+ *
+ * It is against law to modify, replicate or distribute this code
+ * Permission of owner (Sagoss Group) is needed in order to
+ * modify, replicate or distribute this code.
+ */
+
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
     ext{
-        appCompatVersion = '1.3.0'
-        kotlin_version = '1.5.10'
-        hiltVersion = '2.33-beta'
-        kotlinVersion = '1.4.30'
-        ktlintVersion = '0.38.1'
-        ktxVersion = '1.6.0'
-        constraintLayoutVersion = '2.1.0-beta02'
-        materialVersion = '1.4.0'
-        navigationVersion = '2.3.5'
-        recyclerViewVersion = '1.2.1'
-        kotlin_version = '1.4.30'
-        fragmentVersion = '1.3.5'
-        coroutinesVersion = "1.4.2"
-        junitVersion = '4.13.2'
-        espressoVersion = '3.4.0'
-        testExtJunit = '1.1.3'
+        appCompatVersion            = '1.3.0'
+        kotlin_version              = '1.5.20'
+        hiltVersion                 = '2.37'
+        kotlinVersion               = '1.4.30'
+        ktlintVersion               = '0.38.1'
+        ktxVersion                  = '1.6.0'
+        constraintLayoutVersion     = '2.1.0-beta02'
+        materialVersion             = '1.4.0'
+        navigationVersion           = '2.3.5'
+        recyclerViewVersion         = '1.2.1'
+        fragmentVersion             = '1.3.5'
+        coroutinesVersion           = "1.4.2"
+        retrofitVersion             = '2.9.0'
+        okhttpLoggingVersion        = '4.7.2'
+        gsonVersion                 = '2.8.6'
+        lifecycleVersion            = '2.2.0'
+        roomVersion                 = '2.2.5'
+        roomKtx                     = '2.2.3'
+        hiltWorkManagerVersion      = '1.0.0'
+        ktxWorkManagerVersion       = '2.6.0-rc01'
 
-
+        junitVersion                = '4.13.2'
+        espressoVersion             = '3.4.0'
+        testExtJunit                = '1.1.3'
+        fragment_version            = '1.3.0-alpha08'
+        mockito_core_version        = '2.21.0'
+        mockito_dex_version         = '2.12.1'
+        espresso_contrib_version    = '3.2.0'
     }
     repositories {
         google()
@@ -26,7 +45,7 @@ buildscript {
     }
     dependencies {
         classpath "com.android.tools.build:gradle:4.2.2"
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.5.21"
         classpath "androidx.navigation:navigation-safe-args-gradle-plugin:$navigationVersion"
         classpath "com.google.dagger:hilt-android-gradle-plugin:$hiltVersion"
     }

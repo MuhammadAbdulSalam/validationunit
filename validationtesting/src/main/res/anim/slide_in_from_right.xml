@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+  ~ Copyright (c) 2021. Author Muhammad Abdul Salam.
+  ~ Property of Sagoss Group
+  ~
+  ~ It is against law to modify, replicate or distribute this code
+  ~ Permission of owner (Sagoss Group) is needed in order to
+  ~ modify, replicate or distribute this code.
+  -->
+
+<set xmlns:android="http://schemas.android.com/apk/res/android">
+    <translate android:fromXDelta="50%p" android:toXDelta="0"
+        android:duration="@android:integer/config_shortAnimTime"/>
+    <alpha android:fromAlpha="0.0" android:toAlpha="1.0"
+        android:duration="@android:integer/config_shortAnimTime" />
+</set>

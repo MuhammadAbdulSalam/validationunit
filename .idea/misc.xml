@@ -1,6 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="../../../../../../layout/custom_preview.xml" value="0.5057291666666667" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/dialog_warning.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_c2c_enter_date_to.xml" value="0.522265625" />
+        <entry key="app/src/main/res/layout/fragment_c2c_entry_time.xml" value="0.522265625" />
+        <entry key="app/src/main/res/layout/fragment_c2c_greetings.xml" value="0.3392857142857143" />
+        <entry key="app/src/main/res/layout/fragment_c2c_hotel.xml" value="0.522265625" />
+        <entry key="app/src/main/res/layout/fragment_c2c_no_config.xml" value="0.522265625" />
+        <entry key="app/src/main/res/layout/fragment_c2c_plate_registration.xml" value="0.3392857142857143" />
+        <entry key="app/src/main/res/layout/fragment_c2c_validation_complete.xml" value="0.522265625" />
+        <entry key="app/src/main/res/layout/fragment_c2c_voucher.xml" value="0.522265625" />
+        <entry key="app/src/main/res/layout/fragment_ga_enter_date_to.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/fragment_ga_enter_time.xml" value="0.566015625" />
+        <entry key="app/src/main/res/layout/fragment_ga_greetings.xml" value="0.566015625" />
+        <entry key="app/src/main/res/layout/fragment_ga_hotel.xml" value="0.566015625" />
+        <entry key="app/src/main/res/layout/fragment_ga_no_config.xml" value="0.565625" />
+        <entry key="app/src/main/res/layout/fragment_ga_plate_registration.xml" value="0.565625" />
+        <entry key="app/src/main/res/layout/fragment_ga_validation_results.xml" value="0.565625" />
+        <entry key="app/src/main/res/layout/fragment_ga_voucher.xml" value="0.565625" />
+        <entry key="app/src/main/res/layout/fragment_horizon_entry_time.xml" value="0.4753694581280788" />
+        <entry key="app/src/main/res/layout/fragment_horizon_greetings.xml" value="0.4753694581280788" />
+        <entry key="app/src/main/res/layout/fragment_horizon_hotel.xml" value="0.4753694581280788" />
+        <entry key="app/src/main/res/layout/fragment_horizon_no_config.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/fragment_horizon_plate_registration.xml" value="0.3389778325123153" />
+        <entry key="app/src/main/res/layout/fragment_horizon_validation_results.xml" value="0.3389778325123153" />
+        <entry key="app/src/main/res/layout/fragment_horizon_voucher.xml" value="0.3389778325123153" />
+        <entry key="app/src/main/res/layout/fragment_login_checker.xml" value="0.2672149961744453" />
+        <entry key="app/src/main/res/layout/fragment_login_registration.xml" value="0.2473221117061974" />
+        <entry key="validationtesting/src/main/res/layout/activity_main.xml" value="0.2776657182893911" />
+        <entry key="validationtesting/src/main/res/layout/activity_test.xml" value="0.371875" />
+        <entry key="validationtesting/src/main/res/layout/dialog_warning.xml" value="0.37007389162561577" />
+        <entry key="validationtesting/src/main/res/layout/fragment_c2c_enter_date_to.xml" value="0.37007389162561577" />
+        <entry key="validationtesting/src/main/res/layout/fragment_c2c_entry_time.xml" value="0.39316502463054187" />
+        <entry key="validationtesting/src/main/res/layout/fragment_c2c_plate_registration.xml" value="0.36796875" />
+        <entry key="validationtesting/src/main/res/layout/fragment_ga_enter_date_to.xml" value="0.40548029556650245" />
+        <entry key="validationtesting/src/main/res/layout/fragment_ga_plate_registration.xml" value="0.40548029556650245" />
+        <entry key="validationtesting/src/main/res/layout/fragment_ga_voucher.xml" value="0.40548029556650245" />
+        <entry key="validationtesting/src/main/res/layout/fragment_horizon_enter_date_to.xml" value="0.40548029556650245" />
+        <entry key="validationtesting/src/main/res/layout/fragment_horizon_entry_time.xml" value="0.39316502463054187" />
+        <entry key="validationtesting/src/main/res/layout/fragment_horizon_hotel.xml" value="0.3392857142857143" />
+        <entry key="validationtesting/src/main/res/layout/fragment_horizon_plate_registration.xml" value="0.40548029556650245" />
+        <entry key="validationtesting/src/main/res/layout/fragment_login_checker.xml" value="0.3910098522167488" />
+        <entry key="validationtesting/src/main/res/layout/fragment_login_registration.xml" value="0.20581484315225707" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

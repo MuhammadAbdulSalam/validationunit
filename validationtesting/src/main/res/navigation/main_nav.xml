@@ -1,0 +1,641 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+  ~ Copyright (c) 2021. Author Muhammad Abdul Salam.
+  ~ Property of Sagoss Group
+  ~
+  ~ It is against law to modify, replicate or distribute this code
+  ~ Permission of owner (Sagoss Group) is needed in order to
+  ~ modify, replicate or distribute this code.
+  -->
+
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_nav"
+    app:startDestination="@id/fragment_login_checker">
+
+    <!--                                 *********************************
+    ************************************** LoginChecker/ Home Fragments ****************************
+                                         *********************************                       -->
+    <fragment
+        android:id="@+id/fragment_login_checker"
+        android:name="com.sagoss.validationtesting.ui.fragments.loginviews.LoginCheckerFragment"
+        android:label="Home"
+        tools:layout="@layout/fragment_login_checker">
+
+        <action
+            android:id="@+id/action_login_checker_to_fragment_registration"
+            app:destination="@id/fragment_registration" />
+        <action
+            android:id="@+id/action_fragment_login_checker_to_fragment_greetings_c2c"
+            app:destination="@id/fragment_greetings_c2c" />
+        <action
+            android:id="@+id/action_fragment_login_checker_to_fragment_greetings_ga"
+            app:destination="@id/fragment_greetings_ga" />
+        <action
+            android:id="@+id/action_fragment_login_checker_to_fragment_no_config_horizon"
+            app:destination="@id/fragment_no_config_horizon" />
+        <action
+            android:id="@+id/action_fragment_login_checker_to_fragment_greetings_horizon"
+            app:destination="@id/fragment_greetings_horizon"
+            app:enterAnim="@anim/slide_in_from_right"
+            app:exitAnim="@anim/slide_out_to_left"
+            app:popEnterAnim="@anim/slide_in_from_left"
+            app:popExitAnim="@anim/slide_out_to_right" />
+        <action
+            android:id="@+id/action_fragment_login_checker_to_fragment_no_config_ga"
+            app:destination="@id/fragment_no_config_ga" />
+        <action
+            android:id="@+id/action_fragment_login_checker_to_fragment_no_config_c2c"
+            app:destination="@id/fragment_no_config_c2c" />
+
+    </fragment>
+
+    <!--                               *********************************
+    **************************************** Registration Fragments ********************************
+                                       *********************************                         -->
+    <fragment
+        android:id="@+id/fragment_registration"
+        android:name="com.sagoss.validationtesting.ui.fragments.loginviews.LoginRegistrationFragment"
+        android:label="Registration"
+        tools:layout="@layout/fragment_login_registration" />
+
+    <!--                             *********************************
+    ******************************************* C2C Fragments **************************************
+                                     *********************************                           -->
+
+    <fragment
+        android:id="@+id/fragment_no_config_c2c"
+        android:name="com.sagoss.validationtesting.ui.fragments.companyviews.c2c.NoConfigC2cFragment"
+        android:label="No Config"
+        tools:layout="@layout/fragment_c2c_no_config">
+        <action
+            android:id="@+id/action_fragment_no_config_c2c_to_fragment_greetings_c2c"
+            app:destination="@id/fragment_greetings_c2c"
+            app:enterAnim="@anim/slide_in_from_right"
+            app:exitAnim="@anim/slide_out_to_left"
+            app:popEnterAnim="@anim/slide_in_from_left"
+            app:popExitAnim="@anim/slide_out_to_right" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_greetings_c2c"
+        android:name="com.sagoss.validationtesting.ui.fragments.companyviews.c2c.GreetingsC2cFragment"
+        android:label="Greetings"
+        tools:layout="@layout/fragment_c2c_greetings">
+        <action
+            android:id="@+id/action_fragment_greetings_c2c_to_fragment_vouchers_c2c"
+            app:destination="@id/fragment_vouchers_c2c"
+            app:enterAnim="@anim/slide_in_from_right"
+            app:exitAnim="@anim/slide_out_to_left"
+            app:popEnterAnim="@anim/slide_in_from_left"
+            app:popExitAnim="@anim/slide_out_to_right" />
+        <action
+            android:id="@+id/action_fragment_greetings_c2c_to_fragment_plate_registration_c2c"
+            app:destination="@id/fragment_plate_registration_c2c"
+            app:enterAnim="@anim/slide_in_from_right"
+            app:exitAnim="@anim/slide_out_to_left"
+            app:popEnterAnim="@anim/slide_in_from_left"
+            app:popExitAnim="@anim/slide_out_to_right" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_vouchers_c2c"
+        android:name="com.sagoss.validationtesting.ui.fragments.companyviews.c2c.VoucherC2cFragment"
+        android:label="Greetings"
+        tools:layout="@layout/fragment_c2c_voucher"
+        app:enterAnim="@anim/slide_in_from_right"
+        app:exitAnim="@anim/slide_out_to_left"
+        app:popEnterAnim="@anim/slide_in_from_left"
+        app:popExitAnim="@anim/slide_out_to_right" >
+        <action
+            android:id="@+id/action_fragment_vouchers_c2c_to_fragment_plate_registration_c2c"
+            app:destination="@id/fragment_plate_registration_c2c"
+            app:enterAnim="@anim/slide_in_from_right"
+            app:exitAnim="@anim/slide_out_to_left"
+            app:popEnterAnim="@anim/slide_in_from_left"
+            app:popExitAnim="@anim/slide_out_to_right" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_plate_registration_c2c"
+        android:name="com.sagoss.validationtesting.ui.fragments.companyviews.c2c.PlateRegistrationC2cFragment"
+        android:label="Enter Reg Plate"
+        tools:layout="@layout/fragment_c2c_plate_registration">
+        <argument
+            android:name="voucher"
+            app:argType="com.sagoss.validationtesting.database.models.Voucher" />
+        <action
+            android:id="@+id/action_fragment_plate_registration_c2c_to_fragment_date_to_c2c"
+            app:destination="@id/fragment_date_to_c2c"
+            app:enterAnim="@anim/slide_in_from_right"
+            app:exitAnim="@anim/slide_out_to_left"
+            app:popEnterAnim="@anim/slide_in_from_left"
+            app:popExitAnim="@anim/slide_out_to_right" />
+        <action
+            android:id="@+id/action_fragment_plate_registration_c2c_to_fragment_date_from_c2c"
+            app:destination="@id/fragment_date_from_c2c"
+            app:enterAnim="@anim/slide_in_from_right"
+            app:exitAnim="@anim/slide_out_to_left"
+            app:popEnterAnim="@anim/slide_in_from_left"
+            app:popExitAnim="@anim/slide_out_to_right" />
+        <action
+            android:id="@+id/action_fragment_plate_registration_c2c_to_fragment_hotel_c2c"
+            app:destination="@id/fragment_hotel_c2c"
+            app:enterAnim="@anim/slide_in_from_right"
+            app:exitAnim="@anim/slide_out_to_left"
+            app:popEnterAnim="@anim/slide_in_from_left"
+            app:popExitAnim="@anim/slide_out_to_right" />
+        <action
+            android:id="@+id/action_fragment_plate_registration_c2c_to_fragment_validation_complete"
+            app:destination="@id/fragment_validation_complete"
+            app:enterAnim="@anim/slide_in_from_right"
+            app:exitAnim="@anim/slide_out_to_left"
+            app:popEnterAnim="@anim/slide_in_from_left"
+            app:popExitAnim="@anim/slide_out_to_right" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_date_to_c2c"
+        android:name="com.sagoss.validationtesting.ui.fragments.companyviews.c2c.EnterDateToC2cFragment"
+        android:label="Greetings"
+        tools:layout="@layout/fragment_c2c_enter_date_to">
+        <argument
+            android:name="voucher"
+            app:argType="com.sagoss.validationtesting.database.models.Voucher" />
+        <argument
+            android:name="plate_number"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_fragment_date_to_c2c_to_fragment_validation_complete"
+            app:destination="@id/fragment_validation_complete"
+            app:enterAnim="@anim/slide_in_from_right"
+            app:exitAnim="@anim/slide_out_to_left"
+            app:popEnterAnim="@anim/slide_in_from_left"
+            app:popExitAnim="@anim/slide_out_to_right" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_date_from_c2c"
+        android:name="com.sagoss.validationtesting.ui.fragments.companyviews.c2c.EntryTimeC2cFragment"
+        android:label="Greetings"
+        tools:layout="@layout/fragment_c2c_entry_time">
+        <argument
+            android:name="voucher"
+            app:argType="com.sagoss.validationtesting.database.models.Voucher" />
+        <argument
+            android:name="plate_number"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_fragment_date_from_c2c_to_fragment_date_to_c2c"
+            app:destination="@id/fragment_date_to_c2c"
+            app:enterAnim="@anim/slide_in_from_right"
+            app:exitAnim="@anim/slide_out_to_left"
+            app:popEnterAnim="@anim/slide_in_from_left"
+            app:popExitAnim="@anim/slide_out_to_right" />
+        <action
+            android:id="@+id/action_fragment_date_from_c2c_to_fragment_hotel_c2c"
+            app:destination="@id/fragment_hotel_c2c"
+            app:enterAnim="@anim/slide_in_from_right"
+            app:exitAnim="@anim/slide_out_to_left"
+            app:popEnterAnim="@anim/slide_in_from_left"
+            app:popExitAnim="@anim/slide_out_to_right" />
+        <action
+            android:id="@+id/action_fragment_date_from_c2c_to_fragment_validation_complete"
+            app:destination="@id/fragment_validation_complete"
+            app:enterAnim="@anim/slide_in_from_right"
+            app:exitAnim="@anim/slide_out_to_left"
+            app:popEnterAnim="@anim/slide_in_from_left"
+            app:popExitAnim="@anim/slide_out_to_right" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_hotel_c2c"
+        android:name="com.sagoss.validationtesting.ui.fragments.companyviews.c2c.HotelC2cFragment"
+        android:label="Greetings"
+        tools:layout="@layout/fragment_c2c_hotel">
+        <argument
+            android:name="voucher"
+            app:argType="com.sagoss.validationtesting.database.models.Voucher" />
+        <argument
+            android:name="plate_number"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_fragment_hotel_c2c_to_fragment_validation_complete"
+            app:destination="@id/fragment_validation_complete"
+            app:enterAnim="@anim/slide_in_from_right"
+            app:exitAnim="@anim/slide_out_to_left"
+            app:popEnterAnim="@anim/slide_in_from_left"
+            app:popExitAnim="@anim/slide_out_to_right" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_validation_complete"
+        android:name="com.sagoss.validationtesting.ui.fragments.companyviews.c2c.ValidationResultsC2cFragment"
+        android:label="Complate"
+        tools:layout="@layout/fragment_c2c_validation_complete">
+        <argument
+            android:name="voucher"
+            app:argType="com.sagoss.validationtesting.database.models.Voucher" />
+        <argument
+            android:name="plate_number"
+            app:argType="string" />
+        <argument
+            android:name="date_to"
+            app:argType="string" />
+        <argument
+            android:name="date_from"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_fragment_validation_complete_to_fragment_greetings_c2c"
+            app:destination="@id/fragment_greetings_c2c"
+            app:enterAnim="@anim/slide_in_from_right"
+            app:exitAnim="@anim/slide_out_to_left"
+            app:popEnterAnim="@anim/slide_in_from_left"
+            app:popExitAnim="@anim/slide_out_to_right" />
+    </fragment>
+
+
+    <!--                             *********************************
+   ***************************************** Horizon Fragments *************************************
+                                     *********************************                           -->
+
+    <fragment
+        android:id="@+id/fragment_no_config_horizon"
+        android:name="com.sagoss.validationtesting.ui.fragments.companyviews.horizon.NoConfigHorizonFragment"
+        android:label="No Config"
+        tools:layout="@layout/fragment_horizon_no_config">
+        <action
+            android:id="@+id/action_fragment_no_config_horizon_to_fragment_greetings_horizon"
+            app:destination="@id/fragment_greetings_horizon"
+            app:enterAnim="@anim/slide_in_from_right"
+            app:exitAnim="@anim/slide_out_to_left"
+            app:popEnterAnim="@anim/slide_in_from_left"
+            app:popExitAnim="@anim/slide_out_to_right" />
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/fragment_greetings_horizon"
+        android:name="com.sagoss.validationtesting.ui.fragments.companyviews.horizon.GreetingsHorizonFragmentGreetings"
+        android:label="Greetings"
+        tools:layout="@layout/fragment_horizon_greetings">
+        <action
+            android:id="@+id/action_fragment_greetings_horizon_to_fragment_plate_registration_horizon"
+            app:destination="@id/fragment_plate_registration_horizon" />
+        <action
+            android:id="@+id/action_fragment_greetings_horizon_to_fragment_vouchers_horizon"
+            app:destination="@id/fragment_vouchers_horison"
+            app:enterAnim="@anim/slide_in_from_right"
+            app:exitAnim="@anim/slide_out_to_left"
+            app:popEnterAnim="@anim/slide_in_from_left"
+            app:popExitAnim="@anim/slide_out_to_right" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_vouchers_horison"
+        android:name="com.sagoss.validationtesting.ui.fragments.companyviews.horizon.VoucherFragmentHorizon"
+        android:label="Vouchers"
+        tools:layout="@layout/fragment_horizon_voucher">
+        <action
+            android:id="@+id/action_fragment_vouchers_horison_to_fragment_plate_registration_horizon"
+            app:destination="@id/fragment_plate_registration_horizon"
+            app:enterAnim="@anim/slide_in_from_right"
+            app:exitAnim="@anim/slide_out_to_left"
+            app:popEnterAnim="@anim/slide_in_from_left"
+            app:popExitAnim="@anim/slide_out_to_right" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_plate_registration_horizon"
+        android:name="com.sagoss.validationtesting.ui.fragments.companyviews.horizon.PlateRegistrationHorizonFragment"
+        android:label="Enter Reg Plate"
+        tools:layout="@layout/fragment_horizon_plate_registration">
+        <argument
+            android:name="voucher"
+            app:argType="com.sagoss.validationtesting.database.models.Voucher" />
+        <action
+            android:id="@+id/action_fragment_plate_registration_horizon_to_fragment_enter_date_to_horizon"
+            app:destination="@id/fragment_enter_date_to_horizon"
+            app:enterAnim="@anim/slide_in_from_right"
+            app:exitAnim="@anim/slide_out_to_left"
+            app:popEnterAnim="@anim/slide_in_from_left"
+            app:popExitAnim="@anim/slide_out_to_right" />
+        <action
+            android:id="@+id/action_fragment_plate_registration_horizon_to_fragment_entry_time_horizon"
+            app:destination="@id/fragment_entry_time_horizon"
+            app:enterAnim="@anim/slide_in_from_right"
+            app:exitAnim="@anim/slide_out_to_left"
+            app:popEnterAnim="@anim/slide_in_from_left"
+            app:popExitAnim="@anim/slide_out_to_right" />
+        <action
+            android:id="@+id/action_fragment_plate_registration_horizon_to_fragment_horizon_hotel"
+            app:destination="@id/fragment_horizon_hotel"
+            app:enterAnim="@anim/slide_in_from_right"
+            app:exitAnim="@anim/slide_out_to_left"
+            app:popEnterAnim="@anim/slide_in_from_left"
+            app:popExitAnim="@anim/slide_out_to_right" />
+        <action
+            android:id="@+id/action_fragment_plate_registration_horizon_to_fragment_horizon_validation"
+            app:destination="@id/fragment_horizon_validation"
+            app:enterAnim="@anim/slide_in_from_right"
+            app:exitAnim="@anim/slide_out_to_left"
+            app:popEnterAnim="@anim/slide_in_from_left"
+            app:popExitAnim="@anim/slide_out_to_right" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_enter_date_to_horizon"
+        android:name="com.sagoss.validationtesting.ui.fragments.companyviews.horizon.EnterDateToHorizonFragment"
+        android:label="Enter Reg Plate"
+        tools:layout="@layout/fragment_horizon_enter_date_to">
+        <argument
+            android:name="voucher"
+            app:argType="com.sagoss.validationtesting.database.models.Voucher" />
+        <argument
+            android:name="plate_number"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_fragment_enter_date_to_horizon_to_fragment_horizon_validation"
+            app:destination="@id/fragment_horizon_validation"
+            app:enterAnim="@anim/slide_in_from_right"
+            app:exitAnim="@anim/slide_out_to_left"
+            app:popEnterAnim="@anim/slide_in_from_left"
+            app:popExitAnim="@anim/slide_out_to_right" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_entry_time_horizon"
+        android:name="com.sagoss.validationtesting.ui.fragments.companyviews.horizon.EntryTimeHorizonFragment"
+        android:label="Enter Reg Plate"
+        tools:layout="@layout/fragment_horizon_entry_time">
+        <argument
+            android:name="voucher"
+            app:argType="com.sagoss.validationtesting.database.models.Voucher" />
+        <argument
+            android:name="plate_number"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_fragment_entry_time_horizon_to_fragment_enter_date_to_horizon"
+            app:destination="@id/fragment_enter_date_to_horizon"
+            app:enterAnim="@anim/slide_in_from_right"
+            app:exitAnim="@anim/slide_out_to_left"
+            app:popEnterAnim="@anim/slide_in_from_left"
+            app:popExitAnim="@anim/slide_out_to_right" />
+        <action
+            android:id="@+id/action_fragment_entry_time_horizon_to_fragment_horizon_hotel"
+            app:destination="@id/fragment_horizon_hotel"
+            app:enterAnim="@anim/slide_in_from_right"
+            app:exitAnim="@anim/slide_out_to_left"
+            app:popEnterAnim="@anim/slide_in_from_left"
+            app:popExitAnim="@anim/slide_out_to_right" />
+        <action
+            android:id="@+id/action_fragment_entry_time_horizon_to_fragment_horizon_validation"
+            app:destination="@id/fragment_horizon_validation"
+            app:enterAnim="@anim/slide_in_from_right"
+            app:exitAnim="@anim/slide_out_to_left"
+            app:popEnterAnim="@anim/slide_in_from_left"
+            app:popExitAnim="@anim/slide_out_to_right" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_horizon_hotel"
+        android:name="com.sagoss.validationtesting.ui.fragments.companyviews.horizon.HotelHorizonFragment"
+        android:label="Enter Reg Plate"
+        tools:layout="@layout/fragment_horizon_hotel">
+        <argument
+            android:name="voucher"
+            app:argType="com.sagoss.validationtesting.database.models.Voucher" />
+        <argument
+            android:name="plate_number"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_fragment_horizon_hotel_to_fragment_horizon_validation"
+            app:destination="@id/fragment_horizon_validation"
+            app:enterAnim="@anim/slide_in_from_right"
+            app:exitAnim="@anim/slide_out_to_left"
+            app:popEnterAnim="@anim/slide_in_from_left"
+            app:popExitAnim="@anim/slide_out_to_right" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_horizon_validation"
+        android:name="com.sagoss.validationtesting.ui.fragments.companyviews.horizon.ValidationResultsHorizonFragment"
+        android:label="Enter Reg Plate"
+        tools:layout="@layout/fragment_horizon_validation_results">
+        <argument
+            android:name="voucher"
+            app:argType="com.sagoss.validationtesting.database.models.Voucher" />
+        <argument
+            android:name="plate_number"
+            app:argType="string" />
+        <argument
+            android:name="date_to"
+            app:argType="string" />
+        <argument
+            android:name="date_from"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_fragment_horizon_validation_to_fragment_greetings_horizon"
+            app:destination="@id/fragment_greetings_horizon"
+            app:enterAnim="@anim/slide_in_from_left"
+            app:exitAnim="@anim/slide_out_to_right"
+            app:popEnterAnim="@anim/slide_out_to_right"
+            app:popExitAnim="@android:anim/slide_in_left" />
+    </fragment>
+
+
+    <!--                                *********************************
+    ********************************************* GA Fragments *************************************
+                                        *********************************                        -->
+    <fragment
+        android:id="@+id/fragment_no_config_ga"
+        android:name="com.sagoss.validationtesting.ui.fragments.companyviews.greateranglia.NoConfigGaFragment"
+        android:label="No Config"
+        tools:layout="@layout/fragment_ga_no_config">
+
+        <action
+            android:id="@+id/action_fragment_no_config_ga_to_fragment_greetings_ga"
+            app:destination="@id/fragment_greetings_ga"
+            app:enterAnim="@anim/slide_in_from_right"
+            app:exitAnim="@anim/slide_out_to_left"
+            app:popEnterAnim="@anim/slide_in_from_left"
+            app:popExitAnim="@anim/slide_out_to_right" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_greetings_ga"
+        android:name="com.sagoss.validationtesting.ui.fragments.companyviews.greateranglia.GreetingsGaFragment"
+        android:label="Greetings"
+        tools:layout="@layout/fragment_ga_greetings">
+        <action
+            android:id="@+id/action_fragment_greetings_ga_to_fragment_plate_registration_ga"
+            app:destination="@id/fragment_plate_registration_ga"
+            app:enterAnim="@anim/slide_in_from_right"
+            app:exitAnim="@anim/slide_out_to_left"
+            app:popEnterAnim="@anim/slide_in_from_left"
+            app:popExitAnim="@anim/slide_out_to_right" />
+        <action
+            android:id="@+id/action_fragment_greetings_ga_to_fragment_vouchers_ga"
+            app:destination="@id/fragment_vouchers_ga"
+            app:enterAnim="@anim/slide_in_from_right"
+            app:exitAnim="@anim/slide_out_to_left"
+            app:popEnterAnim="@anim/slide_in_from_left"
+            app:popExitAnim="@anim/slide_out_to_right" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_vouchers_ga"
+        android:name="com.sagoss.validationtesting.ui.fragments.companyviews.greateranglia.VoucherGaFragment"
+        android:label="Enter Reg Number"
+        tools:layout="@layout/fragment_ga_voucher">
+        <action
+            android:id="@+id/action_fragment_vouchers_ga_to_fragment_plate_registration_ga"
+            app:destination="@id/fragment_plate_registration_ga"
+            app:enterAnim="@anim/slide_in_from_right"
+            app:exitAnim="@anim/slide_out_to_left"
+            app:popEnterAnim="@anim/slide_in_from_left"
+            app:popExitAnim="@anim/slide_out_to_right"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_plate_registration_ga"
+        android:name="com.sagoss.validationtesting.ui.fragments.companyviews.greateranglia.PlateRegistrationGaFragment"
+        android:label="Enter Reg Number"
+        tools:layout="@layout/fragment_ga_plate_registration">
+        <argument
+            android:name="voucher"
+            app:argType="com.sagoss.validationtesting.database.models.Voucher" />
+        <action
+            android:id="@+id/action_fragment_plate_registration_ga_to_fragment_hotel_ga"
+            app:destination="@id/fragment_hotel_ga"
+            app:enterAnim="@anim/slide_in_from_right"
+            app:exitAnim="@anim/slide_out_to_left"
+            app:popEnterAnim="@anim/slide_in_from_left"
+            app:popExitAnim="@anim/slide_out_to_right" />
+        <action
+            android:id="@+id/action_fragment_plate_registration_ga_to_fragment_date_from_ga"
+            app:destination="@id/fragment_date_from_ga"
+            app:enterAnim="@anim/slide_in_from_right"
+            app:exitAnim="@anim/slide_out_to_left"
+            app:popEnterAnim="@anim/slide_in_from_left"
+            app:popExitAnim="@anim/slide_out_to_right" />
+        <action
+            android:id="@+id/action_fragment_plate_registration_ga_to_fragment_date_to_ga"
+            app:destination="@id/fragment_date_to_ga"
+            app:enterAnim="@anim/slide_in_from_right"
+            app:exitAnim="@anim/slide_out_to_left"
+            app:popEnterAnim="@anim/slide_in_from_left"
+            app:popExitAnim="@anim/slide_out_to_right" />
+        <action
+            android:id="@+id/action_fragment_plate_registration_ga_to_fragment_validation_ga"
+            app:destination="@id/fragment_validation_ga"
+            app:enterAnim="@anim/slide_in_from_right"
+            app:exitAnim="@anim/slide_out_to_left"
+            app:popEnterAnim="@anim/slide_in_from_left"
+            app:popExitAnim="@anim/slide_out_to_right" />
+    </fragment>
+    
+    <fragment
+        android:id="@+id/fragment_date_to_ga"
+        android:name="com.sagoss.validationtesting.ui.fragments.companyviews.greateranglia.EnterDateToGaFragment"
+        android:label="Enter Reg Number"
+        tools:layout="@layout/fragment_ga_enter_date_to">
+        <argument
+            android:name="voucher"
+            app:argType="com.sagoss.validationtesting.database.models.Voucher" />
+        <argument
+            android:name="plate_number"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_fragment_date_to_ga_to_fragment_validation_ga"
+            app:destination="@id/fragment_validation_ga"
+            app:enterAnim="@anim/slide_in_from_right"
+            app:exitAnim="@anim/slide_out_to_left"
+            app:popEnterAnim="@anim/slide_in_from_left"
+            app:popExitAnim="@anim/slide_out_to_right"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_date_from_ga"
+        android:name="com.sagoss.validationtesting.ui.fragments.companyviews.greateranglia.EnterTimeGaFragment"
+        android:label="Enter Reg Number"
+        tools:layout="@layout/fragment_ga_enter_time">
+        <argument
+            android:name="voucher"
+            app:argType="com.sagoss.validationtesting.database.models.Voucher" />
+        <argument
+            android:name="plate_number"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_fragment_date_from_ga_to_fragment_date_to_ga"
+            app:destination="@id/fragment_date_to_ga"
+            app:enterAnim="@anim/slide_in_from_right"
+            app:exitAnim="@anim/slide_out_to_left"
+            app:popEnterAnim="@anim/slide_in_from_left"
+            app:popExitAnim="@anim/slide_out_to_right" />
+        <action
+            android:id="@+id/action_fragment_date_from_ga_to_fragment_hotel_ga"
+            app:destination="@id/fragment_hotel_ga"
+            app:enterAnim="@anim/slide_in_from_right"
+            app:exitAnim="@anim/slide_out_to_left"
+            app:popEnterAnim="@anim/slide_in_from_left"
+            app:popExitAnim="@anim/slide_out_to_right" />
+        <action
+            android:id="@+id/action_fragment_date_from_ga_to_fragment_validation_ga"
+            app:destination="@id/fragment_validation_ga"
+            app:enterAnim="@anim/slide_in_from_right"
+            app:exitAnim="@anim/slide_out_to_left"
+            app:popEnterAnim="@anim/slide_in_from_left"
+            app:popExitAnim="@anim/slide_out_to_right" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_hotel_ga"
+        android:name="com.sagoss.validationtesting.ui.fragments.companyviews.greateranglia.HotelGaFragment"
+        android:label="Enter Reg Number"
+        tools:layout="@layout/fragment_ga_hotel">
+        <argument
+            android:name="voucher"
+            app:argType="com.sagoss.validationtesting.database.models.Voucher" />
+        <argument
+            android:name="plate_number"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_fragment_hotel_ga_to_fragment_validation_ga"
+            app:destination="@id/fragment_validation_ga"
+            app:enterAnim="@anim/slide_in_from_right"
+            app:exitAnim="@anim/slide_out_to_left"
+            app:popEnterAnim="@anim/slide_in_from_left"
+            app:popExitAnim="@anim/slide_out_to_right" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_validation_ga"
+        android:name="com.sagoss.validationtesting.ui.fragments.companyviews.greateranglia.ValidationResultsGaFragment"
+        android:label="Enter Reg Number"
+        tools:layout="@layout/fragment_ga_validation_results">
+        <argument
+            android:name="voucher"
+            app:argType="com.sagoss.validationtesting.database.models.Voucher" />
+        <argument
+            android:name="plate_number"
+            app:argType="string" />
+        <argument
+            android:name="date_to"
+            app:argType="string" />
+        <argument
+            android:name="date_from"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_fragment_validation_ga_to_fragment_greetings_ga"
+            app:destination="@id/fragment_greetings_ga"
+            app:enterAnim="@anim/slide_in_from_left"
+            app:exitAnim="@anim/slide_out_to_right"
+            app:popEnterAnim="@anim/slide_out_to_right"
+            app:popExitAnim="@android:anim/slide_in_left" />
+    </fragment>
+
+
+</navigation>
